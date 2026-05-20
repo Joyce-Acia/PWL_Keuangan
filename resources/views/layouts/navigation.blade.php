@@ -15,12 +15,15 @@
                         {{ __('Home') }}
                     </x-nav-link>
                 </div>
-                
+
                 @auth
                     @if(Auth::user()->role === 'admin')
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex text-center">
-                        <x-nav-link :href="route('users.index')" :active="request()->routeIs('users. *')">
-                            {{ __('Manajemen Pengguna') }}
+                        <x-nav-link :href="route('expenses.index')" :active="request()->routeIs('expenses.*')">
+                            {{ __('Expenses') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('income.index')" :active="request()->routeIs('income.*')">
+                            {{ __('Income') }}
                         </x-nav-link>
                     </div>
 
@@ -83,10 +86,12 @@
 
         @auth
             @if(Auth::user()->role === 'admin')
-            <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
-                Manajemen Pengguna
+            <x-responsive-nav-link :href="route('expenses.index')" :active="request()->routeIs('expenses.*')">
+                Expenses
             </x-responsive-nav-link>
-
+            <x-responsive-nav-link :href="route('income.index')" :active="request()->routeIs('income.*')">
+                Income
+            </x-responsive-nav-link>
 
             @endif
         @endauth
