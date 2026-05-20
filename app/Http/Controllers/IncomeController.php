@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Expense;
 use App\Models\Income;
 use Illuminate\Http\Request;
 
@@ -23,7 +24,8 @@ class IncomeController extends Controller
     {
         $this->ensureAdmin();
         $incomes = Income::orderBy('id', 'desc')->paginate(15);
-        return view('income.index', compact('incomes'));
+        $expenses = Expense::orderBy('id', 'desc')->paginate(15);
+        return view('income.index', compact('incomes', 'expenses'));
     }
 
     public function create()

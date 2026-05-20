@@ -1,8 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex items-center justify-between">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ __('Income') }}</h2>
-            <a href="{{ route('income.create') }}" class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">Add Income</a>
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <div class="flex items-center gap-3">
+                <a href="{{ route('income.create') }}" class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">
+                    <span class="text-lg font-bold">+</span>
+                    <span class="ms-2">Add</span>
+                </a>
+                <h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ __('Income') }}</h2>
+            </div>
+            <div class="text-sm text-gray-600">Daftar transaksi pengeluaran</div>
         </div>
     </x-slot>
 
@@ -23,7 +29,8 @@
                                     <tr>
                                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID Transaksi</th>
                                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tanggal</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama Pelanggan</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama Vendor</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Kategori</th>
                                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nominal</th>
                                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Keterangan</th>
                                         <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
@@ -34,7 +41,8 @@
                                         <tr>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $income->transaction_id }}</td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $income->tanggal }}</td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $income->nama_pelanggan }}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $income->nama_vendor }}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $income->kategori }}</td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rp. {{ number_format($income->nominal, 2, ',', '.') }}</td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $income->keterangan }}</td>
                                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
