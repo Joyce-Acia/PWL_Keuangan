@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Expense;
 use App\Models\Income;
 use Illuminate\Http\Request;
 
@@ -24,8 +23,7 @@ class IncomeController extends Controller
     {
         $this->ensureAdmin();
         $incomes = Income::orderBy('id', 'desc')->paginate(15);
-        $expenses = Expense::orderBy('id', 'desc')->paginate(15);
-        return view('income.index', compact('incomes', 'expenses'));
+        return view('income.index', compact('incomes'));
     }
 
     public function create()
@@ -39,14 +37,19 @@ class IncomeController extends Controller
         $this->ensureAdmin();
 
         $validated = $request->validate([
-            'transaction_id' => 'required|string|unique:incomes,transaction_id',
+            'transaction_id' => 'nullable|string',
             'tanggal' => 'required|date',
             'nama_pelanggan' => 'required|string|max:255',
             'nominal' => 'required|numeric',
             'keterangan' => 'nullable|string',
         ]);
 
+        $validated['transaction_id'] = $validated['transaction_id'] ?: ('INC-' . now()->format('YmdHis') . '-' . strtoupper(
+            bin2hex(random_bytes(3))
+        ));
+
         Income::create($validated);
+
 
         return redirect()->route('income.index')->with('success', 'Income saved.');
     }
@@ -63,7 +66,11 @@ class IncomeController extends Controller
 
         $validated = $request->validate([
             'transaction_id' => 'required|string|unique:incomes,transaction_id,' . $income->id,
+
+
             'tanggal' => 'required|date',
+
+
             'nama_pelanggan' => 'required|string|max:255',
             'nominal' => 'required|numeric',
             'keterangan' => 'nullable|string',
