@@ -30,9 +30,24 @@
                         </div>
 
                         <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700">Stok</label>
+                            <select name="kategori" class="mt-1 block w-full" required>
+                                <option value="">-- Pilih Stok --</option>
+                                <option value="Minyak Goreng 2L" {{ old('kategori', $income->kategori ?? '') === 'Minyak Goreng 2L' ? 'selected' : '' }}>Minyak Goreng 2L</option>
+
+                                <option value="Minyak Goreng 1L" {{ old('kategori', $income->kategori ?? '') === 'Minyak Goreng 1L' ? 'selected' : '' }}>Minyak Goreng 1L</option>
+                                <option value="Gula Pasir 1Kg" {{ old('kategori', $income->kategori ?? '') === 'Gula Pasir 1Kg' ? 'selected' : '' }}>Gula Pasir 1Kg</option>
+                                <option value="Daging Ayam Dada Fillet" {{ old('kategori', $income->kategori ?? '') === 'Daging Ayam Dada Fillet' ? 'selected' : '' }}>Daging Ayam Dada Fillet</option>
+                                <option value="Daging Ayam Paha Fillet" {{ old('kategori', $income->kategori ?? '') === 'Daging Ayam Paha Fillet' ? 'selected' : '' }}>Daging Ayam Paha Fillet</option>
+                                <option value="Daging Sapi Rendang" {{ old('kategori', $income->kategori ?? '') === 'Daging Sapi Rendang' ? 'selected' : '' }}>Daging Sapi Rendang</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
                             <label class="block text-sm font-medium text-gray-700">Keterangan</label>
                             <textarea name="keterangan" class="mt-1 block w-full">{{ old('keterangan', $income->keterangan) }}</textarea>
                         </div>
+
 
                         <div class="flex items-center gap-3">
                             <button class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white rounded-md">Update</button>

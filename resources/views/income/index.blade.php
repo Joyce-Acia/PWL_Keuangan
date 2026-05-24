@@ -1,67 +1,188 @@
 <x-app-layout>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    @if(session('success'))
-                        <div class="mb-4 p-4 bg-green-100 text-green-700 rounded">{{ session('success') }}</div>
-                    @endif
+    <style>
+        .inc-root { font-family: 'DM Sans', sans-serif; background: #fffaed; min-height: 100vh; }
 
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
-                <div class="flex justify-between items-center mb-4">
-                    <h3 class="text-lg font-bold">Income Transactions</h3>
-                    <a href="{{ route('income.create') }}"
-                       class="px-4 py-2 bg-[#fe914d] text-black rounded hover:bg-[#fd593d]">
-                        + Add Income
-                    </a>
-                </div> 
-                    @if($incomes->isEmpty())
-                        <p class="text-gray-700">No income records found.</p>
-                    @else
-                        <div class="overflow-x-auto">
-                            <table class="min-w-full divide-y divide-gray-200">
-                                <thead class="bg-gray-50">
-                                    <tr>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID Transaksi</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tanggal</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama Pelanggan</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Kategori</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nominal</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Keterangan</th>
-                                        <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="bg-white divide-y divide-gray-200">
-                                    @foreach($incomes as $income)
-                                        <tr>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $income->transaction_id }}</td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $income->tanggal }}</td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $income->nama_vendor }}</td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $income->kategori }}</td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rp. {{ number_format($income->nominal, 2, ',', '.') }}</td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $income->keterangan }}</td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                <a href="{{ route('income.edit', $income) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                                <form action="{{ route('income.destroy', $income) }}" method="POST" class="inline-block ml-3" onsubmit="return confirm('Hapus income ini?');">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="text-red-600 hover:text-red-900">Delete</button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+        .page-header {
+            display: flex; align-items: flex-start;
+            justify-content: space-between; flex-wrap: wrap;
+            gap: 12px; margin-bottom: 24px;
+        }
+        .page-title { font-size: 1.25rem; font-weight: 700; color: #1a1a1a; }
+        .page-sub   { font-size: 0.8rem; color: #9ca3af; margin-top: 3px; }
 
-                        <div class="mt-4">
-                            {{ $incomes->links() }}
-                        </div>
-                    @endif
+        .btn-add {
+            display: inline-flex; align-items: center; gap: 7px;
+            background: #449672;
+            color: #fff; font-size: 0.82rem; font-weight: 600;
+            padding: 9px 18px; border-radius: 10px;
+            text-decoration: none; transition: opacity 0.2s;
+            white-space: nowrap;
+        }
+        .btn-add:hover { opacity: 0.88; }
+
+        .alert-success {
+            margin-bottom: 16px; padding: 12px 16px;
+            background: rgba(68,150,114,0.1); border: 1px solid rgba(68,150,114,0.3);
+            color: #449672; border-radius: 10px; font-size: 0.85rem;
+        }
+
+        .table-wrap {
+            background: #fff2cc;
+            border-radius: 16px;
+            border: 1px solid #f0e9b0;
+            overflow: hidden;
+        }
+
+        table { width: 100%; border-collapse: collapse; }
+
+        thead th {
+            padding: 12px 16px;
+            text-align: left;
+            font-size: 0.72rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.06em;
+            color: #9ca3af;
+            background: #fff2cc;
+            border-bottom: 1px solid #f0e9b0;
+        }
+        thead th:last-child { text-align: right; }
+
+        tbody tr {
+            border-bottom: 1px solid #f0e9b0;
+            transition: background 0.12s;
+            background: #fffaed;
+        }
+        tbody tr:last-child { border-bottom: none; }
+        tbody tr:hover { background: #fff2cc; }
+
+        tbody td {
+            padding: 13px 16px;
+            font-size: 0.84rem;
+            color: #1a1a1a;
+            vertical-align: middle;
+        }
+        tbody td:last-child { text-align: right; }
+
+        .td-id {
+            font-family: monospace; font-size: 0.78rem;
+            color: #9ca3af; background: rgba(0,0,0,0.04);
+            padding: 3px 7px; border-radius: 6px;
+            display: inline-block;
+        }
+
+        .td-total { font-weight: 700; color: #449672; }
+        .td-harga { font-size: 0.78rem; color: #6b7280; }
+        .td-qty   { font-size: 0.78rem; color: #6b7280; }
+
+        .badge-kategori {
+            display: inline-block;
+            font-size: 0.7rem; font-weight: 600;
+            padding: 3px 9px; border-radius: 20px;
+            background: rgba(68,150,114,0.12); color: #449672;
+        }
+
+        .action-edit {
+            font-size: 0.8rem; font-weight: 600;
+            color: #449672; text-decoration: none;
+        }
+        .action-edit:hover { opacity: 0.75; }
+
+        .action-delete {
+            font-size: 0.8rem; font-weight: 600;
+            color: #ff4336; background: none;
+            border: none; cursor: pointer; padding: 0;
+        }
+        .action-delete:hover { opacity: 0.75; }
+
+        .empty-state {
+            padding: 60px 24px; text-align: center;
+            color: #9ca3af; font-size: 0.875rem;
+            background: #fffaed;
+        }
+        .empty-icon { font-size: 2rem; margin-bottom: 10px; }
+
+        .pagination-wrap { margin-top: 20px; }
+    </style>
+
+    <div class="inc-root py-8 px-4 sm:px-8">
+        <div class="max-w-7xl mx-auto">
+
+            @if(session('success'))
+                <div class="alert-success">{{ session('success') }}</div>
+            @endif
+
+            <div class="page-header">
+                <div>
+                    <div class="page-title">Income Transactions</div>
+                    <div class="page-sub">All recorded income entries</div>
                 </div>
+                <a href="{{ route('income.create') }}" class="btn-add">
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+                    Add Income
+                </a>
             </div>
+
+            <div class="table-wrap">
+                @if($incomes->isEmpty())
+                    <div class="empty-state">
+                        <div class="empty-icon">📭</div>
+                        <div>No income records found.</div>
+                    </div>
+                @else
+                    <div class="overflow-x-auto">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID Transaksi</th>
+                                    <th>Tanggal</th>
+                                    <th>Nama Pelanggan</th>
+                                    <th>Stok</th>
+                                    <th>Harga</th>
+                                    <th>Kuantiti</th>
+                                    <th>Total</th>
+                                    <th>Keterangan</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($incomes as $income)
+                                    <tr>
+                                        <td>
+                                            <span class="td-id">
+                                                {{ strlen($income->transaction_id) > 8 ? substr($income->transaction_id, 0, 8) . '…' : $income->transaction_id }}
+                                            </span>
+                                        </td>
+                                        <td>{{ $income->tanggal }}</td>
+                                        <td>{{ $income->nama_pelanggan }}</td>
+                                        <td><span class="badge-kategori">{{ $income->kategori }}</span></td>
+                                        <td class="td-harga">Rp {{ number_format($income->harga, 2, ',', '.') }}</td>
+                                        <td class="td-qty">{{ $income->kuantiti }}</td>
+                                        <td class="td-total">Rp {{ number_format($income->harga * $income->kuantiti, 2, ',', '.') }}</td>
+                                        <td>{{ $income->keterangan }}</td>
+                                        <td>
+                                            <a href="{{ route('income.edit', $income) }}" class="action-edit">Edit</a>
+                                            <form action="{{ route('income.destroy', $income) }}" method="POST" class="inline-block ml-3" onsubmit="return confirm('Hapus income ini?');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="action-delete">Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="pagination-wrap px-4 pb-4">
+                        {{ $incomes->links() }}
+                    </div>
+                @endif
+            </div>
+
         </div>
     </div>
+
 </x-app-layout>

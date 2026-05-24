@@ -5,26 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Income extends Model
+class ExpenseStok extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'transaction_id',
         'tanggal',
-        'nama_pelanggan',
-        'kategori',
-        'kuantiti',
+        'nama_admin',
+        'stok',
         'harga',
-        'nominal',
+        'kuantiti',
+        'total',
         'keterangan',
     ];
 
-    protected $appends = ['total'];
-
-    public function getTotalAttribute()
-    {
-        return (float) $this->harga * (float) $this->kuantiti;
-    }
+    protected $casts = [
+        'tanggal' => 'date',
+        'harga' => 'decimal:2',
+        'total' => 'decimal:2',
+    ];
 }
-

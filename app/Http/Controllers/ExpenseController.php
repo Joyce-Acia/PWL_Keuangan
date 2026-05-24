@@ -22,9 +22,12 @@ class ExpenseController extends Controller
     public function index()
     {
         $this->ensureAdmin();
-        $expenses = Expense::orderBy('id', 'desc')->paginate(15);
-        return view('expenses.index', compact('expenses'));
+        return view('expenses.index', [
+            'expenseStoks'      => \App\Models\ExpenseStok::latest()->paginate(10, ['*'], 'stok_page'),
+            'expenseLainLains'  => \App\Models\ExpenseLainLain::latest()->paginate(10, ['*'], 'lain_page'),
+        ]);
     }
+
 
     public function create()
     {
