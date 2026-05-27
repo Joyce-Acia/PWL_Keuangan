@@ -25,19 +25,9 @@
                             </x-nav-link>
 
                             <!-- Expenses Dropdown -->
-                            <div class="relative group">
-                                <button class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
-                                    {{ __('Expenses') }}
-                                    <svg class="ml-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                    </svg>
-                                </button>
-                                <div class="hidden group-hover:block absolute left-0 mt-0 w-48 bg-white rounded-md shadow-lg z-50 py-2">
-                                    <a href="{{ route('expenses.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">General Expenses</a>
-                                    <a href="{{ route('expense-stok.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Stok</a>
-                                    <a href="{{ route('expense-lain-lain.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Lain-Lain</a>
-                                </div>
-                            </div>
+                            <x-nav-link :href="route('expenses.index')" :active="request()->routeIs('expenses.*')">
+                                {{ __('Expenses') }}
+                            </x-nav-link>
 
                             <x-nav-link :href="route('income.index')" :active="request()->routeIs('income.*')">
                                 {{ __('Income') }}
@@ -111,14 +101,9 @@
         @auth
             @if(Auth::user()->role === 'admin')
             <x-responsive-nav-link :href="route('expenses.index')" :active="request()->routeIs('expenses.index')">
-                Expenses - General
+                Expenses 
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('expense-stok.index')" :active="request()->routeIs('expense-stok.*')">
-                Expenses - Stok
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('expense-lain-lain.index')" :active="request()->routeIs('expense-lain-lain.*')">
-                Expenses - Lain-Lain
-            </x-responsive-nav-link>
+
             <x-responsive-nav-link :href="route('income.index')" :active="request()->routeIs('income.*')">
                 Income
             </x-responsive-nav-link>

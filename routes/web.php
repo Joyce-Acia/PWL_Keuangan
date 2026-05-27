@@ -19,8 +19,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('expenses', App\Http\Controllers\ExpenseController::class)->except(['show']);
-    Route::resource('expense-stok', App\Http\Controllers\ExpenseStokController::class)->except(['show']);
-    Route::resource('expense-lain-lain', App\Http\Controllers\ExpenseLainLainController::class)->except(['show']);
+
 
     Route::resource('income', App\Http\Controllers\IncomeController::class)->except(['show']);
 

@@ -34,7 +34,6 @@
                             <select name="kategori" class="mt-1 block w-full" required>
                                 <option value="">-- Pilih Stok --</option>
                                 <option value="Minyak Goreng 2L" {{ old('kategori', $income->kategori ?? '') === 'Minyak Goreng 2L' ? 'selected' : '' }}>Minyak Goreng 2L</option>
-
                                 <option value="Minyak Goreng 1L" {{ old('kategori', $income->kategori ?? '') === 'Minyak Goreng 1L' ? 'selected' : '' }}>Minyak Goreng 1L</option>
                                 <option value="Gula Pasir 1Kg" {{ old('kategori', $income->kategori ?? '') === 'Gula Pasir 1Kg' ? 'selected' : '' }}>Gula Pasir 1Kg</option>
                                 <option value="Daging Ayam Dada Fillet" {{ old('kategori', $income->kategori ?? '') === 'Daging Ayam Dada Fillet' ? 'selected' : '' }}>Daging Ayam Dada Fillet</option>
