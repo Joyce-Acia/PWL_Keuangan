@@ -46,9 +46,7 @@ class ExpenseController extends Controller
             'keterangan' => 'nullable|string',
         ]);
 
-        $validated['transaction_id'] = $validated['transaction_id'] ?: ('EXP-' . now()->format('YmdHis') . '-' . strtoupper(
-            bin2hex(random_bytes(3))
-        ));
+        $validated['transaction_id'] = $validated['transaction_id'] ?: ('EXP-' . now()->format('ymd') . '-' . strtoupper(substr(bin2hex(random_bytes(3)), 0, 6)));
 
         Expense::create($validated);
 

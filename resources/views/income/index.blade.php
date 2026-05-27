@@ -139,7 +139,7 @@
                                     <th>ID Transaksi</th>
                                     <th>Tanggal</th>
                                     <th>Nama Pelanggan</th>
-                                    <th>Stok</th>
+                                    <th>Produk</th>
                                     <th>Harga</th>
                                     <th>Kuantiti</th>
                                     <th>Total</th>

@@ -41,7 +41,13 @@
 
                         <div class="mb-4">
                             <label class="block text-sm font-medium text-gray-700">Kategori Pengeluaran</label>
-                            <input type="text" name="kategori_pengeluaran" value="{{ old('kategori_pengeluaran') }}" class="mt-1 block w-full" required>
+                            <select name="kategori_pengeluaran" class="mt-1 block w-full rounded border-gray-300" required>
+                                <option value="" disabled {{ old('kategori_pengeluaran') ? '' : 'selected' }}>Pilih kategori pengeluaran</option>
+                                <option value="Pembelian Stok" {{ old('kategori_pengeluaran') === 'Pembelian Stok' ? 'selected' : '' }}>Pembelian Stok</option>
+                                <option value="Transportasi" {{ old('kategori_pengeluaran') === 'Transportasi' ? 'selected' : '' }}>Transportasi</option>
+                                <option value="Gaji/Upah" {{ old('kategori_pengeluaran') === 'Gaji/Upah' ? 'selected' : '' }}>Gaji/Upah</option>
+                                <option value="Perlengkapan & Marketing" {{ old('kategori_pengeluaran') === 'Perlengkapan & Marketing' ? 'selected' : '' }}>Perlengkapan & Marketing</option>
+                            </select>
                         </div>
 
                         <div class="mb-4">

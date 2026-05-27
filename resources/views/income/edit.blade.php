@@ -30,9 +30,9 @@
                         </div>
 
                         <div class="mb-4">
-                            <label class="block text-sm font-medium text-gray-700">Stok</label>
+                            <label class="block text-sm font-medium text-gray-700">Produk</label>
                             <select name="kategori" class="mt-1 block w-full" required>
-                                <option value="">-- Pilih Stok --</option>
+                                <option value="">-- Pilih Produk --</option>
                                 <option value="Minyak Goreng 2L" {{ old('kategori', $income->kategori ?? '') === 'Minyak Goreng 2L' ? 'selected' : '' }}>Minyak Goreng 2L</option>
                                 <option value="Minyak Goreng 1L" {{ old('kategori', $income->kategori ?? '') === 'Minyak Goreng 1L' ? 'selected' : '' }}>Minyak Goreng 1L</option>
                                 <option value="Gula Pasir 1Kg" {{ old('kategori', $income->kategori ?? '') === 'Gula Pasir 1Kg' ? 'selected' : '' }}>Gula Pasir 1Kg</option>

@@ -126,11 +126,11 @@
                             <input type="text" name="nama_pelanggan" value="{{ old('nama_pelanggan') }}" class="form-input" placeholder="Contoh: Budi Santoso" required>
                         </div>
 
-                        {{-- Stok (moved above Kuantiti) --}}
+                        {{-- Produk (moved above Kuantiti) --}}
                         <div class="form-group full">
-                            <label class="form-label">Stok</label>
+                            <label class="form-label">Produk</label>
                             <select name="kategori" class="form-select" required>
-                                <option value="">-- Pilih Stok --</option>
+                                <option value="">-- Pilih Produk --</option>
                                 @foreach([
                                     'Minyak Goreng 2L',
                                     'Minyak Goreng 1L',
