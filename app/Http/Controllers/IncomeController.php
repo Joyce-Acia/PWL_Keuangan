@@ -14,7 +14,7 @@ class IncomeController extends Controller
 // role harusnya admin !==
     private function ensureAdmin()
     {
-        if (! auth()->user() || auth()->user()->role !== 'user') {
+        if (! auth()->user() || auth()->user()->role !== 'admin') {
             abort(403);
         }
     }
@@ -41,7 +41,7 @@ class IncomeController extends Controller
             'tanggal' => 'required|date',
             'nama_pelanggan' => 'required|string|max:255',
             'kategori' => 'required|string|max:255',
-            'kuantiti' => 'required|numeric|min:0',
+            'kuantitas' => 'required|numeric|min:0',
             'harga' => 'required|numeric|min:0',
             'nominal' => 'required|numeric|min:0',
             'keterangan' => 'nullable|string',

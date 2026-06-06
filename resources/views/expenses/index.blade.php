@@ -14,6 +14,10 @@
         .empty-state { padding: 60px 24px; text-align: center; color: #9ca3af; font-size: 0.875rem; background: #fffaed; }
         .empty-icon { font-size: 2rem; margin-bottom: 10px; }
         .alert-success { margin-bottom: 16px; padding: 12px 16px; background: rgba(68,150,114,0.1); border: 1px solid rgba(68,150,114,0.3); color: #449672; border-radius: 10px; font-size: 0.85rem; }
+        .action-edit { color: #449672; font-weight: 600; text-decoration: none; margin-right: 0.75rem; }
+        .action-edit:hover { opacity: 0.8; }
+        .action-delete { color: #ff4336; font-weight: 600; background: none; border: none; cursor: pointer; padding: 0; }
+        .action-delete:hover { opacity: 0.8; }
     </style>
 
     <div class="exp-root py-8 px-4 sm:px-8">
@@ -47,12 +51,13 @@
                         <table class="min-w-full text-left">
                             <thead>
                                 <tr>
-                                    <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-gray-500">Transaction ID</th>
-                                    <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-gray-500">Date</th>
+                                    <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-gray-500">ID Transaksi</th>
+                                    <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-gray-500">Tanggal</th>
                                     <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-gray-500">Admin</th>
-                                    <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-gray-500">Category</th>
-                                    <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-gray-500">Amount</th>
-                                    <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-gray-500">Note</th>
+                                    <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-gray-500">Kategori</th>
+                                    <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-gray-500">Jumlah</th>
+                                    <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-gray-500">Detail</th>
+                                    <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-gray-500">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -64,6 +69,14 @@
                                         <td class="px-4 py-4 text-sm text-gray-900">{{ $expense->kategori_pengeluaran }}</td>
                                         <td class="px-4 py-4 text-sm text-gray-900">Rp {{ number_format($expense->nominal, 2, ',', '.') }}</td>
                                         <td class="px-4 py-4 text-sm text-gray-900">{{ $expense->keterangan ?? '-' }}</td>
+                                        <td class="px-4 py-4 text-sm text-gray-900">
+                                            <a href="{{ route('expenses.edit', $expense) }}" class="action-edit">Edit</a>
+                                            <form action="{{ route('expenses.destroy', $expense) }}" method="POST" class="inline-block" onsubmit="return confirm('Hapus expense ini?');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="action-delete">Delete</button>
+                                            </form>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

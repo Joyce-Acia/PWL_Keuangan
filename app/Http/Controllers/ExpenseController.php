@@ -14,7 +14,7 @@ class ExpenseController extends Controller
 // role harusnya admin !==
     private function ensureAdmin()
     {
-        if (! auth()->user() || auth()->user()->role !== 'user') {
+        if (! auth()->user() || auth()->user()->role !== 'admin') {
             abort(403);
         }
     }
