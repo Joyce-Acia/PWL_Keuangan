@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
         
         //user biasa
         User::updateOrCreate(
-            ['email' => 'user@email.com'],
+            ['email' => 'user@mail.com'],
             [
                 'name' => 'User Biasa',
                 'password' => \Hash::make('password'),
