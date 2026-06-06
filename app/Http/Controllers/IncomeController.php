@@ -11,10 +11,10 @@ class IncomeController extends Controller
     {
         $this->middleware('auth');
     }
-
+// role harusnya admin !==
     private function ensureAdmin()
     {
-        if (! auth()->user() || auth()->user()->role !== 'admin') {
+        if (! auth()->user() || auth()->user()->role !== 'user') {
             abort(403);
         }
     }
