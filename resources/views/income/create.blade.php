@@ -129,7 +129,7 @@
                         {{-- Produk (moved above Kuantitas) --}}
                         <div class="form-group full">
                             <label class="form-label">Produk</label>
-                            <select name="kategori" class="form-select" required>
+                            <select name="produk" class="form-select" required>
                                 <option value="">-- Pilih Produk --</option>
                                 @foreach([
                                     'Minyak Goreng 2L',
@@ -139,7 +139,7 @@
                                     'Daging Ayam Paha Fillet',
                                     'Daging Sapi Rendang',
                                 ] as $stok)
-                                    <option value="{{ $stok }}" {{ old('kategori') === $stok ? 'selected' : '' }}>
+                                    <option value="{{ $stok }}" {{ old('produk') === $stok ? 'selected' : '' }}>
                                         {{ $stok }}
                                     </option>
                                 @endforeach

@@ -14,7 +14,7 @@ class Income extends Model
         'transaction_id',
         'tanggal',
         'nama_pelanggan',
-        'kategori',
+        'produk',
         'kuantitas',
         'harga',
         'nominal',

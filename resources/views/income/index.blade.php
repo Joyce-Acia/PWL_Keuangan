@@ -77,7 +77,7 @@
         .td-harga { font-size: 0.78rem; color: #6b7280; }
         .td-qty   { font-size: 0.78rem; color: #6b7280; }
 
-        .badge-kategori {
+        .badge-produk {
             display: inline-block;
             font-size: 0.7rem; font-weight: 600;
             padding: 3px 9px; border-radius: 20px;
@@ -157,7 +157,7 @@
                                         </td>
                                         <td>{{ $income->tanggal }}</td>
                                         <td>{{ $income->nama_pelanggan }}</td>
-                                        <td><span class="badge-kategori">{{ $income->kategori }}</span></td>
+                                        <td><span class="badge-produk">{{ $income->produk }}</span></td>
                                         <td class="td-harga">Rp {{ number_format($income->harga, 2, ',', '.') }}</td>
                                         <td class="td-qty">{{ $income->kuantitas }}</td>
                                         <td class="td-total">Rp {{ number_format($income->harga * $income->kuantitas, 2, ',', '.') }}</td>

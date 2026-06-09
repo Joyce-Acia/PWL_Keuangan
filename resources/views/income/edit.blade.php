@@ -31,14 +31,14 @@
 
                         <div class="mb-4">
                             <label class="block text-sm font-medium text-gray-700">Produk</label>
-                            <select name="kategori" class="mt-1 block w-full" required>
+                            <select name="produk" class="mt-1 block w-full" required>
                                 <option value="">-- Pilih Produk --</option>
-                                <option value="Minyak Goreng 2L" {{ old('kategori', $income->kategori ?? '') === 'Minyak Goreng 2L' ? 'selected' : '' }}>Minyak Goreng 2L</option>
-                                <option value="Minyak Goreng 1L" {{ old('kategori', $income->kategori ?? '') === 'Minyak Goreng 1L' ? 'selected' : '' }}>Minyak Goreng 1L</option>
-                                <option value="Gula Pasir 1Kg" {{ old('kategori', $income->kategori ?? '') === 'Gula Pasir 1Kg' ? 'selected' : '' }}>Gula Pasir 1Kg</option>
-                                <option value="Daging Ayam Dada Fillet" {{ old('kategori', $income->kategori ?? '') === 'Daging Ayam Dada Fillet' ? 'selected' : '' }}>Daging Ayam Dada Fillet</option>
-                                <option value="Daging Ayam Paha Fillet" {{ old('kategori', $income->kategori ?? '') === 'Daging Ayam Paha Fillet' ? 'selected' : '' }}>Daging Ayam Paha Fillet</option>
-                                <option value="Daging Sapi Rendang" {{ old('kategori', $income->kategori ?? '') === 'Daging Sapi Rendang' ? 'selected' : '' }}>Daging Sapi Rendang</option>
+                                <option value="Minyak Goreng 2L" {{ old('produk', $income->produk ?? '') === 'Minyak Goreng 2L' ? 'selected' : '' }}>Minyak Goreng 2L</option>
+                                <option value="Minyak Goreng 1L" {{ old('produk', $income->produk ?? '') === 'Minyak Goreng 1L' ? 'selected' : '' }}>Minyak Goreng 1L</option>
+                                <option value="Gula Pasir 1Kg" {{ old('produk', $income->produk ?? '') === 'Gula Pasir 1Kg' ? 'selected' : '' }}>Gula Pasir 1Kg</option>
+                                <option value="Daging Ayam Dada Fillet" {{ old('produk', $income->produk ?? '') === 'Daging Ayam Dada Fillet' ? 'selected' : '' }}>Daging Ayam Dada Fillet</option>
+                                <option value="Daging Ayam Paha Fillet" {{ old('produk', $income->produk ?? '') === 'Daging Ayam Paha Fillet' ? 'selected' : '' }}>Daging Ayam Paha Fillet</option>
+                                <option value="Daging Sapi Rendang" {{ old('produk', $income->produk ?? '') === 'Daging Sapi Rendang' ? 'selected' : '' }}>Daging Sapi Rendang</option>
                             </select>
                         </div>
 
