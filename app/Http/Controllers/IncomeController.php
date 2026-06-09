@@ -52,8 +52,9 @@ class IncomeController extends Controller
             bin2hex(random_bytes(3))
         ));
 
-        // Nominal = kuantiti * harga
-        $validated['nominal'] = (float) $validated['kuantiti'] * (float) $validated['harga'];
+        // Nominal = kuantitas * harga
+        $validated['nominal'] = (float) $validated['kuantitas'] * (float) $validated['harga'];
+        $validated['user_id'] = auth()->id();
 
         Income::create($validated);
 
@@ -77,14 +78,14 @@ class IncomeController extends Controller
             'tanggal' => 'required|date',
             'nama_pelanggan' => 'required|string|max:255',
             'kategori' => 'required|string|max:255',
-            'kuantiti' => 'required|numeric|min:0',
+            'kuantitas' => 'required|numeric|min:0',
             'harga' => 'required|numeric|min:0',
             'nominal' => 'required|numeric|min:0',
             'keterangan' => 'nullable|string',
         ]);
 
-        // Nominal = kuantiti * harga
-        $validated['nominal'] = (float) $validated['kuantiti'] * (float) $validated['harga'];
+        // Nominal = kuantitas * harga
+        $validated['nominal'] = (float) $validated['kuantitas'] * (float) $validated['harga'];
 
         $income->update($validated);
 

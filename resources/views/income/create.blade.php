@@ -126,7 +126,7 @@
                             <input type="text" name="nama_pelanggan" value="{{ old('nama_pelanggan') }}" class="form-input" placeholder="Contoh: Budi Santoso" required>
                         </div>
 
-                        {{-- Produk (moved above Kuantiti) --}}
+                        {{-- Produk (moved above Kuantitas) --}}
                         <div class="form-group full">
                             <label class="form-label">Produk</label>
                             <select name="kategori" class="form-select" required>
@@ -156,11 +156,11 @@
                                    placeholder="0" required>
                         </div>
 
-                        {{-- Kuantiti --}}
+                        {{-- Produk (moved above Kuantitas) --}}
                         <div class="form-group">
-                            <label class="form-label">Kuantiti</label>
-                            <input type="number" step="1" min="1" name="kuantiti" id="kuantiti"
-                                   value="{{ old('kuantiti') }}" class="form-input"
+                            <label class="form-label">Kuantitas</label>
+                            <input type="number" step="1" min="1" name="kuantitas" id="kuantitas"
+                                   value="{{ old('kuantitas') }}" class="form-input"
                                    placeholder="0" required>
                         </div>
 
@@ -170,7 +170,7 @@
                             <input type="number" step="0.01" name="nominal" id="nominal"
                                    value="{{ old('nominal') }}"
                                    class="form-input readonly-field" readonly>
-                            <div class="total-hint">Dihitung otomatis dari Harga × Kuantiti</div>
+                            <div class="total-hint">Dihitung otomatis dari Harga × Kuantitas</div>
                         </div>
 
                         <hr class="divider">
@@ -196,18 +196,18 @@
     </div>
 
     <script>
-        const hargaInput  = document.getElementById('harga');
-        const kuantitiInput = document.getElementById('kuantiti');
-        const nominalInput  = document.getElementById('nominal');
+        const hargaInput   = document.getElementById('harga');
+        const kuantitasInput = document.getElementById('kuantitas');
+        const nominalInput   = document.getElementById('nominal');
 
         function calcTotal() {
-            const harga    = parseFloat(hargaInput.value)    || 0;
-            const kuantiti = parseFloat(kuantitiInput.value) || 0;
-            nominalInput.value = (harga * kuantiti).toFixed(2);
+            const harga      = parseFloat(hargaInput.value)     || 0;
+            const kuantitas = parseFloat(kuantitasInput.value) || 0;
+            nominalInput.value = (harga * kuantitas).toFixed(2);
         }
 
         hargaInput.addEventListener('input', calcTotal);
-        kuantitiInput.addEventListener('input', calcTotal);
+        kuantitasInput.addEventListener('input', calcTotal);
     </script>
 
 </x-app-layout>

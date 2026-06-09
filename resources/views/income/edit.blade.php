@@ -43,6 +43,16 @@
                         </div>
 
                         <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700">Harga</label>
+                            <input type="number" step="0.01" name="harga" value="{{ old('harga', $income->harga) }}" class="mt-1 block w-full" required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700">Kuantitas</label>
+                            <input type="number" step="1" min="1" name="kuantitas" value="{{ old('kuantitas', $income->kuantitas) }}" class="mt-1 block w-full" required>
+                        </div>
+
+                        <div class="mb-4">
                             <label class="block text-sm font-medium text-gray-700">Keterangan</label>
                             <textarea name="keterangan" class="mt-1 block w-full">{{ old('keterangan', $income->keterangan) }}</textarea>
                         </div>

@@ -47,6 +47,7 @@ class ExpenseController extends Controller
         ]);
 
         $validated['transaction_id'] = $validated['transaction_id'] ?: ('EXP-' . now()->format('ymd') . '-' . strtoupper(substr(bin2hex(random_bytes(3)), 0, 6)));
+        $validated['user_id'] = auth()->id();
 
         Expense::create($validated);
 

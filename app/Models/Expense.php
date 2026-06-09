@@ -10,6 +10,7 @@ class Expense extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'transaction_id',
         'tanggal',
         'nama_admin',
@@ -17,4 +18,9 @@ class Expense extends Model
         'nominal',
         'keterangan',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

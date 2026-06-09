@@ -141,7 +141,7 @@
                                     <th>Nama Pelanggan</th>
                                     <th>Produk</th>
                                     <th>Harga</th>
-                                    <th>Kuantiti</th>
+                                    <th>Kuantitas</th>
                                     <th>Total</th>
                                     <th>Keterangan</th>
                                     <th>Actions</th>
@@ -159,8 +159,8 @@
                                         <td>{{ $income->nama_pelanggan }}</td>
                                         <td><span class="badge-kategori">{{ $income->kategori }}</span></td>
                                         <td class="td-harga">Rp {{ number_format($income->harga, 2, ',', '.') }}</td>
-                                        <td class="td-qty">{{ $income->kuantiti }}</td>
-                                        <td class="td-total">Rp {{ number_format($income->harga * $income->kuantiti, 2, ',', '.') }}</td>
+                                        <td class="td-qty">{{ $income->kuantitas }}</td>
+                                        <td class="td-total">Rp {{ number_format($income->harga * $income->kuantitas, 2, ',', '.') }}</td>
                                         <td>{{ $income->keterangan }}</td>
                                         <td>
                                             <a href="{{ route('income.edit', $income) }}" class="action-edit">Edit</a>

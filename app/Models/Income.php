@@ -10,11 +10,12 @@ class Income extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'transaction_id',
         'tanggal',
         'nama_pelanggan',
         'kategori',
-        'kuantiti',
+        'kuantitas',
         'harga',
         'nominal',
         'keterangan',
@@ -22,9 +23,14 @@ class Income extends Model
 
     protected $appends = ['total'];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function getTotalAttribute()
     {
-        return (float) $this->harga * (float) $this->kuantiti;
+        return (float) $this->harga * (float) $this->kuantitas;
     }
 }
 
