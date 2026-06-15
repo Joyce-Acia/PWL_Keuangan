@@ -11,7 +11,7 @@
                         @csrf
                         @method('PUT')
 
-                        <input type="hidden" name="transaction_id" value="{{ $expense->transaction_id }}">
+                        <input type="hidden" name="id_transaksi" value="{{ $expense->id_transaksi }}">
 
 
                         <div class="mb-4">

@@ -172,9 +172,9 @@
             <div class="dash-header-row">
                 <div>
                     <div class="dash-greeting">
-                        Good Morning, <span>{{ Auth::user()->name ?? 'Tim' }}</span> 👋
+                        Selamat Datang, <span>{{ Auth::user()->name ?? 'Tim' }}</span> 👋
                     </div>
-                    <div class="dash-sub">Here's an update on your financial position.</div>
+                    <div class="dash-sub">Ini update mengenai posisi finansial anda.</div>
                 </div>
                 <div class="header-actions">
                     <a href="{{ route('expenses.index') }}" class="icon-btn" title="Expenses">
@@ -203,7 +203,7 @@
                     <div class="balance-footer">
                         <span class="balance-footer-text">{{ $today->format('d M Y') }}</span>
                         <a href="{{ route('expenses.index') }}" class="balance-link">
-                            My Balances
+                            Saldo Saya
                             <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                         </a>
                     </div>
@@ -215,20 +215,20 @@
                     <div class="summary-card">
                         <div class="summary-header">
                             <span class="summary-title">Income</span>
-                            <span class="pill pill-week">This week</span>
+                            <span class="pill pill-week">Minggu ini</span>
                         </div>
                         <div>
                             <div class="summary-amount">
                                 Rp {{ number_format($todayIncomes, 2, ',', '.') }}
                             </div>
-                            <div class="summary-sub">This week's income</div>
+                            <div class="summary-sub">Income minggu ini</div>
                         </div>
                     </div>
 
                     <div class="summary-card">
                         <div class="summary-header">
                             <span class="summary-title">Expenses</span>
-                            <span class="pill pill-week">This week</span>
+                            <span class="pill pill-week">Minggu ini</span>
                         </div>
                         <div>
                             <div class="summary-amount">
@@ -271,7 +271,7 @@
                         <div class="overall-sub">Total incomes − total expenses</div>
                     </div>
                     <div>
-                        <div class="overall-amount-label">Overall balance</div>
+                        <div class="overall-amount-label">Saldo Keseluruhan</div>
                         <div class="overall-amount">Rp {{ number_format($overallBalance, 2, ',', '.') }}</div>
                     </div>
                 </div>

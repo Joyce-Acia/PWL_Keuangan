@@ -110,7 +110,7 @@
 
                 <form method="POST" action="{{ route('income.store') }}">
                     @csrf
-                    <input type="hidden" name="transaction_id" value="{{ old('transaction_id') }}">
+                    <input type="hidden" name="id_transaksi" value="{{ old('id_transaksi') }}">
 
                     <div class="form-grid">
 

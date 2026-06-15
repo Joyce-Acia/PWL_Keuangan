@@ -29,13 +29,13 @@
 
             <div class="page-header">
                 <div>
-                    <div class="page-title">Expenses Transactions</div>
-                    <div class="page-sub">Use the button to record a new expense.</div>
+                    <div class="page-title">Transaksi Expenses</div>
+                    <div class="page-sub">Untuk mengelola transaksi pengeluaran</div>
                 </div>
 
                 <a href="{{ route('expenses.create') }}" class="btn-add">
                     <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
-                    <span>Add Expense</span>
+                    <span>Tambah Expense</span>
                 </a>
             </div>
 
@@ -43,8 +43,8 @@
                 @if($expenses->isEmpty())
                     <div class="empty-state">
                         <div class="empty-icon">📝</div>
-                        <div>No expense records found.</div>
-                        <div>Please add expenses using the button above.</div>
+                        <div>Tidak ada catatan pengeluaran yang ditemukan.</div>
+                        <div>Silakan tambahkan pengeluaran menggunakan tombol di atas.</div>
                     </div>
                 @else
                     <div class="overflow-x-auto">
@@ -63,7 +63,7 @@
                             <tbody>
                                 @foreach($expenses as $expense)
                                     <tr class="border-t border-[#f0e9b0] bg-[#fffaed] hover:bg-[#fff2cc]">
-                                        <td class="px-4 py-4 text-sm text-gray-900">{{ $expense->transaction_id }}</td>
+                                        <td class="px-4 py-4 text-sm text-gray-900">{{ $expense->id_transaksi }}</td>
                                         <td class="px-4 py-4 text-sm text-gray-900">{{ \Carbon\Carbon::parse($expense->tanggal)->format('d-m-Y') }}</td>
                                         <td class="px-4 py-4 text-sm text-gray-900">{{ $expense->nama_admin }}</td>
                                         <td class="px-4 py-4 text-sm text-gray-900">{{ $expense->kategori_pengeluaran }}</td>
@@ -74,7 +74,7 @@
                                             <form action="{{ route('expenses.destroy', $expense) }}" method="POST" class="inline-block" onsubmit="return confirm('Hapus expense ini?');">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="action-delete">Delete</button>
+                                                <button type="submit" class="action-delete">Hapus</button>
                                             </form>
                                         </td>
                                     </tr>

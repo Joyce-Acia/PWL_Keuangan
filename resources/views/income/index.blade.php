@@ -116,12 +116,12 @@
 
             <div class="page-header">
                 <div>
-                    <div class="page-title">Income Transactions</div>
-                    <div class="page-sub">All recorded income entries</div>
+                    <div class="page-title">Transaksi Income</div>
+                    <div class="page-sub">Semua entri pendapatan yang direkam</div>
                 </div>
                 <a href="{{ route('income.create') }}" class="btn-add">
                     <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
-                    Add Income
+                    Tambah Income
                 </a>
             </div>
 
@@ -129,7 +129,7 @@
                 @if($incomes->isEmpty())
                     <div class="empty-state">
                         <div class="empty-icon">📭</div>
-                        <div>No income records found.</div>
+                        <div>Tidak ada catatan pendapatan yang ditemukan.</div>
                     </div>
                 @else
                     <div class="overflow-x-auto">
@@ -152,7 +152,7 @@
                                     <tr>
                                         <td>
                                             <span class="td-id">
-                                                {{ strlen($income->transaction_id) > 8 ? substr($income->transaction_id, 0, 8) . '…' : $income->transaction_id }}
+                                                {{ strlen($income->id_transaksi) > 8 ? substr($income->id_transaksi, 0, 8) . '…' : $income->id_transaksi }}
                                             </span>
                                         </td>
                                         <td>{{ $income->tanggal }}</td>
@@ -167,7 +167,7 @@
                                             <form action="{{ route('income.destroy', $income) }}" method="POST" class="inline-block ml-3" onsubmit="return confirm('Hapus income ini?');">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="action-delete">Delete</button>
+                                                <button type="submit" class="action-delete">Hapus</button>
                                             </form>
                                         </td>
                                     </tr>

@@ -19,12 +19,12 @@ class User extends Authenticatable
 
     public function incomes()
     {
-        return $this->hasMany(Income::class);
+        return $this->hasMany(Income::class, 'id_user');
     }
 
     public function expenses()
     {
-        return $this->hasMany(Expense::class);
+        return $this->hasMany(Expense::class, 'id_user');
     }
 
     /**

@@ -8,14 +8,14 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('incomes', function (Blueprint $table) {
-            if (! Schema::hasColumn('incomes', 'user_id')) {
-                $table->foreignId('user_id')->nullable()->after('transaction_id')->constrained()->nullOnDelete();
+            if (! Schema::hasColumn('incomes', 'id_user')) {
+                $table->foreignId('id_user')->nullable()->after('id_transaksi')->constrained()->nullOnDelete();
             }
         });
 
         Schema::table('expenses', function (Blueprint $table) {
-            if (! Schema::hasColumn('expenses', 'user_id')) {
-                $table->foreignId('user_id')->nullable()->after('transaction_id')->constrained()->nullOnDelete();
+            if (! Schema::hasColumn('expenses', 'id_user')) {
+                $table->foreignId('id_user')->nullable()->after('id_transaksi')->constrained()->nullOnDelete();
             }
         });
     }
@@ -23,16 +23,16 @@ return new class extends Migration {
     public function down(): void
     {
         Schema::table('incomes', function (Blueprint $table) {
-            if (Schema::hasColumn('incomes', 'user_id')) {
-                $table->dropForeign(['user_id']);
-                $table->dropColumn('user_id');
+            if (Schema::hasColumn('incomes', 'id_user')) {
+                $table->dropForeign(['id_user']);
+                $table->dropColumn('id_user');
             }
         });
 
         Schema::table('expenses', function (Blueprint $table) {
-            if (Schema::hasColumn('expenses', 'user_id')) {
-                $table->dropForeign(['user_id']);
-                $table->dropColumn('user_id');
+            if (Schema::hasColumn('expenses', 'id_user')) {
+                $table->dropForeign(['id_user']);
+                $table->dropColumn('id_user');
             }
         });
     }
