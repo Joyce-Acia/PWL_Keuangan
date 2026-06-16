@@ -68,7 +68,7 @@
 
         .td-id {
             font-family: monospace; font-size: 0.78rem;
-            color: #9ca3af; background: rgba(0,0,0,0.04);
+            color: #9ca3af; background: rgba(31,31,31,0.04);
             padding: 3px 7px; border-radius: 6px;
             display: inline-block;
         }
@@ -86,7 +86,7 @@
 
         .action-edit {
             font-size: 0.8rem; font-weight: 600;
-            color: #449672; text-decoration: none;
+            color: #F59E0B; text-decoration: none;
         }
         .action-edit:hover { opacity: 0.75; }
 
@@ -144,7 +144,7 @@
                                     <th>Kuantitas</th>
                                     <th>Total</th>
                                     <th>Keterangan</th>
-                                    <th>Actions</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>

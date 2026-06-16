@@ -6,7 +6,7 @@
     <style>
         .exp-root { font-family: 'DM Sans', sans-serif; background: #fffaed; min-height: 100vh; }
         .page-header { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; }
-        .page-title { font-size: 1.25rem; font-weight: 700; color: #1a1a1a; }
+        .page-title { font-size: 1.25rem; font-weight: 700; color: #1F1F1F; }
         .page-sub { font-size: 0.8rem; color: #9ca3af; margin-top: 3px; }
         .btn-add { display: inline-flex; align-items: center; gap: 7px; background: #449672; color: #fff; font-size: 0.82rem; font-weight: 600; padding: 9px 18px; border-radius: 10px; text-decoration: none; transition: opacity 0.2s; white-space: nowrap; }
         .btn-add:hover { opacity: 0.88; }
@@ -14,7 +14,7 @@
         .empty-state { padding: 60px 24px; text-align: center; color: #9ca3af; font-size: 0.875rem; background: #fffaed; }
         .empty-icon { font-size: 2rem; margin-bottom: 10px; }
         .alert-success { margin-bottom: 16px; padding: 12px 16px; background: rgba(68,150,114,0.1); border: 1px solid rgba(68,150,114,0.3); color: #449672; border-radius: 10px; font-size: 0.85rem; }
-        .action-edit { color: #449672; font-weight: 600; text-decoration: none; margin-right: 0.75rem; }
+        .action-edit { color: #F59E0B; font-weight: 600; text-decoration: none; margin-right: 0.75rem; }
         .action-edit:hover { opacity: 0.8; }
         .action-delete { color: #ff4336; font-weight: 600; background: none; border: none; cursor: pointer; padding: 0; }
         .action-delete:hover { opacity: 0.8; }

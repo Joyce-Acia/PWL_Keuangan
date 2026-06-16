@@ -8,12 +8,12 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
 
     <style>
-        .dash-root { font-family: 'DM Sans', sans-serif; background: #f5f6fa; min-height: 100vh; }
+        .dash-root { font-family: 'DM Sans', sans-serif; background: #FFF1E6; min-height: 100vh; }
 
         /* ── Greeting ── */
-        .dash-greeting { font-size: 1.35rem; font-weight: 700; color: #111827; }
+        .dash-greeting { font-size: 1.35rem; font-weight: 700; color: #1F1F1F; }
         .dash-greeting span { font-weight: 400; }
-        .dash-sub { font-size: 0.82rem; color: #9ca3af; margin-top: 2px; }
+        .dash-sub { font-size: 0.82rem; color: #FFF1E6; margin-top: 2px; }
 
         /* ── Main layout: left column (balance) + right column (income+expenses) ── */
         .top-row {
@@ -176,7 +176,7 @@
                     </div>
                     <div class="dash-sub">Ini update mengenai posisi finansial anda.</div>
                 </div>
-                <div class="header-actions">
+                <!-- <div class="header-actions">
                     <a href="{{ route('expenses.index') }}" class="icon-btn" title="Expenses">
                         <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm0 6v4l3 3"/></svg>
                     </a>
@@ -186,7 +186,7 @@
                     <div class="avatar">
                         {{ strtoupper(substr(Auth::user()->name ?? 'T', 0, 1)) }}
                     </div>
-                </div>
+                </div> -->
             </div>
 
             {{-- Top row: Balance (left) | Income + Expenses stacked (right) --}}
@@ -200,13 +200,13 @@
                             Rp {{ number_format($overallBalance, 2, ',', '.') }}
                         </div>
                     </div>
-                    <div class="balance-footer">
+                    <!-- <div class="balance-footer">
                         <span class="balance-footer-text">{{ $today->format('d M Y') }}</span>
                         <a href="{{ route('expenses.index') }}" class="balance-link">
                             Saldo Saya
                             <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                         </a>
-                    </div>
+                    </div> -->
                 </div>
 
                 {{-- Right column: Income + Expenses stacked --}}
@@ -221,7 +221,7 @@
                             <div class="summary-amount">
                                 Rp {{ number_format($todayIncomes, 2, ',', '.') }}
                             </div>
-                            <div class="summary-sub">Income minggu ini</div>
+                            <div class="summary-sub">Income Minggu Ini</div>
                         </div>
                     </div>
 
@@ -234,7 +234,7 @@
                             <div class="summary-amount">
                                 Rp {{ number_format($todayExpenses, 2, ',', '.') }}
                             </div>
-                            <div class="summary-sub">This week's expenses</div>
+                            <div class="summary-sub">Expense Minggu Ini</div>
                         </div>
                     </div>
 
@@ -265,16 +265,16 @@
                     </div>
                 </div>
 
-                <div class="overall-card">
+                <!-- <div class="overall-card">
                     <div>
-                        <div class="overall-label">Overall Summary</div>
+                        <div class="overall-label">Total Keseluruhan</div>
                         <div class="overall-sub">Total incomes − total expenses</div>
                     </div>
                     <div>
                         <div class="overall-amount-label">Saldo Keseluruhan</div>
                         <div class="overall-amount">Rp {{ number_format($overallBalance, 2, ',', '.') }}</div>
                     </div>
-                </div>
+                </div> -->
 
             </div>
 
