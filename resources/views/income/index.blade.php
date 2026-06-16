@@ -149,11 +149,9 @@
                             </thead>
                             <tbody>
                                 @foreach($incomes as $income)
-                                    <tr>
-                                        <td>
-                                            <span class="td-id">
-                                                {{ strlen($income->id_transaksi) > 8 ? substr($income->id_transaksi, 0, 8) . '…' : $income->id_transaksi }}
-                                            </span>
+                                    <tr class="border-t border-[#f0e9b0] bg-[#fffaed] hover:bg-[#fff2cc]">
+                                        <td class="px-4 py-4 text-sm text-gray-900">
+                                            {{ $income->id_transaksi }}
                                         </td>
                                         <td>{{ $income->tanggal }}</td>
                                         <td>{{ $income->nama_pelanggan }}</td>

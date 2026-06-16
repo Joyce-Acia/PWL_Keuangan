@@ -38,7 +38,6 @@ class ExpenseController extends Controller
         $this->ensureAdmin();
 
         $validated = $request->validate([
-            'id_transaksi' => 'nullable|string',
             'tanggal' => 'required|date',
             'nama_admin' => 'required|string|max:255',
             'kategori_pengeluaran' => 'required|string|max:255',
@@ -46,11 +45,14 @@ class ExpenseController extends Controller
             'keterangan' => 'nullable|string',
         ]);
 
-        $validated['id_transaksi'] = $validated['id_transaksi'] ?: ('EXP-' . now()->format('ymd') . '-' . strtoupper(substr(bin2hex(random_bytes(3)), 0, 6)));
         $validated['id_user'] = auth()->id();
 
-        Expense::create($validated);
-
+        $expense = Expense::create($validated);
+        
+        // Generate id_transaksi based on the record ID
+        $expense->update([
+            'id_transaksi' => 'EXP-' . str_pad($expense->id, 6, '0', STR_PAD_LEFT)
+        ]);
 
         return redirect()->route('expenses.index')->with('success', 'Expense saved.');
     }
@@ -66,9 +68,6 @@ class ExpenseController extends Controller
         $this->ensureAdmin();
 
         $validated = $request->validate([
-            'id_transaksi' => 'required|string|unique:expenses,id_transaksi,' . $expense->id,
-
-
             'tanggal' => 'required|date',
             'nama_admin' => 'required|string|max:255',
             'kategori_pengeluaran' => 'required|string|max:255',

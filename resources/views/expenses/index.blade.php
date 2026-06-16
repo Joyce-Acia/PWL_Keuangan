@@ -1,4 +1,4 @@
-﻿<x-app-layout>
+<x-app-layout>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -63,7 +63,9 @@
                             <tbody>
                                 @foreach($expenses as $expense)
                                     <tr class="border-t border-[#f0e9b0] bg-[#fffaed] hover:bg-[#fff2cc]">
-                                        <td class="px-4 py-4 text-sm text-gray-900">{{ $expense->id_transaksi }}</td>
+                                        <td class="px-4 py-4 text-sm text-gray-900">
+                                            {{ 'EXP-' . str_pad((string) $expense->id, 6, '0', STR_PAD_LEFT) }}
+                                        </td>
                                         <td class="px-4 py-4 text-sm text-gray-900">{{ \Carbon\Carbon::parse($expense->tanggal)->format('d-m-Y') }}</td>
                                         <td class="px-4 py-4 text-sm text-gray-900">{{ $expense->nama_admin }}</td>
                                         <td class="px-4 py-4 text-sm text-gray-900">{{ $expense->kategori_pengeluaran }}</td>

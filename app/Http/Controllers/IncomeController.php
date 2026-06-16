@@ -37,7 +37,6 @@ class IncomeController extends Controller
         $this->ensureAdmin();
 
         $validated = $request->validate([
-            'id_transaksi' => 'nullable|string',
             'tanggal' => 'required|date',
             'nama_pelanggan' => 'required|string|max:255',
             'produk' => 'required|string|max:255',
@@ -47,18 +46,16 @@ class IncomeController extends Controller
             'keterangan' => 'nullable|string',
         ]);
 
-
-        $validated['id_transaksi'] = $validated['id_transaksi'] ?: ('INC-' . now()->format('YmdHis') . '-' . strtoupper(
-            bin2hex(random_bytes(3))
-        ));
-
         // Nominal = kuantitas * harga
         $validated['nominal'] = (float) $validated['kuantitas'] * (float) $validated['harga'];
         $validated['id_user'] = auth()->id();
 
-        Income::create($validated);
-
-
+        $income = Income::create($validated);
+        
+        // Generate id_transaksi based on the record ID
+        $income->update([
+            'id_transaksi' => 'INC-' . str_pad($income->id, 6, '0', STR_PAD_LEFT)
+        ]);
 
         return redirect()->route('income.index')->with('success', 'Income saved.');
     }
@@ -74,7 +71,6 @@ class IncomeController extends Controller
         $this->ensureAdmin();
 
         $validated = $request->validate([
-            'id_transaksi' => 'required|string|unique:incomes,id_transaksi,' . $income->id,
             'tanggal' => 'required|date',
             'nama_pelanggan' => 'required|string|max:255',
             'produk' => 'required|string|max:255',
@@ -88,7 +84,6 @@ class IncomeController extends Controller
         $validated['nominal'] = (float) $validated['kuantitas'] * (float) $validated['harga'];
 
         $income->update($validated);
-
 
         return redirect()->route('income.index')->with('success', 'Income updated.');
     }
