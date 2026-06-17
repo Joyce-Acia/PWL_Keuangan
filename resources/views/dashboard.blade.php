@@ -59,7 +59,7 @@
             border-radius: 50%;
         }
         .balance-label { font-size: 0.82rem; color: rgba(255,255,255,0.75); font-weight: 500; letter-spacing: 0.02em; position: relative; z-index: 1; }
-        .balance-amount { font-family: 'DM Serif Display', serif; font-size: 2.1rem; color: #ffffff; margin-top: 10px; position: relative; z-index: 1; line-height: 1.15; }
+        .balance-amount { font-family: 'DM Sans', sans-serif; font-size: 2.1rem; color: #ffffff; margin-top: 10px; position: relative; z-index: 1; line-height: 1.15; }
         .balance-footer { display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 1; margin-top: 32px; }
         .balance-footer-text { font-size: 0.75rem; color: rgba(255,255,255,0.6); }
         .balance-link {
@@ -91,7 +91,7 @@
             border-radius: 20px; letter-spacing: 0.02em;
         }
         .pill-week { background: #111827; color: #fff; }
-        .summary-amount { font-family: 'DM Serif Display', serif; font-size: 1.75rem; color: #111827; margin-top: 12px; line-height: 1.1; }
+        .summary-amount { font-family: 'DM Sans', sans-serif; font-size: 1.75rem; font-weight: 300; color: #111827; margin-top: 12px; line-height: 1.1; }
         .summary-sub { font-size: 0.75rem; color: #9ca3af; margin-top: 5px; }
 
         /* ── Bottom row ── */
@@ -195,7 +195,7 @@
                 {{-- Total Balance card --}}
                 <div class="balance-card">
                     <div>
-                        <div class="balance-label">Total Balance</div>
+                        <div class="balance-label">Saldo Saya</div>
                         <div class="balance-amount">
                             Rp {{ number_format($overallBalance, 2, ',', '.') }}
                         </div>
