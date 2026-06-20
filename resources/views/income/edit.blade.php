@@ -36,6 +36,8 @@
                                 <option value="Daging Ayam Dada Fillet" {{ old('produk', $income->produk ?? '') === 'Daging Ayam Dada Fillet' ? 'selected' : '' }}>Daging Ayam Dada Fillet</option>
                                 <option value="Daging Ayam Paha Fillet" {{ old('produk', $income->produk ?? '') === 'Daging Ayam Paha Fillet' ? 'selected' : '' }}>Daging Ayam Paha Fillet</option>
                                 <option value="Daging Sapi Rendang" {{ old('produk', $income->produk ?? '') === 'Daging Sapi Rendang' ? 'selected' : '' }}>Daging Sapi Rendang</option>
+                                <option value="Lain-lain" {{ old('produk', $income->produk ?? '') === 'Lain-lain' ? 'selected' : '' }}>Lain-lain</option>
+
                             </select>
                         </div>
 

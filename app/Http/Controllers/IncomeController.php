@@ -51,11 +51,6 @@ class IncomeController extends Controller
         $validated['id_user'] = auth()->id();
 
         $income = Income::create($validated);
-        
-        // Generate id_transaksi based on the record ID
-        $income->update([
-            'id_transaksi' => 'INC-' . str_pad($income->id, 6, '0', STR_PAD_LEFT)
-        ]);
 
         return redirect()->route('income.index')->with('success', 'Income saved.');
     }

@@ -110,7 +110,6 @@
 
                 <form method="POST" action="{{ route('income.store') }}">
                     @csrf
-                    <input type="hidden" name="id_transaksi" value="{{ old('id_transaksi') }}">
 
                     <div class="form-grid">
 
@@ -138,6 +137,7 @@
                                     'Daging Ayam Dada Fillet',
                                     'Daging Ayam Paha Fillet',
                                     'Daging Sapi Rendang',
+                                    'Lain-lain'
                                 ] as $stok)
                                     <option value="{{ $stok }}" {{ old('produk') === $stok ? 'selected' : '' }}>
                                         {{ $stok }}

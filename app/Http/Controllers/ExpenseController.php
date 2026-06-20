@@ -46,6 +46,7 @@ class ExpenseController extends Controller
         ]);
 
         $validated['id_user'] = auth()->id();
+        $validated['id_transaksi'] = 'TMP-' . str_replace('.', '', uniqid('', true));
 
         $expense = Expense::create($validated);
         

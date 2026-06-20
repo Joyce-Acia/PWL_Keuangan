@@ -23,6 +23,22 @@ class Income extends Model
 
     protected $appends = ['total'];
 
+    protected static function booted()
+    {
+        static::creating(function (self $income) {
+            if (empty($income->id_transaksi)) {
+                $income->id_transaksi = 'TMP-' . str_replace('.', '', uniqid('', true));
+            }
+        });
+
+        static::created(function (self $income) {
+            if (str_starts_with($income->id_transaksi, 'TMP-')) {
+                $income->id_transaksi = 'INC-' . str_pad($income->id, 6, '0', STR_PAD_LEFT);
+                $income->saveQuietly();
+            }
+        });
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'id_user');
