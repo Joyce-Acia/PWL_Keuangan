@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
 
     <style>
-        .dash-root { font-family: 'DM Sans', sans-serif; background: #FFF1E6; min-height: 100vh; }
+        .dash-root { font-family: 'DM Sans', sans-serif; background: #fffaed; min-height: 100vh; }
 
         /* ── Greeting ── */
         .dash-greeting { font-size: 1.35rem; font-weight: 700; color: #1F1F1F; }
@@ -165,7 +165,26 @@
         .icon-btn:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
     </style>
 
-    <div class="dash-root py-8 px-4 sm:px-8">
+{{-- ALERT --}}
+    @if(session('error'))
+        <div class="bg-[#fff2cc] text-[#fd593d] p-3 rounded mb-4 border border-[#fd593d]">
+            {{ session('error') }}
+        </div>
+    @endif
+
+    @if(session('success'))
+        <div 
+            x-data="{ show: true }"
+            x-show="show"
+            x-init="setTimeout(() => show = false, 3000)"
+            x-transition
+            class="p-3 mb-4 bg-green-100 text-green-700 border border-green-400 rounded"
+        >
+            {{ session('success') }}
+        </div>
+    @endif
+
+<div class="dash-root py-8 px-4 sm:px-8">
         <div class="max-w-5xl mx-auto">
 
             {{-- Header row --}}
@@ -195,7 +214,7 @@
                 {{-- Total Balance card --}}
                 <div class="balance-card">
                     <div>
-                        <div class="balance-label">Saldo Saya</div>
+                        <div class="balance-label">Saldo Kini</div>
                         <div class="balance-amount">
                             Rp {{ number_format($overallBalance, 2, ',', '.') }}
                         </div>

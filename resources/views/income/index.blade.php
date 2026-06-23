@@ -44,7 +44,7 @@
             text-align: left;
             font-size: 0.72rem; font-weight: 600;
             text-transform: uppercase; letter-spacing: 0.06em;
-            color: #9ca3af;
+            color: #666666;
             background: #fff2cc;
             border-bottom: 1px solid #f0e9b0;
         }
@@ -116,7 +116,7 @@
 
             <div class="page-header">
                 <div>
-                    <div class="page-title">Transaksi Income</div>
+                    <div class="page-title">Transaksi Incomes</div>
                     <div class="page-sub">Semua entri pendapatan yang direkam</div>
                 </div>
                 <a href="{{ route('income.create') }}" class="btn-add">

@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-[#fe914d] border-b border-[#feaf52]">
+<nav x-data="{ open: false }" class="bg-[#fe914d] border-b border-[#fe914d]">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -24,19 +24,12 @@
                                 {{ __('Dashboard') }}
                             </x-nav-link>
 
-                            <!-- Expenses Dropdown -->
                             <x-nav-link :href="route('expenses.index')" :active="request()->routeIs('expenses.*')">
                                 {{ __('Expenses') }}
                             </x-nav-link>
 
                             <x-nav-link :href="route('income.index')" :active="request()->routeIs('income.*')">
-                                {{ __('Income') }}
-                            </x-nav-link>
-                        </div>
-                    @else
-                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex text-center">
-                            <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                                {{ __('Dashboard') }}
+                                {{ __('Incomes') }}
                             </x-nav-link>
                         </div>
                     @endif
@@ -105,7 +98,7 @@
             </x-responsive-nav-link>
 
             <x-responsive-nav-link :href="route('income.index')" :active="request()->routeIs('income.*')">
-                Income
+                Incomes
             </x-responsive-nav-link>
 
             @endif
