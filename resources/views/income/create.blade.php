@@ -125,21 +125,18 @@
                             <input type="text" name="nama_pelanggan" value="{{ old('nama_pelanggan') }}" class="form-input" placeholder="Contoh: Budi Santoso" required>
                         </div>
 
-                        {{-- Produk (moved above Kuantitas) --}}
+                        {{-- Sumber (moved above Kuantitas) --}}
                         <div class="form-group full">
-                            <label class="form-label">Produk</label>
-                            <select name="produk" class="form-select" required>
-                                <option value="">-- Pilih Produk --</option>
+                            <label class="form-label">Sumber</label>
+                            <select name="sumber" class="form-select" required>
+                                <option value="">-- Pilih Sumber --</option>
                                 @foreach([
-                                    'Minyak Goreng 2L',
-                                    'Minyak Goreng 1L',
-                                    'Gula Pasir 1Kg',
-                                    'Daging Ayam Dada Fillet',
-                                    'Daging Ayam Paha Fillet',
-                                    'Daging Sapi Rendang',
+                                    'Penjualan Utama',
+                                    'Modal',
+                                    'Donasi atau Sponsor',
                                     'Lain-lain'
                                 ] as $stok)
-                                    <option value="{{ $stok }}" {{ old('produk') === $stok ? 'selected' : '' }}>
+                                    <option value="{{ $stok }}" {{ old('sumber') === $stok ? 'selected' : '' }}>
                                         {{ $stok }}
                                     </option>
                                 @endforeach
@@ -148,29 +145,9 @@
 
                         <hr class="divider">
 
-                        {{-- Harga --}}
-                        <div class="form-group">
-                            <label class="form-label">Harga (Rp)</label>
-                            <input type="number" step="0.01" name="harga" id="harga"
-                                   value="{{ old('harga') }}" class="form-input"
-                                   placeholder="0" required>
-                        </div>
-
-                        {{-- Produk (moved above Kuantitas) --}}
-                        <div class="form-group">
-                            <label class="form-label">Kuantitas</label>
-                            <input type="number" step="1" min="1" name="kuantitas" id="kuantitas"
-                                   value="{{ old('kuantitas') }}" class="form-input"
-                                   placeholder="0" required>
-                        </div>
-
-                        {{-- Total (auto) --}}
                         <div class="form-group full">
-                            <label class="form-label">Total (Otomatis)</label>
-                            <input type="number" step="0.01" name="nominal" id="nominal"
-                                   value="{{ old('nominal') }}"
-                                   class="form-input readonly-field" readonly>
-                            <div class="total-hint">Dihitung otomatis dari Harga × Kuantitas</div>
+                            <label class="form-label">Nominal (Rp)</label>
+                            <input type="number" step="0.01" name="nominal" value="{{ old('nominal') }}" class="form-input" placeholder="0" required>
                         </div>
 
                         <hr class="divider">
@@ -195,19 +172,5 @@
         </div>
     </div>
 
-    <script>
-        const hargaInput   = document.getElementById('harga');
-        const kuantitasInput = document.getElementById('kuantitas');
-        const nominalInput   = document.getElementById('nominal');
-
-        function calcTotal() {
-            const harga      = parseFloat(hargaInput.value)     || 0;
-            const kuantitas = parseFloat(kuantitasInput.value) || 0;
-            nominalInput.value = (harga * kuantitas).toFixed(2);
-        }
-
-        hargaInput.addEventListener('input', calcTotal);
-        kuantitasInput.addEventListener('input', calcTotal);
-    </script>
 
 </x-app-layout>

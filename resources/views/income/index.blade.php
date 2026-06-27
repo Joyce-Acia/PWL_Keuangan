@@ -139,10 +139,8 @@
                                     <th>ID Transaksi</th>
                                     <th>Tanggal</th>
                                     <th>Nama Pelanggan</th>
-                                    <th>Produk</th>
-                                    <th>Harga</th>
-                                    <th>Kuantitas</th>
-                                    <th>Total</th>
+                                    <th>Sumber</th>
+                                    <th>Nominal</th>
                                     <th>Keterangan</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -155,10 +153,8 @@
                                         </td>
                                         <td>{{ $income->tanggal }}</td>
                                         <td>{{ $income->nama_pelanggan }}</td>
-                                        <td><span class="badge-produk">{{ $income->produk }}</span></td>
-                                        <td class="td-harga">Rp {{ number_format($income->harga, 2, ',', '.') }}</td>
-                                        <td class="td-qty">{{ $income->kuantitas }}</td>
-                                        <td class="td-total">Rp {{ number_format($income->harga * $income->kuantitas, 2, ',', '.') }}</td>
+                                        <td>{{ $income->sumber }}</td>
+                                        <td class="td-harga">Rp {{ number_format($income->nominal, 2, ',', '.') }}</td>
                                         <td>{{ $income->keterangan }}</td>
                                         <td>
                                             <a href="{{ route('income.edit', $income) }}" class="action-edit">Edit</a>

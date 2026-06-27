@@ -21,40 +21,31 @@
                         </div>
 
                         <div class="mb-4">
-                            <label class="block text-sm font-medium text-gray-700">Nominal</label>
-                            <input type="number" step="0.01" name="nominal" value="{{ old('nominal', $income->nominal) }}" class="mt-1 block w-full" required>
-                        </div>
-
-                        <div class="mb-4">
-                            <label class="block text-sm font-medium text-gray-700">Produk</label>
-                            <select name="produk" class="mt-1 block w-full" required>
-                                <option value="">-- Pilih Produk --</option>
-                                <option value="Minyak Goreng 2L" {{ old('produk', $income->produk ?? '') === 'Minyak Goreng 2L' ? 'selected' : '' }}>Minyak Goreng 2L</option>
-                                <option value="Minyak Goreng 1L" {{ old('produk', $income->produk ?? '') === 'Minyak Goreng 1L' ? 'selected' : '' }}>Minyak Goreng 1L</option>
-                                <option value="Gula Pasir 1Kg" {{ old('produk', $income->produk ?? '') === 'Gula Pasir 1Kg' ? 'selected' : '' }}>Gula Pasir 1Kg</option>
-                                <option value="Daging Ayam Dada Fillet" {{ old('produk', $income->produk ?? '') === 'Daging Ayam Dada Fillet' ? 'selected' : '' }}>Daging Ayam Dada Fillet</option>
-                                <option value="Daging Ayam Paha Fillet" {{ old('produk', $income->produk ?? '') === 'Daging Ayam Paha Fillet' ? 'selected' : '' }}>Daging Ayam Paha Fillet</option>
-                                <option value="Daging Sapi Rendang" {{ old('produk', $income->produk ?? '') === 'Daging Sapi Rendang' ? 'selected' : '' }}>Daging Sapi Rendang</option>
-                                <option value="Lain-lain" {{ old('produk', $income->produk ?? '') === 'Lain-lain' ? 'selected' : '' }}>Lain-lain</option>
-
+                            <label class="block text-sm font-medium text-gray-700">Sumber</label>
+                            <select name="sumber" class="mt-1 block w-full" required>
+                                <option value="">-- Pilih Sumber --</option>
+                                @foreach([
+                                    'Penjualan Utama',
+                                    'Modal',
+                                    'Donasi atau Sponsor',
+                                    'Lain-lain'
+                                ] as $option)
+                                    <option value="{{ $option }}" {{ old('sumber', $income->sumber) === $option ? 'selected' : '' }}>
+                                        {{ $option }}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
 
                         <div class="mb-4">
-                            <label class="block text-sm font-medium text-gray-700">Harga</label>
-                            <input type="number" step="0.01" name="harga" value="{{ old('harga', $income->harga) }}" class="mt-1 block w-full" required>
-                        </div>
-
-                        <div class="mb-4">
-                            <label class="block text-sm font-medium text-gray-700">Kuantitas</label>
-                            <input type="number" step="1" min="1" name="kuantitas" value="{{ old('kuantitas', $income->kuantitas) }}" class="mt-1 block w-full" required>
+                            <label class="block text-sm font-medium text-gray-700">Nominal</label>
+                            <input type="number" step="0.01" name="nominal" value="{{ old('nominal', $income->nominal) }}" class="mt-1 block w-full" required>
                         </div>
 
                         <div class="mb-4">
                             <label class="block text-sm font-medium text-gray-700">Keterangan</label>
                             <textarea name="keterangan" class="mt-1 block w-full">{{ old('keterangan', $income->keterangan) }}</textarea>
                         </div>
-
 
                         <div class="flex items-center gap-3">
                             <button class="inline-flex items-center px-4 py-2 bg-[#fd593d] text-white rounded-md hover:bg-[#feaf52]">Update</button>
