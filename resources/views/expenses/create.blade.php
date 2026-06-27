@@ -20,7 +20,7 @@
                             </div>
                         @endif
 
-                        <input type="hidden" name="transaction_id" value="{{ old('transaction_id') }}">
+                        <input type="hidden" name="id_transaksi" value="{{ old('id_transaksi') }}">
 
 
                         <div class="mb-4">

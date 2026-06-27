@@ -44,7 +44,7 @@
             text-align: left;
             font-size: 0.72rem; font-weight: 600;
             text-transform: uppercase; letter-spacing: 0.06em;
-            color: #9ca3af;
+            color: #666666;
             background: #fff2cc;
             border-bottom: 1px solid #f0e9b0;
         }
@@ -68,7 +68,7 @@
 
         .td-id {
             font-family: monospace; font-size: 0.78rem;
-            color: #9ca3af; background: rgba(0,0,0,0.04);
+            color: #9ca3af; background: rgba(31,31,31,0.04);
             padding: 3px 7px; border-radius: 6px;
             display: inline-block;
         }
@@ -77,7 +77,7 @@
         .td-harga { font-size: 0.78rem; color: #6b7280; }
         .td-qty   { font-size: 0.78rem; color: #6b7280; }
 
-        .badge-kategori {
+        .badge-produk {
             display: inline-block;
             font-size: 0.7rem; font-weight: 600;
             padding: 3px 9px; border-radius: 20px;
@@ -86,7 +86,7 @@
 
         .action-edit {
             font-size: 0.8rem; font-weight: 600;
-            color: #449672; text-decoration: none;
+            color: #F59E0B; text-decoration: none;
         }
         .action-edit:hover { opacity: 0.75; }
 
@@ -116,12 +116,12 @@
 
             <div class="page-header">
                 <div>
-                    <div class="page-title">Income Transactions</div>
-                    <div class="page-sub">All recorded income entries</div>
+                    <div class="page-title">Transaksi Incomes</div>
+                    <div class="page-sub">Semua entri pendapatan yang direkam</div>
                 </div>
                 <a href="{{ route('income.create') }}" class="btn-add">
                     <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
-                    Add Income
+                    Tambah Income
                 </a>
             </div>
 
@@ -129,7 +129,7 @@
                 @if($incomes->isEmpty())
                     <div class="empty-state">
                         <div class="empty-icon">📭</div>
-                        <div>No income records found.</div>
+                        <div>Tidak ada catatan pendapatan yang ditemukan.</div>
                     </div>
                 @else
                     <div class="overflow-x-auto">
@@ -141,33 +141,31 @@
                                     <th>Nama Pelanggan</th>
                                     <th>Produk</th>
                                     <th>Harga</th>
-                                    <th>Kuantiti</th>
+                                    <th>Kuantitas</th>
                                     <th>Total</th>
                                     <th>Keterangan</th>
-                                    <th>Actions</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($incomes as $income)
-                                    <tr>
-                                        <td>
-                                            <span class="td-id">
-                                                {{ strlen($income->transaction_id) > 8 ? substr($income->transaction_id, 0, 8) . '…' : $income->transaction_id }}
-                                            </span>
+                                    <tr class="border-t border-[#f0e9b0] bg-[#fffaed] hover:bg-[#fff2cc]">
+                                        <td class="px-4 py-4 text-sm text-gray-900">
+                                            {{ $income->id_transaksi }}
                                         </td>
                                         <td>{{ $income->tanggal }}</td>
                                         <td>{{ $income->nama_pelanggan }}</td>
-                                        <td><span class="badge-kategori">{{ $income->kategori }}</span></td>
+                                        <td><span class="badge-produk">{{ $income->produk }}</span></td>
                                         <td class="td-harga">Rp {{ number_format($income->harga, 2, ',', '.') }}</td>
-                                        <td class="td-qty">{{ $income->kuantiti }}</td>
-                                        <td class="td-total">Rp {{ number_format($income->harga * $income->kuantiti, 2, ',', '.') }}</td>
+                                        <td class="td-qty">{{ $income->kuantitas }}</td>
+                                        <td class="td-total">Rp {{ number_format($income->harga * $income->kuantitas, 2, ',', '.') }}</td>
                                         <td>{{ $income->keterangan }}</td>
                                         <td>
                                             <a href="{{ route('income.edit', $income) }}" class="action-edit">Edit</a>
                                             <form action="{{ route('income.destroy', $income) }}" method="POST" class="inline-block ml-3" onsubmit="return confirm('Hapus income ini?');">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="action-delete">Delete</button>
+                                                <button type="submit" class="action-delete">Hapus</button>
                                             </form>
                                         </td>
                                     </tr>

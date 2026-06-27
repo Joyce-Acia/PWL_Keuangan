@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
         
         //user biasa
         User::updateOrCreate(
-            ['email' => 'user@email.com'],
+            ['email' => 'user@mail.com'],
             [
                 'name' => 'User Biasa',
                 'password' => \Hash::make('password'),
@@ -35,7 +35,7 @@ class UserSeeder extends Seeder
 
         //dummy random
         User::factory()->count(5)->create([
-                'role' => 'user',
+                'role' => 'admin',
             ]);
     }
 }

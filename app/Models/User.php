@@ -17,6 +17,16 @@ class User extends Authenticatable
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
 
+    public function incomes()
+    {
+        return $this->hasMany(Income::class, 'id_user');
+    }
+
+    public function expenses()
+    {
+        return $this->hasMany(Expense::class, 'id_user');
+    }
+
     /**
      * Get the attributes that should be cast.
      *

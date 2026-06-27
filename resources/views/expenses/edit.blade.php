@@ -11,9 +11,6 @@
                         @csrf
                         @method('PUT')
 
-                        <input type="hidden" name="transaction_id" value="{{ $expense->transaction_id }}">
-
-
                         <div class="mb-4">
                             <label class="block text-sm font-medium text-gray-700">Tanggal</label>
                             <input type="date" name="tanggal" value="{{ old('tanggal', $expense->tanggal) }}" class="mt-1 block w-full" required>

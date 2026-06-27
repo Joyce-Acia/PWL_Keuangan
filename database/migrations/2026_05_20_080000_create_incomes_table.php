@@ -9,7 +9,7 @@ return new class extends Migration {
     {
         Schema::create('incomes', function (Blueprint $table) {
             $table->id();
-            $table->string('transaction_id')->unique();
+            $table->string('id_transaksi')->unique();
             $table->date('tanggal');
             $table->string('nama_pelanggan');
             $table->decimal('nominal', 15, 2);

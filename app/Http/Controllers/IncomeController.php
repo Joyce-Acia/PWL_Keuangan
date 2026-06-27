@@ -11,7 +11,7 @@ class IncomeController extends Controller
     {
         $this->middleware('auth');
     }
-
+// role harusnya admin !==
     private function ensureAdmin()
     {
         if (! auth()->user() || auth()->user()->role !== 'admin') {
@@ -37,27 +37,20 @@ class IncomeController extends Controller
         $this->ensureAdmin();
 
         $validated = $request->validate([
-            'transaction_id' => 'nullable|string',
             'tanggal' => 'required|date',
             'nama_pelanggan' => 'required|string|max:255',
-            'kategori' => 'required|string|max:255',
-            'kuantiti' => 'required|numeric|min:0',
+            'produk' => 'required|string|max:255',
+            'kuantitas' => 'required|numeric|min:0',
             'harga' => 'required|numeric|min:0',
             'nominal' => 'required|numeric|min:0',
             'keterangan' => 'nullable|string',
         ]);
 
+        // Nominal = kuantitas * harga
+        $validated['nominal'] = (float) $validated['kuantitas'] * (float) $validated['harga'];
+        $validated['id_user'] = auth()->id();
 
-        $validated['transaction_id'] = $validated['transaction_id'] ?: ('INC-' . now()->format('YmdHis') . '-' . strtoupper(
-            bin2hex(random_bytes(3))
-        ));
-
-        // Nominal = kuantiti * harga
-        $validated['nominal'] = (float) $validated['kuantiti'] * (float) $validated['harga'];
-
-        Income::create($validated);
-
-
+        $income = Income::create($validated);
 
         return redirect()->route('income.index')->with('success', 'Income saved.');
     }
@@ -73,21 +66,19 @@ class IncomeController extends Controller
         $this->ensureAdmin();
 
         $validated = $request->validate([
-            'transaction_id' => 'required|string|unique:incomes,transaction_id,' . $income->id,
             'tanggal' => 'required|date',
             'nama_pelanggan' => 'required|string|max:255',
-            'kategori' => 'required|string|max:255',
-            'kuantiti' => 'required|numeric|min:0',
+            'produk' => 'required|string|max:255',
+            'kuantitas' => 'required|numeric|min:0',
             'harga' => 'required|numeric|min:0',
             'nominal' => 'required|numeric|min:0',
             'keterangan' => 'nullable|string',
         ]);
 
-        // Nominal = kuantiti * harga
-        $validated['nominal'] = (float) $validated['kuantiti'] * (float) $validated['harga'];
+        // Nominal = kuantitas * harga
+        $validated['nominal'] = (float) $validated['kuantitas'] * (float) $validated['harga'];
 
         $income->update($validated);
-
 
         return redirect()->route('income.index')->with('success', 'Income updated.');
     }

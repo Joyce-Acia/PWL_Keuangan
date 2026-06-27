@@ -8,12 +8,12 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
 
     <style>
-        .dash-root { font-family: 'DM Sans', sans-serif; background: #f5f6fa; min-height: 100vh; }
+        .dash-root { font-family: 'DM Sans', sans-serif; background: #fffaed; min-height: 100vh; }
 
         /* ── Greeting ── */
-        .dash-greeting { font-size: 1.35rem; font-weight: 700; color: #111827; }
+        .dash-greeting { font-size: 1.35rem; font-weight: 700; color: #1F1F1F; }
         .dash-greeting span { font-weight: 400; }
-        .dash-sub { font-size: 0.82rem; color: #9ca3af; margin-top: 2px; }
+        .dash-sub { font-size: 0.82rem; color: #FFF1E6; margin-top: 2px; }
 
         /* ── Main layout: left column (balance) + right column (income+expenses) ── */
         .top-row {
@@ -59,7 +59,7 @@
             border-radius: 50%;
         }
         .balance-label { font-size: 0.82rem; color: rgba(255,255,255,0.75); font-weight: 500; letter-spacing: 0.02em; position: relative; z-index: 1; }
-        .balance-amount { font-family: 'DM Serif Display', serif; font-size: 2.1rem; color: #ffffff; margin-top: 10px; position: relative; z-index: 1; line-height: 1.15; }
+        .balance-amount { font-family: 'DM Sans', sans-serif; font-size: 2.1rem; color: #ffffff; margin-top: 10px; position: relative; z-index: 1; line-height: 1.15; }
         .balance-footer { display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 1; margin-top: 32px; }
         .balance-footer-text { font-size: 0.75rem; color: rgba(255,255,255,0.6); }
         .balance-link {
@@ -91,7 +91,7 @@
             border-radius: 20px; letter-spacing: 0.02em;
         }
         .pill-week { background: #111827; color: #fff; }
-        .summary-amount { font-family: 'DM Serif Display', serif; font-size: 1.75rem; color: #111827; margin-top: 12px; line-height: 1.1; }
+        .summary-amount { font-family: 'DM Sans', sans-serif; font-size: 1.75rem; font-weight: 300; color: #111827; margin-top: 12px; line-height: 1.1; }
         .summary-sub { font-size: 0.75rem; color: #9ca3af; margin-top: 5px; }
 
         /* ── Bottom row ── */
@@ -165,18 +165,37 @@
         .icon-btn:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
     </style>
 
-    <div class="dash-root py-8 px-4 sm:px-8">
+{{-- ALERT --}}
+    @if(session('error'))
+        <div class="bg-[#fff2cc] text-[#fd593d] p-3 rounded mb-4 border border-[#fd593d]">
+            {{ session('error') }}
+        </div>
+    @endif
+
+    @if(session('success'))
+        <div 
+            x-data="{ show: true }"
+            x-show="show"
+            x-init="setTimeout(() => show = false, 3000)"
+            x-transition
+            class="p-3 mb-4 bg-green-100 text-green-700 border border-green-400 rounded"
+        >
+            {{ session('success') }}
+        </div>
+    @endif
+
+<div class="dash-root py-8 px-4 sm:px-8">
         <div class="max-w-5xl mx-auto">
 
             {{-- Header row --}}
             <div class="dash-header-row">
                 <div>
                     <div class="dash-greeting">
-                        Good Morning, <span>{{ Auth::user()->name ?? 'Tim' }}</span> 👋
+                        Selamat Datang, <span>{{ Auth::user()->name ?? 'Tim' }}</span> 👋
                     </div>
-                    <div class="dash-sub">Here's an update on your financial position.</div>
+                    <div class="dash-sub">Ini update mengenai posisi finansial anda.</div>
                 </div>
-                <div class="header-actions">
+                <!-- <div class="header-actions">
                     <a href="{{ route('expenses.index') }}" class="icon-btn" title="Expenses">
                         <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm0 6v4l3 3"/></svg>
                     </a>
@@ -186,7 +205,7 @@
                     <div class="avatar">
                         {{ strtoupper(substr(Auth::user()->name ?? 'T', 0, 1)) }}
                     </div>
-                </div>
+                </div> -->
             </div>
 
             {{-- Top row: Balance (left) | Income + Expenses stacked (right) --}}
@@ -195,18 +214,18 @@
                 {{-- Total Balance card --}}
                 <div class="balance-card">
                     <div>
-                        <div class="balance-label">Total Balance</div>
+                        <div class="balance-label">Saldo Kini</div>
                         <div class="balance-amount">
                             Rp {{ number_format($overallBalance, 2, ',', '.') }}
                         </div>
                     </div>
-                    <div class="balance-footer">
+                    <!-- <div class="balance-footer">
                         <span class="balance-footer-text">{{ $today->format('d M Y') }}</span>
                         <a href="{{ route('expenses.index') }}" class="balance-link">
-                            My Balances
+                            Saldo Saya
                             <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                         </a>
-                    </div>
+                    </div> -->
                 </div>
 
                 {{-- Right column: Income + Expenses stacked --}}
@@ -215,26 +234,26 @@
                     <div class="summary-card">
                         <div class="summary-header">
                             <span class="summary-title">Income</span>
-                            <span class="pill pill-week">This week</span>
+                            <span class="pill pill-week">Minggu ini</span>
                         </div>
                         <div>
                             <div class="summary-amount">
                                 Rp {{ number_format($todayIncomes, 2, ',', '.') }}
                             </div>
-                            <div class="summary-sub">This week's income</div>
+                            <div class="summary-sub">Income Minggu Ini</div>
                         </div>
                     </div>
 
                     <div class="summary-card">
                         <div class="summary-header">
                             <span class="summary-title">Expenses</span>
-                            <span class="pill pill-week">This week</span>
+                            <span class="pill pill-week">Minggu ini</span>
                         </div>
                         <div>
                             <div class="summary-amount">
                                 Rp {{ number_format($todayExpenses, 2, ',', '.') }}
                             </div>
-                            <div class="summary-sub">This week's expenses</div>
+                            <div class="summary-sub">Expense Minggu Ini</div>
                         </div>
                     </div>
 
@@ -265,16 +284,16 @@
                     </div>
                 </div>
 
-                <div class="overall-card">
+                <!-- <div class="overall-card">
                     <div>
-                        <div class="overall-label">Overall Summary</div>
+                        <div class="overall-label">Total Keseluruhan</div>
                         <div class="overall-sub">Total incomes − total expenses</div>
                     </div>
                     <div>
-                        <div class="overall-amount-label">Overall balance</div>
+                        <div class="overall-amount-label">Saldo Keseluruhan</div>
                         <div class="overall-amount">Rp {{ number_format($overallBalance, 2, ',', '.') }}</div>
                     </div>
-                </div>
+                </div> -->
 
             </div>
 

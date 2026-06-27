@@ -9,8 +9,8 @@ return new class extends Migration {
     {
         Schema::table('incomes', function (Blueprint $table) {
             $table->string('kategori')->nullable()->after('nama_pelanggan');
-            $table->integer('kuantiti')->default(1)->after('kategori');
-            $table->decimal('harga', 15, 2)->default(0)->after('kuantiti');
+            $table->integer('kuantitas')->default(1)->after('kategori');
+            $table->decimal('harga', 15, 2)->default(0)->after('kuantitas');
 
             // nominal already exists, keep it
             // keterangan already exists, keep it
@@ -20,7 +20,7 @@ return new class extends Migration {
     public function down(): void
     {
         Schema::table('incomes', function (Blueprint $table) {
-            $table->dropColumn(['kategori', 'kuantiti', 'harga']);
+            $table->dropColumn(['kategori', 'kuantitas', 'harga']);
         });
     }
 };

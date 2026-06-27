@@ -1,18 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ __('Edit Income') }}</h2>
+        <h2 class="font-semibold mx-2 text-xl text-gray-800 leading-tight">{{ __('Edit Income') }}</h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-2 bg-[#FFF2CC]">
         <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
+            <div class="bg-white shadow-sm sm:rounded-lg p-6">
                     <form method="POST" action="{{ route('income.update', $income) }}">
                         @csrf
                         @method('PUT')
-
-                        <input type="hidden" name="transaction_id" value="{{ $income->transaction_id }}">
-
 
                         <div class="mb-4">
                             <label class="block text-sm font-medium text-gray-700">Tanggal</label>
@@ -31,15 +27,27 @@
 
                         <div class="mb-4">
                             <label class="block text-sm font-medium text-gray-700">Produk</label>
-                            <select name="kategori" class="mt-1 block w-full" required>
+                            <select name="produk" class="mt-1 block w-full" required>
                                 <option value="">-- Pilih Produk --</option>
-                                <option value="Minyak Goreng 2L" {{ old('kategori', $income->kategori ?? '') === 'Minyak Goreng 2L' ? 'selected' : '' }}>Minyak Goreng 2L</option>
-                                <option value="Minyak Goreng 1L" {{ old('kategori', $income->kategori ?? '') === 'Minyak Goreng 1L' ? 'selected' : '' }}>Minyak Goreng 1L</option>
-                                <option value="Gula Pasir 1Kg" {{ old('kategori', $income->kategori ?? '') === 'Gula Pasir 1Kg' ? 'selected' : '' }}>Gula Pasir 1Kg</option>
-                                <option value="Daging Ayam Dada Fillet" {{ old('kategori', $income->kategori ?? '') === 'Daging Ayam Dada Fillet' ? 'selected' : '' }}>Daging Ayam Dada Fillet</option>
-                                <option value="Daging Ayam Paha Fillet" {{ old('kategori', $income->kategori ?? '') === 'Daging Ayam Paha Fillet' ? 'selected' : '' }}>Daging Ayam Paha Fillet</option>
-                                <option value="Daging Sapi Rendang" {{ old('kategori', $income->kategori ?? '') === 'Daging Sapi Rendang' ? 'selected' : '' }}>Daging Sapi Rendang</option>
+                                <option value="Minyak Goreng 2L" {{ old('produk', $income->produk ?? '') === 'Minyak Goreng 2L' ? 'selected' : '' }}>Minyak Goreng 2L</option>
+                                <option value="Minyak Goreng 1L" {{ old('produk', $income->produk ?? '') === 'Minyak Goreng 1L' ? 'selected' : '' }}>Minyak Goreng 1L</option>
+                                <option value="Gula Pasir 1Kg" {{ old('produk', $income->produk ?? '') === 'Gula Pasir 1Kg' ? 'selected' : '' }}>Gula Pasir 1Kg</option>
+                                <option value="Daging Ayam Dada Fillet" {{ old('produk', $income->produk ?? '') === 'Daging Ayam Dada Fillet' ? 'selected' : '' }}>Daging Ayam Dada Fillet</option>
+                                <option value="Daging Ayam Paha Fillet" {{ old('produk', $income->produk ?? '') === 'Daging Ayam Paha Fillet' ? 'selected' : '' }}>Daging Ayam Paha Fillet</option>
+                                <option value="Daging Sapi Rendang" {{ old('produk', $income->produk ?? '') === 'Daging Sapi Rendang' ? 'selected' : '' }}>Daging Sapi Rendang</option>
+                                <option value="Lain-lain" {{ old('produk', $income->produk ?? '') === 'Lain-lain' ? 'selected' : '' }}>Lain-lain</option>
+
                             </select>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700">Harga</label>
+                            <input type="number" step="0.01" name="harga" value="{{ old('harga', $income->harga) }}" class="mt-1 block w-full" required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700">Kuantitas</label>
+                            <input type="number" step="1" min="1" name="kuantitas" value="{{ old('kuantitas', $income->kuantitas) }}" class="mt-1 block w-full" required>
                         </div>
 
                         <div class="mb-4">
@@ -49,11 +57,10 @@
 
 
                         <div class="flex items-center gap-3">
-                            <button class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white rounded-md">Update</button>
-                            <a href="{{ route('income.index') }}" class="inline-flex items-center px-4 py-2 bg-gray-200 text-gray-700 rounded-md">Cancel</a>
+                            <button class="inline-flex items-center px-4 py-2 bg-[#fd593d] text-white rounded-md hover:bg-[#feaf52]">Update</button>
+                            <a href="{{ route('income.index') }}" class="inline-flex items-center px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400">Cancel</a>
                         </div>
                     </form>
-                </div>
             </div>
         </div>
     </div>

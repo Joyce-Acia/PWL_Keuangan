@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-[#fe914d] border-b border-[#feaf52]">
+<nav x-data="{ open: false }" class="bg-[#fe914d] border-b border-[#fe914d]">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -24,12 +24,16 @@
                                 {{ __('Dashboard') }}
                             </x-nav-link>
 
+<<<<<<< HEAD
                             <!-- Expenses -->
+=======
+>>>>>>> a90c45f5aae63a09559a60d96295fca1597881ae
                             <x-nav-link :href="route('expenses.index')" :active="request()->routeIs('expenses.*')">
                                 {{ __('Expenses') }}
                             </x-nav-link>
 
                             <x-nav-link :href="route('income.index')" :active="request()->routeIs('income.*')">
+<<<<<<< HEAD
                                 {{ __('Income') }}
                             </x-nav-link>
 
@@ -41,6 +45,9 @@
                         <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex text-center">
                             <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                                 {{ __('Dashboard') }}
+=======
+                                {{ __('Incomes') }}
+>>>>>>> a90c45f5aae63a09559a60d96295fca1597881ae
                             </x-nav-link>
                         </div>
                     @endif
@@ -109,7 +116,7 @@
             </x-responsive-nav-link>
 
             <x-responsive-nav-link :href="route('income.index')" :active="request()->routeIs('income.*')">
-                Income
+                Incomes
             </x-responsive-nav-link>
 
             <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
@@ -122,10 +129,10 @@
         </div>
 
         <!-- Responsive Settings Options -->
-        <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
+        <div class="pt-4 pb-1 border-t border-[#FFF5F2] dark:border-[#FFF5F2]">
             <div class="px-4">
                 <div class="font-medium text-base text-gray-200">{{ Auth::user()->name }}</div>
-                <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+                <div class="font-medium text-sm text-[#FFF5F2]">{{ Auth::user()->email }}</div>
             </div>
 
             <div class="mt-3 space-y-1">
