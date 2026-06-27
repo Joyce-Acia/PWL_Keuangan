@@ -24,13 +24,17 @@
                                 {{ __('Dashboard') }}
                             </x-nav-link>
 
-                            <!-- Expenses Dropdown -->
+                            <!-- Expenses -->
                             <x-nav-link :href="route('expenses.index')" :active="request()->routeIs('expenses.*')">
                                 {{ __('Expenses') }}
                             </x-nav-link>
 
                             <x-nav-link :href="route('income.index')" :active="request()->routeIs('income.*')">
                                 {{ __('Income') }}
+                            </x-nav-link>
+
+                            <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
+                                {{ __('Users') }}
                             </x-nav-link>
                         </div>
                     @else
@@ -106,6 +110,10 @@
 
             <x-responsive-nav-link :href="route('income.index')" :active="request()->routeIs('income.*')">
                 Income
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
+                Users
             </x-responsive-nav-link>
 
             @endif
