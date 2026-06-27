@@ -24,30 +24,21 @@
                                 {{ __('Dashboard') }}
                             </x-nav-link>
 
-<<<<<<< HEAD
                             <!-- Expenses -->
-=======
->>>>>>> a90c45f5aae63a09559a60d96295fca1597881ae
                             <x-nav-link :href="route('expenses.index')" :active="request()->routeIs('expenses.*')">
                                 {{ __('Expenses') }}
                             </x-nav-link>
 
                             <x-nav-link :href="route('income.index')" :active="request()->routeIs('income.*')">
-<<<<<<< HEAD
                                 {{ __('Income') }}
                             </x-nav-link>
 
-                            <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
-                                {{ __('Users') }}
-                            </x-nav-link>
+
                         </div>
                     @else
                         <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex text-center">
                             <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                                 {{ __('Dashboard') }}
-=======
-                                {{ __('Incomes') }}
->>>>>>> a90c45f5aae63a09559a60d96295fca1597881ae
                             </x-nav-link>
                         </div>
                     @endif
