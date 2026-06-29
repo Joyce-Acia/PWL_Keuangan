@@ -55,7 +55,7 @@
                                     <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-gray-500">Tanggal</th>
                                     <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-gray-500">Admin</th>
                                     <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-gray-500">Kategori</th>
-                                    <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-gray-500">Jumlah</th>
+                                    <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-gray-500">Nominal</th>
                                     <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-gray-500">Detail</th>
                                     <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-gray-500">Aksi</th>
                                 </tr>
