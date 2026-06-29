@@ -1,10 +1,10 @@
 <x-app-layout>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-        .inc-root { font-family: 'DM Sans', sans-serif; background: #fffaed; min-height: 100vh; }
+        .inc-root { font-family: 'Montserrat', sans-serif; background: #fffaed; min-height: 100vh; }
 
         .page-header {
             display: flex; align-items: flex-start;
@@ -12,11 +12,12 @@
             gap: 12px; margin-bottom: 24px;
         }
         .page-title { font-size: 1.25rem; font-weight: 700; color: #1a1a1a; }
-        .page-sub   { font-size: 0.8rem; color: #9ca3af; margin-top: 3px; }
+        /* button */
+        .page-sub   { font-size: 0.8rem; color: #b87a3a; margin-top: 3px; }
 
         .btn-add {
             display: inline-flex; align-items: center; gap: 7px;
-            background: #449672;
+            background: #FD593D;
             color: #fff; font-size: 0.82rem; font-weight: 600;
             padding: 9px 18px; border-radius: 10px;
             text-decoration: none; transition: opacity 0.2s;
@@ -26,14 +27,14 @@
 
         .alert-success {
             margin-bottom: 16px; padding: 12px 16px;
-            background: rgba(68,150,114,0.1); border: 1px solid rgba(68,150,114,0.3);
-            color: #449672; border-radius: 10px; font-size: 0.85rem;
+            background: #FFF2CC; border: 1px solid #FEAF52;
+            color: #b87a3a; border-radius: 10px; font-size: 0.85rem;
         }
 
         .table-wrap {
             background: #fff2cc;
             border-radius: 16px;
-            border: 1px solid #f0e9b0;
+            border: 1px solid #feaf52;
             overflow: hidden;
         }
 
@@ -42,16 +43,16 @@
         thead th {
             padding: 12px 16px;
             text-align: left;
-            font-size: 0.72rem; font-weight: 600;
+            font-size: 0.72rem; font-weight: 700;
             text-transform: uppercase; letter-spacing: 0.06em;
-            color: #666666;
-            background: #fff2cc;
-            border-bottom: 1px solid #f0e9b0;
+            color: #FFFAED;
+            background: #FE914D;
+            border-bottom: none;
         }
         thead th:last-child { text-align: right; }
 
         tbody tr {
-            border-bottom: 1px solid #f0e9b0;
+            border-bottom: 1px solid #FFF2CC;
             transition: background 0.12s;
             background: #fffaed;
         }
@@ -61,45 +62,56 @@
         tbody td {
             padding: 13px 16px;
             font-size: 0.84rem;
-            color: #1a1a1a;
+            color: #3a2a18;
             vertical-align: middle;
         }
-        tbody td:last-child { text-align: right; }
+        tbody td:last-child { text-align: right; white-space: nowrap;}
 
         .td-id {
-            font-family: monospace; font-size: 0.78rem;
-            color: #9ca3af; background: rgba(31,31,31,0.04);
-            padding: 3px 7px; border-radius: 6px;
+            font-family: monospace; font-size: 0.78rem; font-weight: 700;
+            color: #FE914D; background: #FFF2CC;
+            padding: 3px 8px; border-radius: 6px;
             display: inline-block;
         }
 
-        .td-total { font-weight: 700; color: #449672; }
-        .td-harga { font-size: 0.78rem; color: #6b7280; }
-        .td-qty   { font-size: 0.78rem; color: #6b7280; }
-
-        .badge-produk {
-            display: inline-block;
-            font-size: 0.7rem; font-weight: 600;
-            padding: 3px 9px; border-radius: 20px;
-            background: rgba(68,150,114,0.12); color: #449672;
+                .td-nominal {
+            font-weight: 700; font-size: 0.88rem;
+            color: #FD593D;
         }
+ 
+        .td-sumber {
+            font-size: 0.72rem; font-weight: 600;
+            background: #FFF2CC; color: #FE914D;
+            border: 1px solid #FEAF52;
+            padding: 3px 8px; border-radius: 6px;
+            display: inline-block;
+        }
+
+        .td-note { font-size: 0.78rem; color: #7a5c3a; font-style: italic; }
 
         .action-edit {
             font-size: 0.8rem; font-weight: 600;
-            color: #F59E0B; text-decoration: none;
+            color: #FE914D; text-decoration: none;
+            background: #FFF2CC;
+            padding: 5px 11px; border-radius: 7px;
+            transition: background 0.15s, color 0.15s;
         }
-        .action-edit:hover { opacity: 0.75; }
+        .action-edit:hover { opacity: 0.75; background: #FEAF52; color: #fff2cc;}
 
         .action-delete {
-            font-size: 0.8rem; font-weight: 600;
-            color: #ff4336; background: none;
-            border: none; cursor: pointer; padding: 0;
-        }
-        .action-delete:hover { opacity: 0.75; }
+            display: inline-block;
+            font-size: 0.78rem; font-weight: 700;
+            color: #FD593D;
+            background: rgba(253,89,61,0.09);
+            padding: 5px 11px; border-radius: 7px;
+            border: none; cursor: pointer;
+            margin-left: 4px;
+            transition: background 0.15s, color 0.15s;        }
+        .action-delete:hover { opacity: 0.75; background: #FD593D; color: #fff2cc;}
 
         .empty-state {
             padding: 60px 24px; text-align: center;
-            color: #9ca3af; font-size: 0.875rem;
+            color: #b87a3a; font-size: 0.875rem;
             background: #fffaed;
         }
         .empty-icon { font-size: 2rem; margin-bottom: 10px; }

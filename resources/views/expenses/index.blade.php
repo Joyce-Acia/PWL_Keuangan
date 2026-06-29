@@ -1,10 +1,10 @@
 ﻿<x-app-layout>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-        .exp-root { font-family: 'DM Sans', sans-serif; background: #fffaed; min-height: 100vh; }
+        .exp-root { font-family: 'Montserrat', sans-serif; background: #fffaed; min-height: 100vh; }
         .page-header { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; }
         .page-title { font-size: 1.25rem; font-weight: 700; color: #1F1F1F; }
         .page-sub { font-size: 0.8rem; color: #9ca3af; margin-top: 3px; }

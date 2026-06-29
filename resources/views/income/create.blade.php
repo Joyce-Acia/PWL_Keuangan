@@ -4,10 +4,10 @@
     </x-slot>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-        .form-root { font-family: 'DM Sans', sans-serif; }
+        .form-root { font-family: 'Montserrat', sans-serif; }
 
         .form-card {
             background: #fff;
@@ -40,7 +40,7 @@
             border: 1.5px solid #e5e7eb;
             border-radius: 10px;
             font-size: 0.875rem; color: #111827;
-            font-family: 'DM Sans', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             background: #fff;
             transition: border-color 0.15s, box-shadow 0.15s;
             outline: none;
