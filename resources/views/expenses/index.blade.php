@@ -6,10 +6,11 @@
     <style>
         .exp-root { font-family: 'Montserrat', sans-serif; background: #fffaed; min-height: 100vh; }
         .page-header { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; }
-        .page-title { font-size: 1.25rem; font-weight: 700; color: #1F1F1F; }
-        .page-sub { font-size: 0.8rem; color: #9ca3af; margin-top: 3px; }
-        .btn-add { display: inline-flex; align-items: center; gap: 7px; background: #449672; color: #fff; font-size: 0.82rem; font-weight: 600; padding: 9px 18px; border-radius: 10px; text-decoration: none; transition: opacity 0.2s; white-space: nowrap; }
-        .btn-add:hover { opacity: 0.88; }
+        .page-title { font-size: 1.25rem; font-weight: 700; color: #FFFAED; }
+        .page-sub { font-size: 0.8rem; color: #b87a3a; margin-top: 3px; }
+        .btn-add { display: inline-flex; align-items: center; gap: 7px; background: #FD593D; color: #fffaed; font-size: 0.82rem; font-weight: 700; padding: 9px 18px; border-radius: 10px; text-decoration: none; transition: opacity 0.2s; white-space: nowrap; }
+        .btn-add:hover { opacity: 0.88; background: #e04428; }
+        /* placeholder */
         .table-wrap { background: #fff2cc; border-radius: 16px; border: 1px solid #f0e9b0; overflow: hidden; }
         .empty-state { padding: 60px 24px; text-align: center; color: #9ca3af; font-size: 0.875rem; background: #fffaed; }
         .empty-icon { font-size: 2rem; margin-bottom: 10px; }
