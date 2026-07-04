@@ -1,5 +1,9 @@
 <x-app-layout>
-    <x-slot name="header">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+
+<x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ __('Create Expense') }}</h2>
     </x-slot>
 
