@@ -117,6 +117,7 @@
         .empty-icon { font-size: 2rem; margin-bottom: 10px; }
 
         .pagination-wrap { margin-top: 20px; }
+
     </style>
 
     <div class="inc-root py-8 px-4 sm:px-8">
@@ -159,9 +160,8 @@
                             </thead>
                             <tbody>
                                 @foreach($incomes as $income)
-                                    <tr class="border-t border-[#f0e9b0] bg-[#fffaed] hover:bg-[#fff2cc]">
-                                        <td class="px-4 py-4 text-sm text-gray-900">
-                                            {{ $income->id_transaksi }}
+                                    <tr class="border-t border-[#f0e9b0] bg-[#fffaed] hover:bg-[#fff2cc]" >
+                                        <td><span class="td-id">{{ $income->id_transaksi }}</span></td>
                                         </td>
                                         <td>{{ $income->tanggal }}</td>
                                         <td>{{ $income->nama_pelanggan }}</td>

@@ -42,22 +42,7 @@
             justify-content: space-between;
             min-height: 280px;
         }
-        .balance-card::before {
-            content: '';
-            position: absolute;
-            top: -40px; right: -40px;
-            width: 160px; height: 160px;
-            background: rgba(255,255,255,0.12);
-            border-radius: 50%;
-        }
-        .balance-card::after {
-            content: '';
-            position: absolute;
-            bottom: -30px; left: 40px;
-            width: 110px; height: 110px;
-            background: rgba(255,255,255,0.08);
-            border-radius: 50%;
-        }
+
         .balance-label { font-size: 0.82rem; color: rgba(255,255,255,0.75); font-weight: 500; letter-spacing: 0.02em; position: relative; z-index: 1; }
         .balance-amount { font-family: 'Montserrat', sans-serif; font-size: 2.1rem; color: #ffffff; margin-top: 10px; position: relative; z-index: 1; line-height: 1.15; }
         .balance-footer { display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 1; margin-top: 32px; }

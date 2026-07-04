@@ -163,8 +163,7 @@
                             <tbody>
                                 @foreach($expenses as $expense)
                                     <tr class="border-t border-[#f0e9b0] bg-[#fffaed] hover:bg-[#fff2cc]">
-                                        <td class="px-4 py-4 text-sm text-gray-900">
-                                            {{ 'EXP-' . str_pad((string) $expense->id, 6, '0', STR_PAD_LEFT) }}
+                                        <td><span class="td-id">{{ 'EXP-' . str_pad((string) $expense->id, 6, '0', STR_PAD_LEFT) }}</span></td>
                                         </td>
                                         <td class="px-4 py-4 text-sm text-gray-900">{{ \Carbon\Carbon::parse($expense->tanggal)->format('d-m-Y') }}</td>
                                         <td class="px-4 py-4 text-sm text-gray-900">{{ $expense->nama_admin }}</td>
