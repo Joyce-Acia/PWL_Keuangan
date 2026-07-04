@@ -38,6 +38,11 @@
             overflow: hidden;
         }
 
+        .table-scroll{
+            border-radius: 15px;
+            overflow-x:auto;
+        }
+
         table { width: 100%; border-collapse: collapse; }
 
         thead th {
@@ -55,6 +60,7 @@
             border-bottom: 1px solid #FFF2CC;
             transition: background 0.12s;
             background: #fffaed;
+            overflow: visible;
         }
         tbody tr:last-child { border-bottom: none; }
         tbody tr:hover { background: #fff2cc; }
@@ -64,6 +70,7 @@
             font-size: 0.84rem;
             color: #3a2a18;
             vertical-align: middle;
+            overflow: visible;
         }
         tbody td:last-child { text-align: right; white-space: nowrap;}
 
@@ -74,9 +81,9 @@
             display: inline-block;
         }
 
-                .td-nominal {
+        .td-nominal {
             font-weight: 700; font-size: 0.88rem;
-            color: #FD593D;
+            color: #3cc26d;
         }
  
         .td-sumber {
@@ -118,6 +125,115 @@
 
         .pagination-wrap { margin-top: 20px; }
 
+        .nominal-wrapper{
+            display:flex;
+            align-items:center;
+            gap:6px;
+        }
+
+        .info-icon{
+            width:18px;
+            height:18px;
+
+            display:flex;
+            align-items:center;
+            justify-content:center;
+
+            border-radius:50%;
+            background:#FFE7BF;
+            color:#FE914D;
+
+            font-size:11px;
+            font-weight:700;
+            cursor:pointer;
+
+            position:relative;
+
+            transition:.2s;
+        }
+
+        .info-icon:hover{
+            background:#FE914D;
+            color: #1a1a1a;
+        }
+
+        .info-tooltip{
+
+            position:absolute;
+
+            left:50%;
+            top:125%;
+
+            transform:translateX(-50%);
+
+            width:240px;
+
+            background:white;
+            border:1px solid #FFD089;
+            border-radius:14px;
+
+            padding:14px;
+
+            box-shadow:0 12px 30px rgba(0,0,0,.15);
+
+            opacity:0;
+            visibility:hidden;
+
+            transition:.2s;
+
+            z-index:99999;
+        }
+
+        .info-icon:hover .info-tooltip{
+
+            opacity:1;
+            visibility:visible;
+
+            transform:translateX(-50%) translateY(6px);
+        }
+
+        .tooltip-title{
+            font-size:.82rem;
+            font-weight:700;
+            color:#FD593D;
+
+            margin-bottom:10px;
+            padding-bottom:8px;
+
+            border-bottom:1px dashed #FFE1B0;
+        }
+
+        .tooltip-row{
+
+            display:flex;
+            justify-content:space-between;
+
+            margin:7px 0;
+
+            font-size:.82rem;
+        }
+
+        .tooltip-label{
+            color:#7A5C3A;
+        }
+
+        .tooltip-value{
+            font-weight:700;
+        }
+
+        .tooltip-total{
+            margin-top:10px;
+            padding-top:10px;
+
+            border-top:1px dashed #FFE1B0;
+
+            display:flex;
+            justify-content:space-between;
+
+            font-weight:700;
+            color:#3CC26D;
+        }
+
     </style>
 
     <div class="inc-root py-8 px-4 sm:px-8">
@@ -130,7 +246,7 @@
             <div class="page-header">
                 <div>
                     <div class="page-title">Transaksi Incomes</div>
-                    <div class="page-sub">Semua entri pendapatan yang direkam</div>
+                    <div class="page-sub">Semua transaksi pemasukan yang telah dicatat</div>
                 </div>
                 <a href="{{ route('income.create') }}" class="btn-add">
                     <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
@@ -142,33 +258,86 @@
                 @if($incomes->isEmpty())
                     <div class="empty-state">
                         <div class="empty-icon">📭</div>
-                        <div>Tidak ada catatan pendapatan yang ditemukan.</div>
+                        <div>Tidak ada catatan pemasukan yang ditemukan.</div>
+                        <div>Silakan tambahkan pemasukan menggunakan tombol di atas.</div>
                     </div>
                 @else
-                    <div class="overflow-x-auto">
+                    <div class="table-scroll">
                         <table>
                             <thead>
                                 <tr>
-                                    <th>ID Transaksi</th>
-                                    <th>Tanggal</th>
-                                    <th>Nama Pelanggan</th>
-                                    <th>Sumber</th>
-                                    <th>Nominal</th>
-                                    <th>Keterangan</th>
-                                    <th>Aksi</th>
+                                    <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED"> ID Transaksi</th>
+                                    <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED">Tanggal</th>
+                                    <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED">Nama Pelanggan</th>
+                                    <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED">Sumber</th>
+                                    <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED">Nominal</th>
+                                    <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED">Keterangan</th>
+                                    <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($incomes as $income)
                                     <tr class="border-t border-[#f0e9b0] bg-[#fffaed] hover:bg-[#fff2cc]" >
-                                        <td><span class="td-id">{{ $income->id_transaksi }}</span></td>
+                                        <td class="px-4 py-4"><span class="td-id">{{ $income->id_transaksi }}</span></td>
                                         </td>
-                                        <td>{{ $income->tanggal }}</td>
-                                        <td>{{ $income->nama_pelanggan }}</td>
-                                        <td>{{ $income->sumber }}</td>
-                                        <td class="td-harga">Rp {{ number_format($income->nominal, 2, ',', '.') }}</td>
-                                        <td>{{ $income->keterangan }}</td>
-                                        <td>
+                                        <td class="px-4 py-4">{{ $income->tanggal }}</td>
+                                        <td class="px-4 py-4">{{ $income->nama_pelanggan }}</td>
+                                        <td class="px-4 py-4">{{ $income->sumber }}</td>
+                                        <td class="px-4 py-4">
+
+                                            <div class="nominal-wrapper">
+
+                                                <span class="td-nominal">
+                                                    Rp {{ number_format($income->total_bersih,2,',','.') }}
+                                                </span>
+
+                                                <div class="info-icon">
+
+                                                    i
+
+                                                    <div class="info-tooltip">
+
+                                                        <div class="tooltip-title">
+                                                            Detail
+                                                        </div>
+
+                                                        <div class="tooltip-row">
+                                                            <span class="tooltip-label">Harga Awal</span>
+                                                            <span class="tooltip-value">
+                                                                Rp {{ number_format($income->nominal,2,',','.') }}
+                                                            </span>
+                                                        </div>
+
+                                                        <div class="tooltip-row">
+                                                            <span class="tooltip-label">Diskon</span>
+                                                            <span class="tooltip-value">
+                                                                {{ $income->diskon }}%
+                                                            </span>
+                                                        </div>
+
+                                                        <div class="tooltip-row">
+                                                            <span class="tooltip-label">Ongkir</span>
+                                                            <span class="tooltip-value">
+                                                                Rp {{ number_format($income->ongkir,2,',','.') }}
+                                                            </span>
+                                                        </div>
+
+                                                        <div class="tooltip-total">
+                                                            <span>Total</span>
+                                                            <span>
+                                                                Rp {{ number_format($income->total_bersih,2,',','.') }}
+                                                            </span>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        </td>
+                                        <td class="px-4 py-4">{{ $income->keterangan }}</td>
+                                        <td class="px-4 py-4">
                                             <a href="{{ route('income.edit', $income) }}" class="action-edit">Edit</a>
                                             <form action="{{ route('income.destroy', $income) }}" method="POST" class="inline-block ml-3" onsubmit="return confirm('Hapus income ini?');">
                                                 @csrf
@@ -182,10 +351,12 @@
                         </table>
                     </div>
 
+                @if($incomes->hasPages())
                     <div class="pagination-wrap px-4 pb-4">
-                        {{ $incomes->links() }}
+                        {{ $incomes->links('pagination::simple-tailwind') }}
                     </div>
                 @endif
+            @endif
             </div>
 
         </div>

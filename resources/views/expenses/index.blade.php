@@ -130,7 +130,7 @@
             <div class="page-header">
                 <div>
                     <div class="page-title">Transaksi Expenses</div>
-                    <div class="page-sub">Untuk mengelola transaksi pengeluaran</div>
+                    <div class="page-sub">Semua transaksi pengeluaran yang telah dicatat</div>
                 </div>
 
                 <a href="{{ route('expenses.create') }}" class="btn-add">
@@ -168,7 +168,7 @@
                                         <td class="px-4 py-4 text-sm text-gray-900">{{ \Carbon\Carbon::parse($expense->tanggal)->format('d-m-Y') }}</td>
                                         <td class="px-4 py-4 text-sm text-gray-900">{{ $expense->nama_admin }}</td>
                                         <td class="px-4 py-4 text-sm text-gray-900">{{ $expense->kategori_pengeluaran }}</td>
-                                        <td class="px-4 py-4 text-sm text-gray-900">Rp {{ number_format($expense->nominal, 2, ',', '.') }}</td>
+                                        <td class="px-4 py-4 td-nominal">Rp {{ number_format($expense->nominal, 2, ',', '.') }}</td>
                                         <td class="px-4 py-4 text-sm text-gray-900">{{ $expense->keterangan ?? '-' }}</td>
                                         <td class="px-4 py-4 text-sm text-gray-900">
                                             <a href="{{ route('expenses.edit', $expense) }}" class="action-edit">Edit</a>

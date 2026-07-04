@@ -110,9 +110,9 @@
                 Incomes
             </x-responsive-nav-link>
 
-            <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
+            <!-- <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
                 Users
-            </x-responsive-nav-link>
+            </x-responsive-nav-link> -->
 
             @endif
         @endauth
@@ -120,7 +120,7 @@
         </div>
 
         <!-- Responsive Settings Options -->
-        <div class="pt-4 pb-1 border-t border-[#FFF5F2] dark:border-[#FFF5F2]">
+        <div class="pt-4 pb-1 border-t border-[#FFF2CC]">
             <div class="px-4">
                 <div class="font-medium text-base text-gray-200">{{ Auth::user()->name }}</div>
                 <div class="font-medium text-sm text-[#FFF5F2]">{{ Auth::user()->email }}</div>

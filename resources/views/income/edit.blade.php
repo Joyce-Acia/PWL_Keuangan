@@ -159,6 +159,58 @@
             border-color: #FD593D;
             background: #fff5f5;
         }
+
+        .input-suffix-wrap{
+            position:relative;
+        }
+
+        .input-suffix{
+            position:absolute;
+            right:12px;
+            top:50%;
+            transform:translateY(-50%);
+            font-weight:700;
+            color:#FEAF52;
+            pointer-events:none;
+        }
+
+        .form-input.with-suffix{
+            padding-right:32px;
+        }
+
+        .sumber-pills{
+            display:flex;
+            flex-wrap:wrap;
+            gap:8px;
+        }
+
+        .sumber-pill input[type="radio"]{
+            display:none;
+        }
+
+        .sumber-pill label{
+            display:inline-block;
+            font-size:.78rem;
+            font-weight:600;
+            padding:6px 14px;
+            border-radius:20px;
+            border:1.5px solid #FEAF52;
+            background:#FFF2CC;
+            color:#b87a3a;
+            cursor:pointer;
+        }
+
+        .sumber-pill input[type="radio"]:checked+label{
+            background:#FF941D;
+            border-color:#FF941D;
+            color:white;
+        }
+
+        .sumber-pill label:hover{
+            background:#FEAF52;
+            color:white;
+        }
+
     </style>
 
     <div class="edit-root py-8 px-4 sm:px-6 lg:px-8">
@@ -243,18 +295,91 @@
                             </div>
 
                             {{-- Nominal --}}
-                            <div class="form-group">
-                                <label class="form-label" for="nominal">Nominal</label>
+                            <div class="form-group full">
+                                <label class="form-label" for="nominal">
+                                    Nominal <span>*</span>
+                                </label>
+
                                 <div class="input-prefix-wrap">
                                     <span class="input-prefix">Rp</span>
+
                                     <input
-                                        type="number" step="1" id="nominal" name="nominal"
+                                        type="number"
+                                        id="nominal"
+                                        name="nominal"
                                         value="{{ old('nominal', $income->nominal) }}"
-                                        placeholder="0"
                                         class="form-input nominal with-prefix {{ $errors->has('nominal') ? 'error' : '' }}"
                                         required>
                                 </div>
-                                @error('nominal')<div class="field-error">{{ $message }}</div>@enderror
+
+                                @error('nominal')
+                                    <div class="field-error">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+
+                                <label class="form-label">
+                                    Diskon
+                                </label>
+
+                                <div class="input-suffix-wrap">
+
+                                    <input
+                                        type="number"
+                                        id="diskon"
+                                        name="diskon"
+                                        min="0"
+                                        max="100"
+                                        step="0.01"
+                                        value="{{ old('diskon',$income->diskon) }}"
+                                        class="form-input with-suffix">
+
+                                    <span class="input-suffix">%</span>
+
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label class="form-label">
+                                    Ongkir
+                                </label>
+
+                                <div class="input-prefix-wrap">
+
+                                    <span class="input-prefix">Rp</span>
+
+                                    <input
+                                        type="number"
+                                        id="ongkir"
+                                        name="ongkir"
+                                        value="{{ old('ongkir',$income->ongkir) }}"
+                                        class="form-input nominal with-prefix">
+
+                                </div>
+
+                            </div>
+
+                            <div class="form-group full">
+
+                                <label class="form-label">
+                                    Total Bersih
+                                </label>
+
+                                <div class="input-prefix-wrap">
+
+                                    <span class="input-prefix">Rp</span>
+
+                                    <input
+                                        type="text"
+                                        id="total_bersih"
+                                        class="form-input nominal with-prefix"
+                                        readonly>
+
+                                </div>
+
                             </div>
 
                             <hr class="form-divider">
@@ -293,4 +418,31 @@
         </div>
     </div>
 
+    <script>
+
+    const nominal = document.getElementById('nominal');
+    const diskon = document.getElementById('diskon');
+    const ongkir = document.getElementById('ongkir');
+    const total = document.getElementById('total_bersih');
+
+    function hitungTotal(){
+
+        const n = parseFloat(nominal.value) || 0;
+        const d = parseFloat(diskon.value) || 0;
+        const o = parseFloat(ongkir.value) || 0;
+
+        const hasil = n - (n * d / 100) + o;
+
+        total.value = hasil.toLocaleString('id-ID');
+
+    }
+
+    nominal.addEventListener('input', hitungTotal);
+    diskon.addEventListener('input', hitungTotal);
+    ongkir.addEventListener('input', hitungTotal);
+
+    hitungTotal();
+
+    </script>
+    
 </x-app-layout>

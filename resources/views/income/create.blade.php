@@ -85,6 +85,24 @@
             color: #FEAF52; pointer-events: none;
         }
 
+        .input-suffix-wrap {
+            position: relative;
+        }
+
+        .input-suffix {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-weight: 700;
+            color: #FEAF52;
+            pointer-events: none;
+        }
+
+        .form-input.with-suffix {
+            padding-right: 32px;
+        }
+
         .form-divider {
             grid-column: 1 / -1;
             border: none; border-top: 1.5px dashed #FFF2CC;
@@ -236,7 +254,7 @@
                             <hr class="form-divider">
 
                             <div class="form-group full">
-                                <label class="form-label" for="nominal">Nominal <span>*</span></label>
+                                <label class="form-label" for="nominal"> Nominal <span>*</span></label>
                                 <div class="input-prefix-wrap">
                                     <span class="input-prefix">Rp</span>
                                     <input
@@ -247,6 +265,54 @@
                                         required>
                                 </div>
                                 @error('nominal')<div class="field-error">{{ $message }}</div>@enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="diskon">Diskon</label>
+
+                                <div class="input-suffix-wrap">
+                                    <input
+                                        type="number"
+                                        id="diskon"
+                                        name="diskon"
+                                        min="0"
+                                        max="100"
+                                        step="0.01"
+                                        value="{{ old('diskon') }}"
+                                        placeholder="0"
+                                        class="form-input nominal with-suffix">
+                                    <span class="input-suffix">%</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="ongkir">Ongkir</label>
+
+                                <div class="input-prefix-wrap">
+                                    <span class="input-prefix">Rp</span>
+
+                                    <input
+                                        type="number"
+                                        id="ongkir"
+                                        name="ongkir"
+                                        value="{{ old('ongkir') }}"
+                                        placeholder="0"
+                                        class="form-input nominal with-prefix">
+                                </div>
+                            </div>
+
+                            <div class="form-group full">
+                                <label class="form-label">Total Bersih</label>
+
+                                <div class="input-prefix-wrap">
+                                    <span class="input-prefix">Rp</span>
+
+                                    <input
+                                        type="text"
+                                        id="total_bersih"
+                                        class="form-input nominal with-prefix"
+                                        readonly>
+                                </div>
                             </div>
 
                             <hr class="form-divider">
@@ -282,5 +348,29 @@
             </div>
         </div>
     </div>
+
+    <script>
+    const nominal = document.getElementById('nominal');
+    const diskon = document.getElementById('diskon');
+    const ongkir = document.getElementById('ongkir');
+    const total = document.getElementById('total_bersih');
+
+    function hitungTotal() {
+
+        const n = parseFloat(nominal.value) || 0;
+        const d = parseFloat(diskon.value) || 0;
+        const o = parseFloat(ongkir.value) || 0;
+
+        const hasil = n - (n * d / 100) + o;
+
+        total.value = hasil.toLocaleString('id-ID');
+    }
+
+    nominal.addEventListener('input', hitungTotal);
+    diskon.addEventListener('input', hitungTotal);
+    ongkir.addEventListener('input', hitungTotal);
+
+    hitungTotal();
+    </script>
 
 </x-app-layout>
