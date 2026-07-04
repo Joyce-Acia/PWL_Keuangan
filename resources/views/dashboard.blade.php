@@ -75,7 +75,15 @@
             font-size: 0.7rem; font-weight: 700; padding: 4px 10px;
             border-radius: 20px; letter-spacing: 0.02em;
         }
-        .pill-week { background: #111827; color: #fff; }
+        .pill-week { 
+            font-size: 0.68rem; 
+            font-weight: 700; 
+            background: #FFF2CC; 
+            color: #b87a3a; 
+            border: 1px solid #FEAF52; 
+            padding: 3px 9px; 
+            border-radius: 20px; }        
+            
         .summary-amount { font-family: 'Montserrat', sans-serif; font-size: 1.75rem; font-weight: 300; color: #111827; margin-top: 12px; line-height: 1.1; }
         .summary-sub { font-size: 0.75rem; color: #9ca3af; margin-top: 5px; }
 
@@ -204,13 +212,13 @@
                             Rp {{ number_format($overallBalance, 2, ',', '.') }}
                         </div>
                     </div>
-                    <!-- <div class="balance-footer">
+                    <div class="balance-footer">
                         <span class="balance-footer-text">{{ $today->format('d M Y') }}</span>
                         <a href="{{ route('expenses.index') }}" class="balance-link">
                             Saldo Saya
                             <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                         </a>
-                    </div> -->
+                    </div>
                 </div>
 
                 {{-- Right column: Income + Expenses stacked --}}
