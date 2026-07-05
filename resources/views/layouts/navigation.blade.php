@@ -24,7 +24,6 @@
                                 {{ __('Dashboard') }}
                             </x-nav-link>
 
-                            <!-- Expenses -->
                             <x-nav-link :href="route('expenses.index')" :active="request()->routeIs('expenses.*')">
                                 {{ __('Expenses') }}
                             </x-nav-link>
@@ -33,6 +32,9 @@
                                 {{ __('Income') }}
                             </x-nav-link>
 
+                            <!-- <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
+                                {{ __('Users') }}
+                            </x-nav-link> -->
 
                         </div>
                     @else
