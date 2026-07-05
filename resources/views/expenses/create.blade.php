@@ -92,6 +92,25 @@
         }
         @media (max-width: 640px) { .form-divider { grid-column: span 1; } }
 
+        .kategori-pills {
+            display: flex; flex-wrap: wrap; gap: 8px;
+            margin-top: 2px;
+        }
+        .kategori-pill input[type="radio"] { display: none; }
+        .kategori-pill label {
+            display: inline-block;
+            font-size: 0.78rem; font-weight: 600;
+            padding: 6px 14px; border-radius: 20px;
+            border: 1.5px solid #FEAF52;
+            background: #FFF2CC; color: #b87a3a;
+            cursor: pointer;
+            transition: background 0.15s, color 0.15s, border-color 0.15s;
+        }
+        .kategori-pill input[type="radio"]:checked + label {
+            background: #FF941D; border-color: #FF941D; color: #fff;
+        }
+        .kategori-pill label:hover { background: #FEAF52; color: #fff; border-color: #FEAF52; }
+
         .alert-error {
             margin-bottom: 20px; padding: 12px 16px;
             background: rgba(253,89,61,0.08); border: 1px solid rgba(253,89,61,0.3);
@@ -206,18 +225,19 @@
                             <hr class="form-divider">
 
                             <div class="form-group full">
-                                <label class="form-label" for="kategori_pengeluaran">Kategori Pengeluaran <span>*</span></label>
-                                <select
-                                    id="kategori_pengeluaran" name="kategori_pengeluaran"
-                                    class="form-select {{ $errors->has('kategori_pengeluaran') ? 'err' : '' }}"
-                                    required>
-                                    <option value="">— Pilih Kategori —</option>
+                                <label class="form-label">Kategori Pengeluaran <span>*</span></label>
+                                <div class="kategori-pills">
                                     @foreach(['Pembelian Stok','Transportasi','Gaji/Upah','Perlengkapan & Marketing'] as $option)
-                                        <option value="{{ $option }}" {{ old('kategori_pengeluaran') === $option ? 'selected' : '' }}>
-                                            {{ $option }}
-                                        </option>
+                                        <div class="kategori-pill">
+                                            <input
+                                                type="radio" id="kategori_pengeluaran-{{ $loop->index }}"
+                                                name="kategori_pengeluaran" value="{{ $option }}"
+                                                {{ old('kategori_pengeluaran') === $option ? 'checked' : '' }}
+                                                required>
+                                            <label for="kategori_pengeluaran-{{ $loop->index }}">{{ $option }}</label>
+                                        </div>
                                     @endforeach
-                                </select>
+                                </div>
                                 @error('kategori_pengeluaran')<div class="field-error">{{ $message }}</div>@enderror
                             </div>
 
