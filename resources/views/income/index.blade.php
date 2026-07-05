@@ -33,14 +33,15 @@
 
         .table-wrap {
             background: #fff2cc;
+            position:relative;
             border-radius: 16px;
             border: 1px solid #feaf52;
-            overflow: hidden;
+            overflow: visible;
         }
 
         .table-scroll{
-            border-radius: 15px;
             overflow-x:auto;
+            overflow-y:visible;
         }
 
         table { width: 100%; border-collapse: collapse; }
@@ -158,38 +159,17 @@
         }
 
         .info-tooltip{
-
-            position:absolute;
-
-            left:50%;
-            top:125%;
-
-            transform:translateX(-50%);
-
+            position: fixed;
             width:240px;
-
             background:white;
             border:1px solid #FFD089;
             border-radius:14px;
-
             padding:14px;
-
             box-shadow:0 12px 30px rgba(0,0,0,.15);
-
             opacity:0;
             visibility:hidden;
-
             transition:.2s;
-
             z-index:99999;
-        }
-
-        .info-icon:hover .info-tooltip{
-
-            opacity:1;
-            visibility:visible;
-
-            transform:translateX(-50%) translateY(6px);
         }
 
         .tooltip-title{
@@ -361,5 +341,30 @@
 
         </div>
     </div>
+
+    <script>
+        document.querySelectorAll('.info-icon').forEach(icon => {
+
+            const tooltip = icon.querySelector('.info-tooltip');
+
+            icon.addEventListener('mouseenter', () => {
+
+                const rect = icon.getBoundingClientRect();
+
+                tooltip.style.left = rect.left + "px";
+                tooltip.style.top = (rect.bottom + 8) + "px";
+
+                tooltip.style.opacity = "1";
+                tooltip.style.visibility = "visible";
+            });
+
+            icon.addEventListener('mouseleave', () => {
+
+                tooltip.style.opacity = "0";
+                tooltip.style.visibility = "hidden";
+            });
+
+        });
+    </script>
 
 </x-app-layout>
