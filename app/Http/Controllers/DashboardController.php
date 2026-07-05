@@ -20,10 +20,10 @@ class DashboardController extends Controller
         $today = Carbon::today();
 
         $totalExpenses = (float) Expense::sum('nominal');
-        $totalIncomes = (float) Income::sum('nominal');
+        $totalIncomes = (float) Income::sum('total_bersih');
 
         $todayExpenses = (float) Expense::whereDate('tanggal', $today)->sum('nominal');
-        $todayIncomes = (float) Income::whereDate('tanggal', $today)->sum('nominal');
+        $todayIncomes = (float) Income::whereDate('tanggal', $today)->sum('total_bersih');
 
         $todayBalance = $todayIncomes - $todayExpenses;
         $overallBalance = $totalIncomes - $totalExpenses;

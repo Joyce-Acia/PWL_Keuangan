@@ -42,6 +42,7 @@
         .table-scroll{
             overflow-x:auto;
             overflow-y:visible;
+            border-radius: 15px;
         }
 
         table { width: 100%; border-collapse: collapse; }
