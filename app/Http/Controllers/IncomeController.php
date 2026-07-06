@@ -38,7 +38,7 @@ class IncomeController extends Controller
 
         $validated = $request->validate([
             'tanggal'=>'required|date',
-            'nama_pelanggan'=>'required|string|max:255',
+            'nama_pihak'=>'required|string|max:255',
             'sumber'=>'required|string|max:255',
             'nominal'=>'required|numeric|min:0',
             'keterangan'=>'nullable|string',
@@ -64,7 +64,7 @@ class IncomeController extends Controller
 
         $validated = $request->validate([
             'tanggal' => 'required|date',
-            'nama_pelanggan' => 'required|string|max:255',
+            'nama_pihak' => 'required|string|max:255',
             'sumber' => 'required|string|max:255',
             'nominal' => 'required|numeric|min:0',
             'keterangan' => 'nullable|string',

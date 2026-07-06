@@ -15,7 +15,7 @@ return new class extends Migration {
                 ->constrained('users')
                 ->nullOnDelete();
             $table->date('tanggal');
-            $table->string('nama_pelanggan');
+            $table->string('nama_pihak');
             $table->string('sumber')->nullable();
             $table->decimal('nominal',15,2);
             // // Ini yang tambahan

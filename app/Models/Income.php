@@ -13,7 +13,7 @@ class Income extends Model
         'id_user',
         'id_transaksi',
         'tanggal',
-        'nama_pelanggan',
+        'nama_pihak',
         'sumber',
         'nominal',
         'keterangan',

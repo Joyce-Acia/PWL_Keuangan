@@ -205,7 +205,7 @@
                                 <tr>
                                     <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED"> ID Transaksi</th>
                                     <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED">Tanggal</th>
-                                    <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED">Nama Pelanggan</th>
+                                    <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED">Nama Pihak</th>
                                     <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED">Sumber</th>
                                     <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED">Nominal</th>
                                     <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED">Keterangan</th>
@@ -217,7 +217,7 @@
                                     <tr class="border-t border-[#f0e9b0] bg-[#fffaed] hover:bg-[#fff2cc]">
                                         <td class="px-4 py-4"><span class="td-id">{{ $income->id_transaksi }}</span></td>
                                         <td style="font-size:0.8rem;color:#b87a3a;">{{ \Carbon\Carbon::parse($income->tanggal)->format('d-m-Y') }}</td>
-                                        <td style="font-weight:500;">{{ $income->nama_pelanggan }}</td>
+                                        <td style="font-weight:500;">{{ $income->nama_pihak }}</td>
                                         <td><span class="td-sumber">{{ $income->sumber }}</span></td>
                                         <td class="td-nominal">Rp {{ number_format($income->nominal, 2, ',', '.') }}</td>
                                         <td class="td-note">{{ $income->keterangan ?? '-' }}</td>

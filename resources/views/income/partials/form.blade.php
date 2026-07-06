@@ -11,14 +11,14 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="form-label" for="nama_pelanggan">Nama Pelanggan <span>*</span></label>
+                                <label class="form-label" for="nama_pihak">Nama Pihak <span>*</span></label>
                                 <input
-                                    type="text" id="nama_pelanggan" name="nama_pelanggan"
-                                    value="{{ old('nama_pelanggan', $income->nama_pelanggan ?? '') }}"
+                                    type="text" id="nama_pihak" name="nama_pihak"
+                                    value="{{ old('nama_pihak', $income->nama_pihak ?? '') }}"
                                     placeholder="Contoh: Budi Santoso"
-                                    class="form-input {{ $errors->has('nama_pelanggan') ? 'err' : '' }}"
+                                    class="form-input {{ $errors->has('nama_pihak') ? 'err' : '' }}"
                                     required>
-                                @error('nama_pelanggan')<div class="field-error">{{ $message }}</div>@enderror
+                                @error('nama_pihak')<div class="field-error">{{ $message }}</div>@enderror
                             </div>
 
                             <hr class="form-divider">
