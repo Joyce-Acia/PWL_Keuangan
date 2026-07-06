@@ -41,23 +41,23 @@ class IncomeController extends Controller
             'nama_pelanggan'=>'required|string|max:255',
             'sumber'=>'required|string|max:255',
             'nominal'=>'required|numeric|min:0',
-            //tambahan
-            'diskon'=>'nullable|numeric|min:0',
-            'ongkir'=>'nullable|numeric|min:0',
+            // //tambahan
+            // 'diskon'=>'nullable|numeric|min:0',
+            // 'ongkir'=>'nullable|numeric|min:0',
             'keterangan'=>'nullable|string',
 
             ]);
 
-        //tambahan
-        $hargaAwal = $validated['nominal'];
-        $diskon = $request->diskon ?? 0;
-        $ongkir = $request->ongkir ?? 0;
+        // //tambahan
+        // $hargaAwal = $validated['nominal'];
+        // $diskon = $request->diskon ?? 0;
+        // $ongkir = $request->ongkir ?? 0;
 
-        $validated['nominal'] = $hargaAwal;
-        $validated['diskon'] = $diskon;
-        $validated['ongkir'] = $ongkir;
+        // $validated['nominal'] = $hargaAwal;
+        // $validated['diskon'] = $diskon;
+        // $validated['ongkir'] = $ongkir;
 
-        $validated['total_bersih'] = $hargaAwal - ($hargaAwal * $diskon / 100) + $ongkir;
+        // $validated['total_bersih'] = $hargaAwal - ($hargaAwal * $diskon / 100) + $ongkir;
 
         $validated['id_user'] = auth()->id();
 
@@ -84,16 +84,16 @@ class IncomeController extends Controller
             'keterangan' => 'nullable|string',
         ]);
 
-        //tambahan
-        $hargaAwal = $validated['nominal'];
-        $diskon = $request->diskon ?? 0;
-        $ongkir = $request->ongkir ?? 0;
+        // //tambahan
+        // $hargaAwal = $validated['nominal'];
+        // $diskon = $request->diskon ?? 0;
+        // $ongkir = $request->ongkir ?? 0;
 
-        $validated['nominal'] = $hargaAwal;
-        $validated['diskon'] = $diskon;
-        $validated['ongkir'] = $ongkir;
+        // $validated['nominal'] = $hargaAwal;
+        // $validated['diskon'] = $diskon;
+        // $validated['ongkir'] = $ongkir;
 
-        $validated['total_bersih'] = $hargaAwal - ($hargaAwal * $diskon / 100) + $ongkir;
+        // $validated['total_bersih'] = $hargaAwal - ($hargaAwal * $diskon / 100) + $ongkir;
         
         $income->update($validated);
 

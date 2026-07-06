@@ -16,10 +16,10 @@ class Income extends Model
         'nama_pelanggan',
         'sumber',
         'nominal',
-        // tambahan
-        'diskon',
-        'ongkir',
-        'total_bersih',
+        // // tambahan
+        // 'diskon',
+        // 'ongkir',
+        // 'total_bersih',
         'keterangan',
     ];
 

@@ -55,7 +55,7 @@
                                 @error('nominal')<div class="field-error">{{ $message }}</div>@enderror
                             </div>
 
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label class="form-label" for="diskon">Diskon</label>
 
                                 <div class="input-suffix-wrap">
@@ -101,7 +101,7 @@
                                         class="form-input nominal with-prefix"
                                         readonly>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <hr class="form-divider">
 

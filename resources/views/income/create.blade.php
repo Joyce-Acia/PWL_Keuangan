@@ -69,6 +69,5 @@
         </div>
     </div>
 
-    @include('income.partials.script')
 
 </x-app-layout>

@@ -36,14 +36,14 @@
             position:relative;
             border-radius: 16px;
             border: 1px solid #feaf52;
-            overflow: visible;
+            overflow: hidden;
         }
 
-        .table-scroll{
+        /* .table-scroll{
             overflow-x:auto;
             overflow-y:visible;
             border-radius: 15px;
-        }
+        } */
 
         table { width: 100%; border-collapse: collapse; }
 
@@ -133,7 +133,7 @@
             gap:6px;
         }
 
-        .info-icon{
+        /* .info-icon{
             width:18px;
             height:18px;
 
@@ -213,7 +213,7 @@
 
             font-weight:700;
             color:#3CC26D;
-        }
+        } */
 
     </style>
 
@@ -243,7 +243,7 @@
                         <div>Silakan tambahkan pemasukan menggunakan tombol di atas.</div>
                     </div>
                 @else
-                    <div class="table-scroll">
+                    <div class="overflow-x-auto">
                         <table>
                             <thead>
                                 <tr>
@@ -269,10 +269,10 @@
                                             <div class="nominal-wrapper">
 
                                                 <span class="td-nominal">
-                                                    Rp {{ number_format($income->total_bersih,2,',','.') }}
+                                                    Rp {{ number_format($income->nominal,2,',','.') }}
                                                 </span>
 
-                                                <div class="info-icon">
+                                                <!-- <div class="info-icon">
 
                                                     i
 
@@ -312,7 +312,7 @@
 
                                                     </div>
 
-                                                </div>
+                                                </div> -->
 
                                             </div>
 

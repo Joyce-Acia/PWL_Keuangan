@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
     const nominal = document.getElementById('nominal');
     const diskon = document.getElementById('diskon');
     const ongkir = document.getElementById('ongkir');
@@ -20,4 +20,4 @@
     ongkir.addEventListener('input', hitungTotal);
 
     hitungTotal();
-</script>
+</script> -->

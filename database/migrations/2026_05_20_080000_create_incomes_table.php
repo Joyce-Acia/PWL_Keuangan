@@ -18,10 +18,10 @@ return new class extends Migration {
             $table->string('nama_pelanggan');
             $table->string('sumber')->nullable();
             $table->decimal('nominal',15,2);
-            // Ini yang tambahan
-            $table->decimal('diskon',5,2)->default(0);
-            $table->decimal('ongkir',15,2)->default(0);
-            $table->decimal('total_bersih',15,2)->default(0);
+            // // Ini yang tambahan
+            // $table->decimal('diskon',5,2)->default(0);
+            // $table->decimal('ongkir',15,2)->default(0);
+            // $table->decimal('total_bersih',15,2)->default(0);
 
             $table->text('keterangan')->nullable();
             $table->timestamps();

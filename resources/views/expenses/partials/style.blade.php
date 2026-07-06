@@ -34,23 +34,17 @@
 
         .form-card-body { padding: 28px 24px; }
 
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        @media (max-width: 640px) { .form-grid { grid-template-columns: 1fr; } }
+
         .id-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: #FFF2CC;
-            border: 1px solid #FEAF52;
-            color: #FE914D;
-            font-size: 0.75rem;
-            font-weight: 700;
-            padding: 5px 12px;
-            border-radius: 8px;
+            display: inline-flex; align-items: center; gap: 6px;
+            background: #FFF2CC; border: 1px solid #FEAF52;
+            color: #FE914D; font-size: 0.75rem; font-weight: 700;
+            padding: 5px 12px; border-radius: 8px;
             margin-bottom: 24px;
             font-family: monospace;
         }
-
-        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-        @media (max-width: 640px) { .form-grid { grid-template-columns: 1fr; } }
 
         .form-group { display: flex; flex-direction: column; gap: 5px; }
         .form-group.full { grid-column: 1 / -1; }
@@ -91,24 +85,6 @@
             font-weight: 700; font-size: 0.82rem;
             color: #FEAF52; pointer-events: none;
         }
-
-        /* .input-suffix-wrap {
-            position: relative;
-        }
-
-        .input-suffix {
-            position: absolute;
-            right: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-weight: 700;
-            color: #FEAF52;
-            pointer-events: none;
-        }
-
-        .form-input.with-suffix {
-            padding-right: 32px;
-        } */
 
         .form-divider {
             grid-column: 1 / -1;
