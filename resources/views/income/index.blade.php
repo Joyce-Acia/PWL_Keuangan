@@ -205,7 +205,7 @@
                                 <tr>
                                     <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED"> ID Transaksi</th>
                                     <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED">Tanggal</th>
-                                    <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED">Nama Pelanggan</th>
+                                    <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED">Nama Pihak</th>
                                     <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED">Sumber</th>
                                     <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED">Nominal</th>
                                     <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED">Keterangan</th>

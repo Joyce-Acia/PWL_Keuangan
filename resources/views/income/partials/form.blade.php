@@ -11,7 +11,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="form-label" for="nama_pelanggan">Nama Pelanggan <span>*</span></label>
+                                <label class="form-label" for="nama_pelanggan">Nama Pihak <span>*</span></label>
                                 <input
                                     type="text" id="nama_pelanggan" name="nama_pelanggan"
                                     value="{{ old('nama_pelanggan', $income->nama_pelanggan ?? '') }}"
