@@ -80,7 +80,7 @@
         }
         .form-input.nominal {
             font-weight: 700; font-size: 1rem;
-            color: #FD593D; padding-left: 34px;
+            color: #3cc26d; padding-left: 34px;
         }
         .form-textarea { resize: vertical; min-height: 88px; }
 
