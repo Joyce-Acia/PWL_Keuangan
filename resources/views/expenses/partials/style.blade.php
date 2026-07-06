@@ -93,7 +93,7 @@
         }
         @media (max-width: 640px) { .form-divider { grid-column: span 1; } }
 
-         .kategori-pills {
+        .kategori-pills {
             display: flex; flex-wrap: wrap; gap: 8px;
             margin-top: 2px;
         }

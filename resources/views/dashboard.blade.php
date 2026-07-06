@@ -109,8 +109,8 @@
         .icon-red   { background: #fff1f0; color: #e53e3e; }
         .icon-green { background: #f0fdf4; color: #3cc26d; }
         .stat-label { font-size: 0.78rem; color: #9ca3af; font-weight: 500; }
-        .stat-value-expense { font-size: 1.3rem; font-weight: 700; color: #1F1F1F; margin-top: 2px; }
-        .stat-value-income { font-size: 1.3rem; font-weight: 700; color: #1F1F1F; margin-top: 2px; }
+        .stat-value-expense { font-size: 1.3rem; font-weight: 700; color: #303030; margin-top: 2px; }
+        .stat-value-income { font-size: 1.3rem; font-weight: 700; color: #303030; margin-top: 2px; }
 
         .overall-card {
             background: linear-gradient(to right, #ff4336, #ff941d);
