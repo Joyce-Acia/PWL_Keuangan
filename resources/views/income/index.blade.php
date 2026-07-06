@@ -12,8 +12,7 @@
             gap: 12px; margin-bottom: 24px;
         }
         .page-title { font-size: 1.25rem; font-weight: 700; color: #1a1a1a; }
-        /* button */
-        .page-sub   { font-size: 0.8rem; color: #b87a3a; margin-top: 3px; }
+        .page-sub { font-size: 0.8rem; color: #b87a3a; margin-top: 3px; }
 
         .btn-add {
             display: inline-flex; align-items: center; gap: 7px;
@@ -87,12 +86,15 @@
             font-weight: 700; font-size: 0.88rem;
             color: #3cc26d;
         }
- 
+
         .td-sumber {
-            font-size: 0.72rem; font-weight: 600;
-            background: #FFF2CC; color: #FE914D;
+            font-size: 0.72rem;
+            font-weight: 600;
+            background: #FFF2CC;
+            color: #FE914D;
             border: 1px solid #FEAF52;
-            padding: 3px 8px; border-radius: 6px;
+            padding: 3px 8px;
+            border-radius: 6px;
             display: inline-block;
         }
 
@@ -115,7 +117,8 @@
             padding: 5px 11px; border-radius: 7px;
             border: none; cursor: pointer;
             margin-left: 4px;
-            transition: background 0.15s, color 0.15s;        }
+            transition: background 0.15s, color 0.15s;
+        }
         .action-delete:hover { opacity: 0.75; background: #FD593D; color: #fff2cc;}
 
         .empty-state {
@@ -215,6 +218,41 @@
             color:#3CC26D;
         } */
 
+          /* ── PAGINATION ── */
+        .pagination-bar {
+            display: flex; align-items: center;
+            justify-content: space-between; flex-wrap: wrap;
+            gap: 10px;
+            padding: 14px 16px;
+            background: #FFF2CC;
+            border-top: 1.5px solid #FEAF52;
+        }
+        .pagination-info {
+            font-size: 0.78rem; font-weight: 500;
+            color: #b87a3a;
+        }
+        .pagination-info strong { color: #FD593D; font-weight: 700; }
+        .pagination-buttons { display: flex; gap: 8px; }
+ 
+        .btn-page {
+            font-size: 0.78rem; font-weight: 700;
+            padding: 6px 14px; border-radius: 8px;
+            text-decoration: none; border: 1.5px solid #FEAF52;
+            display: inline-flex; align-items: center; gap: 5px;
+            transition: background 0.15s, color 0.15s;
+        }
+        .btn-page.prev {
+            background: #fff; color: #b87a3a;
+        }
+        .btn-page.prev:hover { background: #FEAF52; color: #fff; border-color: #FEAF52; }
+        .btn-page.next {
+            background: #FD593D; color: #fff; border-color: #FD593D;
+        }
+        .btn-page.next:hover { background: #e04428; border-color: #e04428; }
+        .btn-page.disabled {
+            background: #FFF2CC; color: #d1b89a;
+            border-color: #FEAF52; cursor: not-allowed; pointer-events: none;
+        }
     </style>
 
     <div class="inc-root py-8 px-4 sm:px-8">
@@ -229,9 +267,10 @@
                     <div class="page-title">Transaksi Incomes</div>
                     <div class="page-sub">Semua transaksi pemasukan yang telah dicatat</div>
                 </div>
+
                 <a href="{{ route('income.create') }}" class="btn-add">
                     <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
-                    Tambah Income
+                    <span>Tambah Income</span>
                 </a>
             </div>
 
@@ -244,7 +283,7 @@
                     </div>
                 @else
                     <div class="overflow-x-auto">
-                        <table>
+                        <table class="min-w-full text-left">
                             <thead>
                                 <tr>
                                     <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED"> ID Transaksi</th>
@@ -320,7 +359,7 @@
                                         <td class="px-4 py-4">{{ $income->keterangan }}</td>
                                         <td class="px-4 py-4">
                                             <a href="{{ route('income.edit', $income) }}" class="action-edit">Edit</a>
-                                            <form action="{{ route('income.destroy', $income) }}" method="POST" class="inline-block ml-3" onsubmit="return confirm('Hapus income ini?');">
+                                            <form action="{{ route('income.destroy', $income) }}" method="POST" class="inline-block" onsubmit="return confirm('Hapus income ini?');">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="action-delete">Hapus</button>
@@ -332,14 +371,47 @@
                         </table>
                     </div>
 
-                @if($incomes->hasPages())
-                    <div class="pagination-wrap px-4 pb-4">
-                        {{ $incomes->links('pagination::simple-tailwind') }}
+                    {{-- PAGINATION BAR --}}
+                    <div class="pagination-bar">
+                        <span class="pagination-info">
+                            Menampilkan
+                            <strong>{{ $incomes->firstItem() }}–{{ $incomes->lastItem() }}</strong>
+                            dari <strong>{{ $incomes->total() }}</strong> transaksi
+                        </span>
+                        <div class="pagination-buttons">
+                            {{-- Previous --}}
+                            @if($incomes->onFirstPage())
+                                <span class="btn-page prev disabled">
+                                    <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+                                    Sebelumnya
+                                </span>
+                            @else
+                                <a href="{{ $incomes->previousPageUrl() }}" class="btn-page prev">
+                                    <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+                                    Sebelumnya
+                                </a>
+                            @endif
+ 
+                            {{-- Next --}}
+                            @if($incomes->hasMorePages())
+                                <a href="{{ $incomes->nextPageUrl() }}" class="btn-page next">
+                                    Selanjutnya
+                                    <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                </a>
+                            @else
+                                <span class="btn-page next disabled">
+                                    Selanjutnya
+                                    <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                </span>
+                            @endif
+                        </div>
                     </div>
                 @endif
             @endif
             </div>
-
+ 
+        </div>
+    </div>
         </div>
     </div>
 
