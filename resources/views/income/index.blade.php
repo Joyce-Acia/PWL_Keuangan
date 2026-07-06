@@ -12,7 +12,7 @@
             gap: 12px; margin-bottom: 24px;
         }
         .page-title { font-size: 1.25rem; font-weight: 700; color: #1a1a1a; }
-        /* button */
+        
         .page-sub   { font-size: 0.8rem; color: #b87a3a; margin-top: 3px; }
 
         .btn-add {
@@ -38,12 +38,6 @@
             border: 1px solid #feaf52;
             overflow: hidden;
         }
-
-        /* .table-scroll{
-            overflow-x:auto;
-            overflow-y:visible;
-            border-radius: 15px;
-        } */
 
         table { width: 100%; border-collapse: collapse; }
 
@@ -89,10 +83,13 @@
         }
  
         .td-sumber {
-            font-size: 0.72rem; font-weight: 600;
-            background: #FFF2CC; color: #FE914D;
+            font-size: 0.72rem;
+            font-weight: 600;
+            background: #FFF2CC;
+            color: #FE914D;
             border: 1px solid #FEAF52;
-            padding: 3px 8px; border-radius: 6px;
+            padding: 3px 8px;
+            border-radius: 6px;
             display: inline-block;
         }
 
@@ -105,6 +102,7 @@
             padding: 5px 11px; border-radius: 7px;
             transition: background 0.15s, color 0.15s;
         }
+
         .action-edit:hover { opacity: 0.75; background: #FEAF52; color: #fff2cc;}
 
         .action-delete {
@@ -115,7 +113,9 @@
             padding: 5px 11px; border-radius: 7px;
             border: none; cursor: pointer;
             margin-left: 4px;
-            transition: background 0.15s, color 0.15s;        }
+            transition: background 0.15s, color 0.15s;
+        }
+
         .action-delete:hover { opacity: 0.75; background: #FD593D; color: #fff2cc;}
 
         .empty-state {
@@ -133,87 +133,42 @@
             gap:6px;
         }
 
-        /* .info-icon{
-            width:18px;
-            height:18px;
+        .pagination-wrap { margin-top: 20px; }
 
-            display:flex;
-            align-items:center;
-            justify-content:center;
-
-            border-radius:50%;
-            background:#FFE7BF;
-            color:#FE914D;
-
-            font-size:11px;
-            font-weight:700;
-            cursor:pointer;
-
-            position:relative;
-
-            transition:.2s;
+        .pagination-bar {
+            display: flex; align-items: center;
+            justify-content: space-between; flex-wrap: wrap;
+            gap: 10px;
+            padding: 14px 16px;
+            background: #FFF2CC;
+            border-top: 1.5px solid #FEAF52;
         }
-
-        .info-icon:hover{
-            background:#FE914D;
-            color: #1a1a1a;
+        .pagination-info {
+            font-size: 0.78rem; font-weight: 500;
+            color: #b87a3a;
         }
+        .pagination-info strong { color: #FD593D; font-weight: 700; }
+        .pagination-buttons { display: flex; gap: 8px; }
 
-        .info-tooltip{
-            position: fixed;
-            width:240px;
-            background:white;
-            border:1px solid #FFD089;
-            border-radius:14px;
-            padding:14px;
-            box-shadow:0 12px 30px rgba(0,0,0,.15);
-            opacity:0;
-            visibility:hidden;
-            transition:.2s;
-            z-index:99999;
+        .btn-page {
+            font-size: 0.78rem; font-weight: 700;
+            padding: 6px 14px; border-radius: 8px;
+            text-decoration: none; border: 1.5px solid #FEAF52;
+            display: inline-flex; align-items: center; gap: 5px;
+            transition: background 0.15s, color 0.15s;
         }
-
-        .tooltip-title{
-            font-size:.82rem;
-            font-weight:700;
-            color:#FD593D;
-
-            margin-bottom:10px;
-            padding-bottom:8px;
-
-            border-bottom:1px dashed #FFE1B0;
+        .btn-page.prev {
+            background: #fff; color: #b87a3a;
         }
-
-        .tooltip-row{
-
-            display:flex;
-            justify-content:space-between;
-
-            margin:7px 0;
-
-            font-size:.82rem;
+        .btn-page.prev:hover { background: #FEAF52; color: #fff; border-color: #FEAF52; }
+        .btn-page.next {
+            background: #FD593D; color: #fff; border-color: #FD593D;
         }
-
-        .tooltip-label{
-            color:#7A5C3A;
+        .btn-page.next:hover { background: #e04428; border-color: #e04428; }
+        .btn-page.disabled {
+            background: #FFF2CC; color: #d1b89a;
+            border-color: #FEAF52; cursor: not-allowed; pointer-events: none;
         }
-
-        .tooltip-value{
-            font-weight:700;
-        }
-
-        .tooltip-total{
-            margin-top:10px;
-            padding-top:10px;
-
-            border-top:1px dashed #FFE1B0;
-
-            display:flex;
-            justify-content:space-between;
-
-            font-weight:700;
-            color:#3CC26D;
-        } */
 
     </style>
 
@@ -231,7 +186,7 @@
                 </div>
                 <a href="{{ route('income.create') }}" class="btn-add">
                     <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
-                    Tambah Income
+                    <span>Tambah Income</span>
                 </a>
             </div>
 
@@ -244,7 +199,7 @@
                     </div>
                 @else
                     <div class="overflow-x-auto">
-                        <table>
+                        <table class="min-w-full text-left">
                             <thead>
                                 <tr>
                                     <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED"> ID Transaksi</th>
@@ -258,72 +213,19 @@
                             </thead>
                             <tbody>
                                 @foreach($incomes as $income)
-                                    <tr class="border-t border-[#f0e9b0] bg-[#fffaed] hover:bg-[#fff2cc]" >
+                                    <tr class="border-t border-[#f0e9b0] bg-[#fffaed] hover:bg-[#fff2cc]">
                                         <td class="px-4 py-4"><span class="td-id">{{ $income->id_transaksi }}</span></td>
-                                        </td>
-                                        <td class="px-4 py-4">{{ $income->tanggal }}</td>
-                                        <td class="px-4 py-4">{{ $income->nama_pelanggan }}</td>
-                                        <td class="px-4 py-4">{{ $income->sumber }}</td>
-                                        <td class="px-4 py-4">
-
-                                            <div class="nominal-wrapper">
-
-                                                <span class="td-nominal">
-                                                    Rp {{ number_format($income->nominal,2,',','.') }}
-                                                </span>
-
-                                                <!-- <div class="info-icon">
-
-                                                    i
-
-                                                    <div class="info-tooltip">
-
-                                                        <div class="tooltip-title">
-                                                            Detail
-                                                        </div>
-
-                                                        <div class="tooltip-row">
-                                                            <span class="tooltip-label">Harga Awal</span>
-                                                            <span class="tooltip-value">
-                                                                Rp {{ number_format($income->nominal,2,',','.') }}
-                                                            </span>
-                                                        </div>
-
-                                                        <div class="tooltip-row">
-                                                            <span class="tooltip-label">Diskon</span>
-                                                            <span class="tooltip-value">
-                                                                {{ $income->diskon }}%
-                                                            </span>
-                                                        </div>
-
-                                                        <div class="tooltip-row">
-                                                            <span class="tooltip-label">Ongkir</span>
-                                                            <span class="tooltip-value">
-                                                                Rp {{ number_format($income->ongkir,2,',','.') }}
-                                                            </span>
-                                                        </div>
-
-                                                        <div class="tooltip-total">
-                                                            <span>Total</span>
-                                                            <span>
-                                                                Rp {{ number_format($income->total_bersih,2,',','.') }}
-                                                            </span>
-                                                        </div>
-
-                                                    </div>
-
-                                                </div> -->
-
-                                            </div>
-
-                                        </td>
-                                        <td class="px-4 py-4">{{ $income->keterangan }}</td>
-                                        <td class="px-4 py-4">
+                                        <td style="font-size:0.8rem;color:#b87a3a;">{{ \Carbon\Carbon::parse($income->tanggal)->format('d-m-Y') }}</td>
+                                        <td style="font-weight:500;">{{ $income->nama_pelanggan }}</td>
+                                        <td><span class="td-sumber">{{ $income->sumber }}</span></td>
+                                        <td class="td-nominal">Rp {{ number_format($income->nominal, 2, ',', '.') }}</td>
+                                        <td class="td-note">{{ $income->keterangan ?? '-' }}</td>
+                                        <td class="px-4 py-4 text-sm text-gray-900">
                                             <a href="{{ route('income.edit', $income) }}" class="action-edit">Edit</a>
-                                            <form action="{{ route('income.destroy', $income) }}" method="POST" class="inline-block ml-3" onsubmit="return confirm('Hapus income ini?');">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="action-delete">Hapus</button>
+                                            <form action="{{ route('income.destroy', $income) }}" method="POST" class="inline-block" onsubmit="return confirm('Hapus income ini?');">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="action-delete">Hapus</button>
                                             </form>
                                         </td>
                                     </tr>
@@ -332,40 +234,42 @@
                         </table>
                     </div>
 
-                @if($incomes->hasPages())
-                    <div class="pagination-wrap px-4 pb-4">
-                        {{ $incomes->links('pagination::simple-tailwind') }}
+                {{-- PAGINATION BAR — always shown when there are records --}}
+                    <div class="pagination-bar">
+                        <span class="pagination-info">
+                            Menampilkan
+                            <strong>{{ $incomes->firstItem() }}–{{ $incomes->lastItem() }}</strong>
+                            dari <strong>{{ $incomes->total() }}</strong> transaksi
+                        </span>
+                        <div class="pagination-buttons">
+                            @if($incomes->onFirstPage())
+                                <span class="btn-page prev disabled">
+                                    <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+                                    Sebelumnya
+                                </span>
+                            @else
+                                <a href="{{ $incomes->previousPageUrl() }}" class="btn-page prev">
+                                    <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+                                    Sebelumnya
+                                </a>
+                            @endif
+ 
+                            @if($incomes->hasMorePages())
+                                <a href="{{ $incomes->nextPageUrl() }}" class="btn-page next">
+                                    Selanjutnya
+                                    <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                </a>
+                            @else
+                                <span class="btn-page next disabled">
+                                    Selanjutnya
+                                    <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                </span>
+                            @endif
+                        </div>
                     </div>
                 @endif
-            @endif
             </div>
-
         </div>
     </div>
-
-    <script>
-        document.querySelectorAll('.info-icon').forEach(icon => {
-
-            const tooltip = icon.querySelector('.info-tooltip');
-
-            icon.addEventListener('mouseenter', () => {
-
-                const rect = icon.getBoundingClientRect();
-
-                tooltip.style.left = rect.left + "px";
-                tooltip.style.top = (rect.bottom + 8) + "px";
-
-                tooltip.style.opacity = "1";
-                tooltip.style.visibility = "visible";
-            });
-
-            icon.addEventListener('mouseleave', () => {
-
-                tooltip.style.opacity = "0";
-                tooltip.style.visibility = "hidden";
-            });
-
-        });
-    </script>
 
 </x-app-layout>

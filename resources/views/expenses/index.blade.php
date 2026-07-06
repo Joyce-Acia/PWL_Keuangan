@@ -80,10 +80,13 @@
         }
 
         .td-kategori {
-            font-size: 0.72rem; font-weight: 600;
-            background: #FFF2CC; color: #FE914D;
-            border: 1px solid #FEAF52;
-            padding: 3px 8px; border-radius: 6px;
+            font-size: 0.72rem; 
+            font-weight: 600; 
+            background: #FFF2CC; 
+            color: #FE914D; 
+            border: 1px solid #FEAF52; 
+            padding: 3px 8px; 
+            border-radius: 6px; 
             display: inline-block;
         }
 
@@ -118,6 +121,42 @@
         .empty-icon { font-size: 2rem; margin-bottom: 10px; }
 
         .pagination-wrap { margin-top: 20px; }
+
+        .pagination-bar {
+            display: flex; align-items: center;
+            justify-content: space-between; flex-wrap: wrap;
+            gap: 10px;
+            padding: 14px 16px;
+            background: #FFF2CC;
+            border-top: 1.5px solid #FEAF52;
+        }
+        .pagination-info {
+            font-size: 0.78rem; font-weight: 500;
+            color: #b87a3a;
+        }
+        .pagination-info strong { color: #FD593D; font-weight: 700; }
+        .pagination-buttons { display: flex; gap: 8px; }
+
+        .btn-page {
+            font-size: 0.78rem; font-weight: 700;
+            padding: 6px 14px; border-radius: 8px;
+            text-decoration: none; border: 1.5px solid #FEAF52;
+            display: inline-flex; align-items: center; gap: 5px;
+            transition: background 0.15s, color 0.15s;
+        }
+        .btn-page.prev {
+            background: #fff; color: #b87a3a;
+        }
+        .btn-page.prev:hover { background: #FEAF52; color: #fff; border-color: #FEAF52; }
+        .btn-page.next {
+            background: #FD593D; color: #fff; border-color: #FD593D;
+        }
+        .btn-page.next:hover { background: #e04428; border-color: #e04428; }
+        .btn-page.disabled {
+            background: #FFF2CC; color: #d1b89a;
+            border-color: #FEAF52; cursor: not-allowed; pointer-events: none;
+        }
+
     </style>
 
     <div class="exp-root py-8 px-4 sm:px-8">
@@ -153,7 +192,7 @@
                                 <tr>
                                     <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED">ID Transaksi</th>
                                     <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED">Tanggal</th>
-                                    <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED">Admin</th>
+                                    <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED">Nama Admin</th>
                                     <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED">Kategori</th>
                                     <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED">Nominal</th>
                                     <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED">Detail</th>
@@ -165,11 +204,11 @@
                                     <tr class="border-t border-[#f0e9b0] bg-[#fffaed] hover:bg-[#fff2cc]">
                                         <td><span class="td-id">{{ 'EXP-' . str_pad((string) $expense->id, 6, '0', STR_PAD_LEFT) }}</span></td>
                                         </td>
-                                        <td class="px-4 py-4 text-sm text-gray-900">{{ \Carbon\Carbon::parse($expense->tanggal)->format('d-m-Y') }}</td>
-                                        <td class="px-4 py-4 text-sm text-gray-900">{{ $expense->nama_admin }}</td>
-                                        <td class="px-4 py-4 text-sm text-gray-900">{{ $expense->kategori_pengeluaran }}</td>
-                                        <td class="px-4 py-4 td-nominal">Rp {{ number_format($expense->nominal, 2, ',', '.') }}</td>
-                                        <td class="px-4 py-4 text-sm text-gray-900">{{ $expense->keterangan ?? '-' }}</td>
+                                        <td style="font-size:0.8rem;color:#b87a3a;">{{ \Carbon\Carbon::parse($expense->tanggal)->format('d-m-Y') }}</td>
+                                        <td style="font-weight:500;">{{ $expense->nama_admin }}</td>
+                                        <td><span class="td-kategori">{{ $expense->kategori_pengeluaran }}</span></td>
+                                        <td class="td-nominal">Rp {{ number_format($expense->nominal, 2, ',', '.') }}</td>
+                                        <td class="td-note">{{ $expense->keterangan ?? '-' }}</td>
                                         <td class="px-4 py-4 text-sm text-gray-900">
                                             <a href="{{ route('expenses.edit', $expense) }}" class="action-edit">Edit</a>
                                             <form action="{{ route('expenses.destroy', $expense) }}" method="POST" class="inline-block" onsubmit="return confirm('Hapus expense ini?');">
@@ -184,14 +223,41 @@
                         </table>
                     </div>
 
-                    @if($expenses->hasPages())
-                        <div class="pagination-wrap">
-                            {{ $expenses->links('pagination::simple-tailwind') }}
+                    {{-- PAGINATION BAR — always shown when there are records --}}
+                    <div class="pagination-bar">
+                        <span class="pagination-info">
+                            Menampilkan
+                            <strong>{{ $expenses->firstItem() }}–{{ $expenses->lastItem() }}</strong>
+                            dari <strong>{{ $expenses->total() }}</strong> transaksi
+                        </span>
+                        <div class="pagination-buttons">
+                            @if($expenses->onFirstPage())
+                                <span class="btn-page prev disabled">
+                                    <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+                                    Sebelumnya
+                                </span>
+                            @else
+                                <a href="{{ $expenses->previousPageUrl() }}" class="btn-page prev">
+                                    <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+                                    Sebelumnya
+                                </a>
+                            @endif
+ 
+                            @if($expenses->hasMorePages())
+                                <a href="{{ $expenses->nextPageUrl() }}" class="btn-page next">
+                                    Selanjutnya
+                                    <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                </a>
+                            @else
+                                <span class="btn-page next disabled">
+                                    Selanjutnya
+                                    <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                </span>
+                            @endif
                         </div>
-                    @endif
+                    </div>
                 @endif
             </div>
-
         </div>
     </div>
 </x-app-layout>

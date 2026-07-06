@@ -55,7 +55,7 @@ class ExpenseController extends Controller
             'id_transaksi' => 'EXP-' . str_pad($expense->id, 6, '0', STR_PAD_LEFT)
         ]);
 
-        return redirect()->route('expenses.index')->with('success', 'Expense saved.');
+        return redirect()->route('expenses.index')->with('success', 'Expense sudah disimpan.');
     }
 
     public function edit(Expense $expense)
@@ -78,13 +78,13 @@ class ExpenseController extends Controller
 
         $expense->update($validated);
 
-        return redirect()->route('expenses.index')->with('success', 'Expense updated.');
+        return redirect()->route('expenses.index')->with('success', 'Expense sudah diupdate.');
     }
 
     public function destroy(Expense $expense)
     {
         $this->ensureAdmin();
         $expense->delete();
-        return redirect()->route('expenses.index')->with('success', 'Expense deleted.');
+        return redirect()->route('expenses.index')->with('success', 'Expense sudah dihapus.');
     }
 }

@@ -31,7 +31,7 @@
                             <div class="form-group full">
                                 <label class="form-label">Kategori Pengeluaran <span>*</span></label>
 
-                                <div class="sumber-pills">
+                                <div class="kategori-pills">
                                     @foreach([
                                         'Pembelian Stok',
                                         'Transportasi',
@@ -39,7 +39,7 @@
                                         'Perlengkapan & Marketing'
                                     ] as $option)
 
-                                        <div class="sumber-pill">
+                                        <div class="kategori-pill">
                                             <input
                                                 type="radio"
                                                 id="kategori-{{ $loop->index }}"

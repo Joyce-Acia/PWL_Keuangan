@@ -93,12 +93,12 @@
         }
         @media (max-width: 640px) { .form-divider { grid-column: span 1; } }
 
-        .sumber-pills {
+         .kategori-pills {
             display: flex; flex-wrap: wrap; gap: 8px;
             margin-top: 2px;
         }
-        .sumber-pill input[type="radio"] { display: none; }
-        .sumber-pill label {
+        .kategori-pill input[type="radio"] { display: none; }
+        .kategori-pill label {
             display: inline-block;
             font-size: 0.78rem; font-weight: 600;
             padding: 6px 14px; border-radius: 20px;
@@ -107,10 +107,10 @@
             cursor: pointer;
             transition: background 0.15s, color 0.15s, border-color 0.15s;
         }
-        .sumber-pill input[type="radio"]:checked + label {
+        .kategori-pill input[type="radio"]:checked + label {
             background: #FF941D; border-color: #FF941D; color: #fff;
         }
-        .sumber-pill label:hover { background: #FEAF52; color: #fff; border-color: #FEAF52; }
+        .kategori-pill label:hover { background: #FEAF52; color: #fff; border-color: #FEAF52; }
 
         .alert-error {
             margin-bottom: 20px; padding: 12px 16px;
