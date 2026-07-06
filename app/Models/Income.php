@@ -13,15 +13,11 @@ class Income extends Model
         'id_user',
         'id_transaksi',
         'tanggal',
-        'nama_pelanggan',
-        'produk',
-        'kuantitas',
-        'harga',
+        'nama_pihak',
+        'sumber',
         'nominal',
         'keterangan',
     ];
-
-    protected $appends = ['total'];
 
     protected static function booted()
     {
@@ -44,9 +40,5 @@ class Income extends Model
         return $this->belongsTo(User::class, 'id_user');
     }
 
-    public function getTotalAttribute()
-    {
-        return (float) $this->harga * (float) $this->kuantitas;
-    }
 }
 

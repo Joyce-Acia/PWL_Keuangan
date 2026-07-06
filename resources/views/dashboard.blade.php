@@ -5,13 +5,13 @@
 
     {{-- Google Fonts --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-        .dash-root { font-family: 'DM Sans', sans-serif; background: #fffaed; min-height: 100vh; }
+        .dash-root { font-family: 'Montserrat', sans-serif; background: #fffaed; min-height: 100vh; }
 
         /* ── Greeting ── */
-        .dash-greeting { font-size: 1.35rem; font-weight: 700; color: #1F1F1F; }
+        .dash-greeting { font-size: 1.35rem; font-weight: 700; color: #57372a; }
         .dash-greeting span { font-weight: 400; }
         .dash-sub { font-size: 0.82rem; color: #FFF1E6; margin-top: 2px; }
 
@@ -32,7 +32,7 @@
 
         /* ── Balance card ── */
         .balance-card {
-            background: linear-gradient(to right, #ff4336, #ff941d);
+            background: linear-gradient(to right, #f33636, #feaf52);
             border-radius: 20px;
             padding: 28px 28px 24px;
             position: relative;
@@ -42,56 +42,40 @@
             justify-content: space-between;
             min-height: 280px;
         }
-        .balance-card::before {
-            content: '';
-            position: absolute;
-            top: -40px; right: -40px;
-            width: 160px; height: 160px;
-            background: rgba(255,255,255,0.12);
-            border-radius: 50%;
-        }
-        .balance-card::after {
-            content: '';
-            position: absolute;
-            bottom: -30px; left: 40px;
-            width: 110px; height: 110px;
-            background: rgba(255,255,255,0.08);
-            border-radius: 50%;
-        }
+
         .balance-label { font-size: 0.82rem; color: rgba(255,255,255,0.75); font-weight: 500; letter-spacing: 0.02em; position: relative; z-index: 1; }
-        .balance-amount { font-family: 'DM Sans', sans-serif; font-size: 2.1rem; color: #ffffff; margin-top: 10px; position: relative; z-index: 1; line-height: 1.15; }
+        .balance-amount { font-family: 'Montserrat', sans-serif; font-size: 2.1rem; color: #ffffff; margin-top: 10px; position: relative; z-index: 1; line-height: 1.15; }
         .balance-footer { display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 1; margin-top: 32px; }
         .balance-footer-text { font-size: 0.75rem; color: rgba(255,255,255,0.6); }
-        .balance-link {
-            display: flex; align-items: center; gap: 6px;
-            font-size: 0.78rem; color: rgba(255,255,255,0.9);
-            text-decoration: none; font-weight: 600;
-            background: rgba(255,255,255,0.15);
-            border: 1px solid rgba(255,255,255,0.25);
-            padding: 5px 12px; border-radius: 20px;
-            transition: background 0.2s;
-        }
-        .balance-link:hover { background: rgba(255,255,255,0.25); }
 
         /* ── Summary cards (stacked right) ── */
         .summary-card {
             background: #ffffff;
             border-radius: 20px;
             padding: 22px 24px;
-            border: 1px solid #f0f0f0;
+            border: 1px solid #FEAF52;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             flex: 1;
         }
         .summary-header { display: flex; align-items: center; justify-content: space-between; }
-        .summary-title { font-size: 0.9rem; font-weight: 600; color: #374151; }
+        .summary-title { font-size: 0.9rem; font-weight: 600; color: #704838; }
         .pill {
             font-size: 0.7rem; font-weight: 700; padding: 4px 10px;
             border-radius: 20px; letter-spacing: 0.02em;
         }
-        .pill-week { background: #111827; color: #fff; }
-        .summary-amount { font-family: 'DM Sans', sans-serif; font-size: 1.75rem; font-weight: 300; color: #111827; margin-top: 12px; line-height: 1.1; }
+        .pill-week { 
+            font-size: 0.68rem; 
+            font-weight: 700; 
+            background: #FFF2CC; 
+            color: #b87a3a; 
+            border: 1px solid #FEAF52; 
+            padding: 3px 9px; 
+            border-radius: 20px; }        
+            
+        .summary-amount-expense { font-family: 'Montserrat', sans-serif; font-size: 1.75rem; font-weight: 800; color: #FD593D; margin-top: 12px; line-height: 1.1; }
+        .summary-amount-income { font-family: 'Montserrat', sans-serif; font-size: 1.75rem; font-weight: 800; color: #FE914D; margin-top: 12px; line-height: 1.1; }
         .summary-sub { font-size: 0.75rem; color: #9ca3af; margin-top: 5px; }
 
         /* ── Bottom row ── */
@@ -102,7 +86,7 @@
             background: #fff;
             border-radius: 20px;
             padding: 22px 24px;
-            border: 1px solid #f0f0f0;
+            border: 1px solid #FEAF52;
             display: flex;
             align-items: center;
             gap: 18px;
@@ -113,12 +97,13 @@
             font-size: 1.1rem; flex-shrink: 0;
         }
         .icon-red   { background: #fff1f0; color: #e53e3e; }
-        .icon-green { background: #f0fdf4; color: #16a34a; }
+        .icon-green { background: #f0fdf4; color: #3cc26d; }
         .stat-label { font-size: 0.78rem; color: #9ca3af; font-weight: 500; }
-        .stat-value { font-size: 1.3rem; font-weight: 700; color: #111827; margin-top: 2px; }
+        .stat-value-expense { font-size: 1.3rem; font-weight: 700; color: #e53e3e; margin-top: 2px; }
+        .stat-value-income { font-size: 1.3rem; font-weight: 700; color: #16a34a; margin-top: 2px; }
 
         .overall-card {
-            background: linear-gradient(to right, #ff4336, #ff941d);
+            background: linear-gradient(to right, #f33636, #FEAF52);
             border-radius: 20px;
             padding: 22px 26px;
             display: flex;
@@ -138,7 +123,7 @@
         }
         .overall-label { font-size: 0.82rem; color: rgba(255,255,255,0.75); font-weight: 500; }
         .overall-sub   { font-size: 0.73rem; color: rgba(255,255,255,0.5); margin-top: 3px; }
-        .overall-amount { font-family: 'DM Serif Display', serif; font-size: 1.7rem; color: #fff; position: relative; z-index: 1; text-align: right; }
+        .overall-amount { font-family: 'Montserrat', sans-serif; font-size: 1.7rem; color: #fff; position: relative; z-index: 1; text-align: right; }
         .overall-amount-label { font-size: 0.75rem; color: rgba(255,255,255,0.6); text-align: right; margin-bottom: 4px; }
 
         /* ── Header row ── */
@@ -187,13 +172,19 @@
 <div class="dash-root py-8 px-4 sm:px-8">
         <div class="max-w-5xl mx-auto">
 
+            @if(!($showAdminDashboard ?? true))
+                <div class="rounded-2xl border border-[#feaf52] bg-white p-8 text-center shadow-sm">
+                    <h2 class="text-xl font-semibold text-[#57372a]">Selamat anda sudah log in</h2>
+                    <p class="mt-2 text-sm text-[#8a6a53]">Anda dapat menggunakan aplikasi sesuai akses Anda.</p>
+                </div>
+            @else
+
             {{-- Header row --}}
             <div class="dash-header-row">
                 <div>
                     <div class="dash-greeting">
                         Selamat Datang, <span>{{ Auth::user()->name ?? 'Tim' }}</span> 👋
                     </div>
-                    <div class="dash-sub">Ini update mengenai posisi finansial anda.</div>
                 </div>
                 <!-- <div class="header-actions">
                     <a href="{{ route('expenses.index') }}" class="icon-btn" title="Expenses">
@@ -219,13 +210,9 @@
                             Rp {{ number_format($overallBalance, 2, ',', '.') }}
                         </div>
                     </div>
-                    <!-- <div class="balance-footer">
+                    <div class="balance-footer">
                         <span class="balance-footer-text">{{ $today->format('d M Y') }}</span>
-                        <a href="{{ route('expenses.index') }}" class="balance-link">
-                            Saldo Saya
-                            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                        </a>
-                    </div> -->
+                    </div>
                 </div>
 
                 {{-- Right column: Income + Expenses stacked --}}
@@ -237,7 +224,7 @@
                             <span class="pill pill-week">Minggu ini</span>
                         </div>
                         <div>
-                            <div class="summary-amount">
+                            <div class="summary-amount-income">
                                 Rp {{ number_format($todayIncomes, 2, ',', '.') }}
                             </div>
                             <div class="summary-sub">Income Minggu Ini</div>
@@ -250,7 +237,7 @@
                             <span class="pill pill-week">Minggu ini</span>
                         </div>
                         <div>
-                            <div class="summary-amount">
+                            <div class="summary-amount-expense">
                                 Rp {{ number_format($todayExpenses, 2, ',', '.') }}
                             </div>
                             <div class="summary-sub">Expense Minggu Ini</div>
@@ -270,7 +257,7 @@
                     </div>
                     <div>
                         <div class="stat-label">Total Expenses</div>
-                        <div class="stat-value">Rp {{ number_format($totalExpenses, 2, ',', '.') }}</div>
+                        <div class="stat-value-expense">Rp {{ number_format($totalExpenses, 2, ',', '.') }}</div>
                     </div>
                 </div>
 
@@ -280,7 +267,7 @@
                     </div>
                     <div>
                         <div class="stat-label">Total Incomes</div>
-                        <div class="stat-value">Rp {{ number_format($totalIncomes, 2, ',', '.') }}</div>
+                        <div class="stat-value-income">Rp {{ number_format($totalIncomes, 2, ',', '.') }}</div>
                     </div>
                 </div>
 
@@ -296,6 +283,8 @@
                 </div> -->
 
             </div>
+
+            @endif
 
         </div>
     </div>

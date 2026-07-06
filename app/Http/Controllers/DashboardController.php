@@ -18,6 +18,14 @@ class DashboardController extends Controller
     public function index()
     {
         $today = Carbon::today();
+        $user = auth()->user();
+
+        if ($user && $user->role !== 'admin') {
+            return view('dashboard', [
+                'showAdminDashboard' => false,
+                'today' => $today,
+            ]);
+        }
 
         $totalExpenses = (float) Expense::sum('nominal');
         $totalIncomes = (float) Income::sum('nominal');
@@ -29,6 +37,7 @@ class DashboardController extends Controller
         $overallBalance = $totalIncomes - $totalExpenses;
 
         return view('dashboard', [
+            'showAdminDashboard' => true,
             'totalExpenses' => $totalExpenses,
             'totalIncomes' => $totalIncomes,
             'todayExpenses' => $todayExpenses,

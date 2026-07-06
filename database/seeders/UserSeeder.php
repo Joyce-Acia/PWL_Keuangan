@@ -35,7 +35,7 @@ class UserSeeder extends Seeder
 
         //dummy random
         User::factory()->count(5)->create([
-                'role' => 'admin',
+                'role' => 'user',
             ]);
     }
 }
