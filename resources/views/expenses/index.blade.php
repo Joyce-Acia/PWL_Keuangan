@@ -168,7 +168,7 @@
             <div class="page-header">
                 <div>
                     <div class="page-title">Transaksi Expenses</div>
-                    <div class="page-sub">Untuk mengelola transaksi pengeluaran</div>
+                    <div class="page-sub">Semua transaksi pengeluaran yang telah dicatat</div>
                 </div>
 
                 <a href="{{ route('expenses.create') }}" class="btn-add">
@@ -203,11 +203,11 @@
                                     <tr class="border-t border-[#f0e9b0] bg-[#fffaed] hover:bg-[#fff2cc]">
                                         <td><span class="td-id">{{ 'EXP-' . str_pad((string) $expense->id, 6, '0', STR_PAD_LEFT) }}</span></td>
                                         </td>
-                                        <td style="font-size:0.8rem;color:#b87a3a;">{{ \Carbon\Carbon::parse($expense->tanggal)->format('d-m-Y') }}</td>
-                                        <td style="font-weight:500;">{{ $expense->nama_admin }}</td>
-                                        <td><span class="td-kategori">{{ $expense->kategori_pengeluaran }}</span></td>
-                                        <td class="td-nominal">Rp {{ number_format($expense->nominal, 2, ',', '.') }}</td>
-                                        <td class="td-note">{{ $expense->keterangan ?? '-' }}</td>
+                                        <td class="px-4 py-4 text-sm text-gray-900">{{ \Carbon\Carbon::parse($expense->tanggal)->format('d-m-Y') }}</td>
+                                        <td class="px-4 py-4 text-sm text-gray-900">{{ $expense->nama_admin }}</td>
+                                        <td class="px-4 py-4 text-sm text-gray-900">{{ $expense->kategori_pengeluaran }}</td>
+                                        <td class="px-4 py-4 td-nominal">Rp {{ number_format($expense->nominal, 2, ',', '.') }}</td>
+                                        <td class="px-4 py-4 text-sm text-gray-900">{{ $expense->keterangan ?? '-' }}</td>
                                         <td class="px-4 py-4 text-sm text-gray-900">
                                             <a href="{{ route('expenses.edit', $expense) }}" class="action-edit">Edit</a>
                                             <form action="{{ route('expenses.destroy', $expense) }}" method="POST" class="inline-block" onsubmit="return confirm('Hapus expense ini?');">
