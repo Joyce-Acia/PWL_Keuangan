@@ -47,16 +47,6 @@
         .balance-amount { font-family: 'Montserrat', sans-serif; font-size: 2.1rem; color: #ffffff; margin-top: 10px; position: relative; z-index: 1; line-height: 1.15; }
         .balance-footer { display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 1; margin-top: 32px; }
         .balance-footer-text { font-size: 0.75rem; color: rgba(255,255,255,0.6); }
-        .balance-link {
-            display: flex; align-items: center; gap: 6px;
-            font-size: 0.78rem; color: rgba(255,255,255,0.9);
-            text-decoration: none; font-weight: 600;
-            background: rgba(255,255,255,0.15);
-            border: 1px solid rgba(255,255,255,0.25);
-            padding: 5px 12px; border-radius: 20px;
-            transition: background 0.2s;
-        }
-        .balance-link:hover { background: rgba(255,255,255,0.25); }
 
         /* ── Summary cards (stacked right) ── */
         .summary-card {
@@ -216,10 +206,6 @@
                     </div>
                     <div class="balance-footer">
                         <span class="balance-footer-text">{{ $today->format('d M Y') }}</span>
-                        <a href="{{ route('expenses.index') }}" class="balance-link">
-                            Saldo Saya
-                            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                        </a>
                     </div>
                 </div>
 
