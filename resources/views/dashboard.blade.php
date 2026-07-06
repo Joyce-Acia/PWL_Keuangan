@@ -32,7 +32,7 @@
 
         /* ── Balance card ── */
         .balance-card {
-            background: linear-gradient(to right, #ff4336, #ff941d);
+            background: linear-gradient(to right, #f33636, #FEAF52);
             border-radius: 20px;
             padding: 28px 28px 24px;
             position: relative;
@@ -103,7 +103,7 @@
         .stat-value-income { font-size: 1.3rem; font-weight: 700; color: #303030; margin-top: 2px; }
 
         .overall-card {
-            background: linear-gradient(to right, #ff4336, #ff941d);
+            background: linear-gradient(to right, #f33636, #FEAF52);
             border-radius: 20px;
             padding: 22px 26px;
             display: flex;
