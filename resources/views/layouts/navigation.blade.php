@@ -7,7 +7,7 @@
                 <a href="{{ route('dashboard') }}" class="flex items-center gap-3">
                     <img src="{{ asset('images/Logowoutline.png') }}" 
                         class="w-9 h-9 object-contain rounded-md bg-white shadow-sm">
-                    <span class="text-2xl font-bold text-[#000000]">TigaPilihan.ptk</span>
+                    <span class="text-2xl font-bold text-[#374151]">TigaPilihan.ptk</span>
                 </a>
             </div>
 
@@ -36,7 +36,7 @@
             <div class="hidden sm:flex sm:items-center sm:justify-end flex-1">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
-                        <button class="inline-flex items-center px-4 py-2 border border-[#FEAF52] text-sm leading-4 font-semibold rounded-lg text-[#FE914D] bg-white hover:bg-[#fff2cc] focus:outline-none focus:ring-2 focus:ring-[#FE914D] transition ease-in-out duration-150 shadow-sm">
+                        <button class="inline-flex items-center px-4 py-2 border border-[#FE914D] text-sm leading-4 font-semibold rounded-lg text-[#FE914D] bg-white hover:bg-[#fff2cc] focus:outline-none focus:ring-2 focus:ring-[#FE914D] transition ease-in-out duration-150 shadow-sm">
                             <div>{{ Auth::user()->name }}</div>
 
                             <div class="ms-1">
@@ -80,7 +80,7 @@
 
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1">
+        <div class="pt-2 pb-3 space-y-1 #374151">
         @auth
             @if(Auth::user()->role === 'admin')
 
