@@ -48,7 +48,7 @@ class IncomeController extends Controller
 
         $income = Income::create($validated);
 
-        return redirect()->route('income.index')->with('success', 'Income saved.');
+        return redirect()->route('income.index')->with('success', 'Income sudah disimpan.');
     }
 
     public function edit(Income $income)
@@ -71,13 +71,13 @@ class IncomeController extends Controller
 
         $income->update($validated);
 
-        return redirect()->route('income.index')->with('success', 'Income updated.');
+        return redirect()->route('income.index')->with('success', 'Income sudah diupdate.');
     }
 
     public function destroy(Income $income)
     {
         $this->ensureAdmin();
         $income->delete();
-        return redirect()->route('income.index')->with('success', 'Income deleted.');
+        return redirect()->route('income.index')->with('success', 'Income sudah dihapus.');
     }
 }

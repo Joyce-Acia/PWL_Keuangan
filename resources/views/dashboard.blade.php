@@ -108,7 +108,8 @@
         .icon-red   { background: #fff1f0; color: #e53e3e; }
         .icon-green { background: #f0fdf4; color: #16a34a; }
         .stat-label { font-size: 0.78rem; color: #9ca3af; font-weight: 500; }
-        .stat-value { font-size: 1.3rem; font-weight: 700; color: #111827; margin-top: 2px; }
+        .stat-value-expense { font-size: 1.3rem; font-weight: 700; color: #e53e3e; margin-top: 2px; }
+        .stat-value-income { font-size: 1.3rem; font-weight: 700; color: #16a34a; margin-top: 2px; }
 
         .overall-card {
             background: linear-gradient(to right, #ff4336, #ff941d);
@@ -263,7 +264,7 @@
                     </div>
                     <div>
                         <div class="stat-label">Total Expenses</div>
-                        <div class="stat-value">Rp {{ number_format($totalExpenses, 2, ',', '.') }}</div>
+                        <div class="stat-value-expense">Rp {{ number_format($totalExpenses, 2, ',', '.') }}</div>
                     </div>
                 </div>
 
@@ -273,7 +274,7 @@
                     </div>
                     <div>
                         <div class="stat-label">Total Incomes</div>
-                        <div class="stat-value">Rp {{ number_format($totalIncomes, 2, ',', '.') }}</div>
+                        <div class="stat-value-income">Rp {{ number_format($totalIncomes, 2, ',', '.') }}</div>
                     </div>
                 </div>
 
