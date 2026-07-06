@@ -109,7 +109,7 @@ CREATE TABLE `incomes` (
   `id_transaksi` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `id_user` bigint UNSIGNED DEFAULT NULL,
   `tanggal` date NOT NULL,
-  `nama_pelanggan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nama_pihak` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `produk` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `kuantitas` int DEFAULT '1',
   `harga` decimal(15,2) NOT NULL DEFAULT '0.00',
@@ -123,7 +123,7 @@ CREATE TABLE `incomes` (
 -- Dumping data for table `incomes`
 --
 
-INSERT INTO `incomes` (`id`, `id_transaksi`, `id_user`, `tanggal`, `nama_pelanggan`, `produk`, `kuantitas`, `harga`, `nominal`, `keterangan`, `created_at`, `updated_at`) VALUES
+INSERT INTO `incomes` (`id`, `id_transaksi`, `id_user`, `tanggal`, `nama_pihak`, `produk`, `kuantitas`, `harga`, `nominal`, `keterangan`, `created_at`, `updated_at`) VALUES
 (1, 'INC-000001', NULL, '2026-05-23', 'Expo Bandara Adis', 'Minyak Goreng 2L', 3, 47000.00, 141000.00, '2 + 1', '2026-06-07 15:11:52', '2026-06-07 15:11:52'),
 (2, 'INC-000002', 1, '2026-05-27', 'Expo Bandara Adis', 'Minyak Goreng 1L', 1, 23000.00, 23000.00, NULL, '2026-06-09 04:18:38', '2026-06-09 04:18:38'),
 (3, 'INC-000003', 5, '2026-06-14', 'Papa Ratna', 'Minyak Goreng 2L', 2, 46000.00, 92000.00, 'expo cfd', '2026-06-14 19:54:57', '2026-06-14 19:54:57'),

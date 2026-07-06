@@ -172,6 +172,13 @@
 <div class="dash-root py-8 px-4 sm:px-8">
         <div class="max-w-5xl mx-auto">
 
+            @if(!($showAdminDashboard ?? true))
+                <div class="rounded-2xl border border-[#feaf52] bg-white p-8 text-center shadow-sm">
+                    <h2 class="text-xl font-semibold text-[#57372a]">Selamat anda sudah log in</h2>
+                    <p class="mt-2 text-sm text-[#8a6a53]">Anda dapat menggunakan aplikasi sesuai akses Anda.</p>
+                </div>
+            @else
+
             {{-- Header row --}}
             <div class="dash-header-row">
                 <div>
@@ -276,6 +283,8 @@
                 </div> -->
 
             </div>
+
+            @endif
 
         </div>
     </div>
