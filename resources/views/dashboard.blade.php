@@ -32,7 +32,7 @@
 
         /* ── Balance card ── */
         .balance-card {
-            background: linear-gradient(to right, #ff4336, #ff941d);
+            background: linear-gradient(to right, #f33636, #feaf52);
             border-radius: 20px;
             padding: 28px 28px 24px;
             position: relative;
