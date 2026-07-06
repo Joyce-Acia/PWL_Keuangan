@@ -81,7 +81,7 @@
             font-weight: 700; font-size: 0.88rem;
             color: #3cc26d;
         }
- 
+
         .td-sumber {
             font-size: 0.72rem;
             font-weight: 600;
@@ -184,6 +184,7 @@
                     <div class="page-title">Transaksi Incomes</div>
                     <div class="page-sub">Semua transaksi pemasukan yang telah dicatat</div>
                 </div>
+
                 <a href="{{ route('income.create') }}" class="btn-add">
                     <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
                     <span>Tambah Income</span>
@@ -271,5 +272,4 @@
             </div>
         </div>
     </div>
-
 </x-app-layout>
