@@ -80,10 +80,13 @@
         }
 
         .td-kategori {
-            font-size: 0.72rem; font-weight: 600;
-            background: #FFF2CC; color: #FE914D;
-            border: 1px solid #FEAF52;
-            padding: 3px 8px; border-radius: 6px;
+            font-size: 0.72rem; 
+            font-weight: 600; 
+            background: #FFF2CC; 
+            color: #FE914D; 
+            border: 1px solid #FEAF52; 
+            padding: 3px 8px; 
+            border-radius: 6px; 
             display: inline-block;
         }
 
@@ -118,6 +121,10 @@
         .empty-icon { font-size: 2rem; margin-bottom: 10px; }
 
         .pagination-wrap { margin-top: 20px; }
+
+
+
+        
     </style>
 
     <div class="exp-root py-8 px-4 sm:px-8">
@@ -165,11 +172,11 @@
                                     <tr class="border-t border-[#f0e9b0] bg-[#fffaed] hover:bg-[#fff2cc]">
                                         <td><span class="td-id">{{ 'EXP-' . str_pad((string) $expense->id, 6, '0', STR_PAD_LEFT) }}</span></td>
                                         </td>
-                                        <td class="px-4 py-4 text-sm text-gray-900">{{ \Carbon\Carbon::parse($expense->tanggal)->format('d-m-Y') }}</td>
-                                        <td class="px-4 py-4 text-sm text-gray-900">{{ $expense->nama_admin }}</td>
-                                        <td class="px-4 py-4 text-sm text-gray-900">{{ $expense->kategori_pengeluaran }}</td>
-                                        <td class="px-4 py-4 text-sm text-gray-900">Rp {{ number_format($expense->nominal, 2, ',', '.') }}</td>
-                                        <td class="px-4 py-4 text-sm text-gray-900">{{ $expense->keterangan ?? '-' }}</td>
+                                        <td style="font-size:0.8rem;color:#b87a3a;">{{ \Carbon\Carbon::parse($expense->tanggal)->format('d-m-Y') }}</td>
+                                        <td style="font-weight:500;">{{ $expense->nama_admin }}</td>
+                                        <td><span class="td-kategori">{{ $expense->kategori_pengeluaran }}</span></td>
+                                        <td class="td-nominal">Rp {{ number_format($expense->nominal, 2, ',', '.') }}</td>
+                                        <td class="td-note">{{ $expense->keterangan ?? '-' }}</td>
                                         <td class="px-4 py-4 text-sm text-gray-900">
                                             <a href="{{ route('expenses.edit', $expense) }}" class="action-edit">Edit</a>
                                             <form action="{{ route('expenses.destroy', $expense) }}" method="POST" class="inline-block" onsubmit="return confirm('Hapus expense ini?');">
