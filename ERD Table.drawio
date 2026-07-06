@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" pages="2">
   <diagram name="ERD" id="s8JPYONlxnqC8KpvN0n4">
-    <mxGraphModel dx="1548" dy="994" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1414" dy="777" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -166,7 +166,7 @@
         <mxCell id="fRDZ2bvfXnYGbZWYYen4-1" parent="1" style="ellipse;whiteSpace=wrap;html=1;align=center;" value="keterangan" vertex="1">
           <mxGeometry height="40" width="100" x="528" y="245" as="geometry" />
         </mxCell>
-        <mxCell id="1v8-VbnTmsjS3Ara0mge-1" parent="1" style="ellipse;whiteSpace=wrap;html=1;align=center;" value="nama_pelanggan" vertex="1">
+        <mxCell id="1v8-VbnTmsjS3Ara0mge-1" parent="1" style="ellipse;whiteSpace=wrap;html=1;align=center;" value="nama_pihak" vertex="1">
           <mxGeometry height="40" width="100" x="668" y="26" as="geometry" />
         </mxCell>
         <mxCell id="1v8-VbnTmsjS3Ara0mge-2" edge="1" parent="1" source="1v8-VbnTmsjS3Ara0mge-1" style="endArrow=none;html=1;rounded=0;fontSize=12;startSize=8;endSize=8;curved=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="X5rKAfQ3o40sPoVYChOr-8" value="">
@@ -212,7 +212,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="965vGFRbVm2k1bN5wQEj" name="Table">
-    <mxGraphModel dx="1506" dy="1110" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1814" dy="1177" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -440,7 +440,7 @@
             <mxRectangle height="30" width="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="1z83w9ecuB1yVvBdswm2-3" parent="1z83w9ecuB1yVvBdswm2-1" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" value="nama_pelanggan" vertex="1">
+        <mxCell id="1z83w9ecuB1yVvBdswm2-3" parent="1z83w9ecuB1yVvBdswm2-1" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" value="nama_pihak" vertex="1">
           <mxGeometry height="30" width="150" x="30" as="geometry">
             <mxRectangle height="30" width="150" as="alternateBounds" />
           </mxGeometry>
