@@ -22,7 +22,7 @@ class IncomeController extends Controller
     public function index()
     {
         $this->ensureAdmin();
-        $incomes = Income::orderBy('id', 'desc')->paginate(15);
+        $incomes = Income::orderBy('id', 'desc')->paginate(10);
         return view('income.index', compact('incomes'));
     }
 
@@ -37,12 +37,13 @@ class IncomeController extends Controller
         $this->ensureAdmin();
 
         $validated = $request->validate([
-            'tanggal' => 'required|date',
-            'nama_pelanggan' => 'required|string|max:255',
-            'sumber' => 'required|string|max:255',
-            'nominal' => 'required|numeric|min:0',
-            'keterangan' => 'nullable|string',
-        ]);
+            'tanggal'=>'required|date',
+            'nama_pelanggan'=>'required|string|max:255',
+            'sumber'=>'required|string|max:255',
+            'nominal'=>'required|numeric|min:0',
+            'keterangan'=>'nullable|string',
+
+            ]);
 
         $validated['id_user'] = auth()->id();
 

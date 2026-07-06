@@ -24,22 +24,17 @@
                                 {{ __('Dashboard') }}
                             </x-nav-link>
 
-                            <!-- Expenses -->
                             <x-nav-link :href="route('expenses.index')" :active="request()->routeIs('expenses.*')">
                                 {{ __('Expenses') }}
                             </x-nav-link>
 
                             <x-nav-link :href="route('income.index')" :active="request()->routeIs('income.*')">
-                                {{ __('Income') }}
+                                {{ __('Incomes') }}
                             </x-nav-link>
 
-
-                        </div>
-                    @else
-                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex text-center">
-                            <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                                {{ __('Dashboard') }}
-                            </x-nav-link>
+                            <!-- <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
+                                {{ __('Users') }}
+                            </x-nav-link> -->
                         </div>
                     @endif
                 @endauth
@@ -95,13 +90,13 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
+        @auth
+            @if(Auth::user()->role === 'admin')
+
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 Dashboard
             </x-responsive-nav-link>
 
-
-        @auth
-            @if(Auth::user()->role === 'admin')
             <x-responsive-nav-link :href="route('expenses.index')" :active="request()->routeIs('expenses.index')">
                 Expenses 
             </x-responsive-nav-link>
@@ -110,17 +105,17 @@
                 Incomes
             </x-responsive-nav-link>
 
-            <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
+            <!-- <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
                 Users
-            </x-responsive-nav-link>
-
+            </x-responsive-nav-link> -->
+            
             @endif
         @endauth
         
         </div>
 
         <!-- Responsive Settings Options -->
-        <div class="pt-4 pb-1 border-t border-[#FFF5F2] dark:border-[#FFF5F2]">
+        <div class="pt-4 pb-1 border-t border-[#FFF2CC]">
             <div class="px-4">
                 <div class="font-medium text-base text-gray-200">{{ Auth::user()->name }}</div>
                 <div class="font-medium text-sm text-[#FFF5F2]">{{ Auth::user()->email }}</div>

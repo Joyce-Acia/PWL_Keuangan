@@ -156,6 +156,7 @@
             background: #FFF2CC; color: #d1b89a;
             border-color: #FEAF52; cursor: not-allowed; pointer-events: none;
         }
+
     </style>
 
     <div class="exp-root py-8 px-4 sm:px-8">
@@ -168,7 +169,7 @@
             <div class="page-header">
                 <div>
                     <div class="page-title">Transaksi Expenses</div>
-                    <div class="page-sub">Untuk mengelola transaksi pengeluaran</div>
+                    <div class="page-sub">Semua transaksi pengeluaran yang telah dicatat</div>
                 </div>
 
                 <a href="{{ route('expenses.create') }}" class="btn-add">
@@ -191,7 +192,7 @@
                                 <tr>
                                     <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED">ID Transaksi</th>
                                     <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED">Tanggal</th>
-                                    <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED">Admin</th>
+                                    <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED">Nama Admin</th>
                                     <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED">Kategori</th>
                                     <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED">Nominal</th>
                                     <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED">Detail</th>
@@ -222,7 +223,7 @@
                         </table>
                     </div>
 
-              {{-- PAGINATION BAR — always shown when there are records --}}
+                    {{-- PAGINATION BAR — always shown when there are records --}}
                     <div class="pagination-bar">
                         <span class="pagination-info">
                             Menampilkan
@@ -257,7 +258,6 @@
                     </div>
                 @endif
             </div>
- 
         </div>
     </div>
  

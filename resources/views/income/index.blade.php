@@ -12,7 +12,8 @@
             gap: 12px; margin-bottom: 24px;
         }
         .page-title { font-size: 1.25rem; font-weight: 700; color: #1a1a1a; }
-        .page-sub { font-size: 0.8rem; color: #b87a3a; margin-top: 3px; }
+        
+        .page-sub   { font-size: 0.8rem; color: #b87a3a; margin-top: 3px; }
 
         .btn-add {
             display: inline-flex; align-items: center; gap: 7px;
@@ -32,6 +33,7 @@
 
         .table-wrap {
             background: #fff2cc;
+            position:relative;
             border-radius: 16px;
             border: 1px solid #feaf52;
             overflow: hidden;
@@ -54,6 +56,7 @@
             border-bottom: 1px solid #FFF2CC;
             transition: background 0.12s;
             background: #fffaed;
+            overflow: visible;
         }
         tbody tr:last-child { border-bottom: none; }
         tbody tr:hover { background: #fff2cc; }
@@ -63,6 +66,7 @@
             font-size: 0.84rem;
             color: #3a2a18;
             vertical-align: middle;
+            overflow: visible;
         }
         tbody td:last-child { text-align: right; white-space: nowrap;}
 
@@ -75,7 +79,7 @@
 
         .td-nominal {
             font-weight: 700; font-size: 0.88rem;
-            color: #16a34a;
+            color: #3cc26d;
         }
 
         .td-sumber {
@@ -98,6 +102,7 @@
             padding: 5px 11px; border-radius: 7px;
             transition: background 0.15s, color 0.15s;
         }
+
         .action-edit:hover { opacity: 0.75; background: #FEAF52; color: #fff2cc;}
 
         .action-delete {
@@ -110,6 +115,7 @@
             margin-left: 4px;
             transition: background 0.15s, color 0.15s;
         }
+
         .action-delete:hover { opacity: 0.75; background: #FD593D; color: #fff2cc;}
 
         .empty-state {
@@ -121,7 +127,14 @@
 
         .pagination-wrap { margin-top: 20px; }
 
-          /* ── PAGINATION ── */
+        .nominal-wrapper{
+            display:flex;
+            align-items:center;
+            gap:6px;
+        }
+
+        .pagination-wrap { margin-top: 20px; }
+
         .pagination-bar {
             display: flex; align-items: center;
             justify-content: space-between; flex-wrap: wrap;
@@ -136,7 +149,7 @@
         }
         .pagination-info strong { color: #FD593D; font-weight: 700; }
         .pagination-buttons { display: flex; gap: 8px; }
- 
+
         .btn-page {
             font-size: 0.78rem; font-weight: 700;
             padding: 6px 14px; border-radius: 8px;
@@ -156,6 +169,7 @@
             background: #FFF2CC; color: #d1b89a;
             border-color: #FEAF52; cursor: not-allowed; pointer-events: none;
         }
+
     </style>
 
     <div class="inc-root py-8 px-4 sm:px-8">
@@ -168,7 +182,7 @@
             <div class="page-header">
                 <div>
                     <div class="page-title">Transaksi Incomes</div>
-                    <div class="page-sub">Semua entri pendapatan yang direkam</div>
+                    <div class="page-sub">Semua transaksi pemasukan yang telah dicatat</div>
                 </div>
 
                 <a href="{{ route('income.create') }}" class="btn-add">
@@ -181,27 +195,27 @@
                 @if($incomes->isEmpty())
                     <div class="empty-state">
                         <div class="empty-icon">📭</div>
-                        <div>Tidak ada catatan pendapatan yang ditemukan.</div>
-                        <div>Silakan tambahkan pendapatan menggunakan tombol di atas.</div>
+                        <div>Tidak ada catatan pemasukan yang ditemukan.</div>
+                        <div>Silakan tambahkan pemasukan menggunakan tombol di atas.</div>
                     </div>
                 @else
                     <div class="overflow-x-auto">
                         <table class="min-w-full text-left">
                             <thead>
                                 <tr>
-                                    <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED">ID Transaksi</th>
+                                    <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED"> ID Transaksi</th>
                                     <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED">Tanggal</th>
                                     <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED">Nama Pelanggan</th>
                                     <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED">Sumber</th>
                                     <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED">Nominal</th>
-                                    <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED">Detail</th>
+                                    <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED">Keterangan</th>
                                     <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($incomes as $income)
                                     <tr class="border-t border-[#f0e9b0] bg-[#fffaed] hover:bg-[#fff2cc]">
-                                        <td><span class="td-id">{{ $income->id_transaksi }}</span></td>
+                                        <td class="px-4 py-4"><span class="td-id">{{ $income->id_transaksi }}</span></td>
                                         <td style="font-size:0.8rem;color:#b87a3a;">{{ \Carbon\Carbon::parse($income->tanggal)->format('d-m-Y') }}</td>
                                         <td style="font-weight:500;">{{ $income->nama_pelanggan }}</td>
                                         <td><span class="td-sumber">{{ $income->sumber }}</span></td>
@@ -210,9 +224,9 @@
                                         <td class="px-4 py-4 text-sm text-gray-900">
                                             <a href="{{ route('income.edit', $income) }}" class="action-edit">Edit</a>
                                             <form action="{{ route('income.destroy', $income) }}" method="POST" class="inline-block" onsubmit="return confirm('Hapus income ini?');">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="action-delete">Hapus</button>
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="action-delete">Hapus</button>
                                             </form>
                                         </td>
                                     </tr>
@@ -221,7 +235,7 @@
                         </table>
                     </div>
 
-                    {{-- PAGINATION BAR --}}
+                {{-- PAGINATION BAR — always shown when there are records --}}
                     <div class="pagination-bar">
                         <span class="pagination-info">
                             Menampilkan
@@ -229,7 +243,6 @@
                             dari <strong>{{ $incomes->total() }}</strong> transaksi
                         </span>
                         <div class="pagination-buttons">
-                            {{-- Previous --}}
                             @if($incomes->onFirstPage())
                                 <span class="btn-page prev disabled">
                                     <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
@@ -242,7 +255,6 @@
                                 </a>
                             @endif
  
-                            {{-- Next --}}
                             @if($incomes->hasMorePages())
                                 <a href="{{ $incomes->nextPageUrl() }}" class="btn-page next">
                                     Selanjutnya
@@ -258,9 +270,6 @@
                     </div>
                 @endif
             </div>
- 
-        </div>
-    </div>
         </div>
     </div>
 </x-app-layout>
