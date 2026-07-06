@@ -75,7 +75,7 @@
 
         .td-nominal {
             font-weight: 700; font-size: 0.88rem;
-            color: #FD593D;
+            color: #16a34a;
         }
 
         .td-sumber {
