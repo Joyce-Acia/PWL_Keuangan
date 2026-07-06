@@ -36,7 +36,7 @@
             <div class="hidden sm:flex sm:items-center sm:justify-end flex-1">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
-                        <button class="inline-flex items-center px-4 py-2 border border-[#FE914D] text-sm leading-4 font-semibold rounded-lg text-[#FE914D] bg-white hover:bg-[#fff2cc] focus:outline-none focus:ring-2 focus:ring-[#FE914D] transition ease-in-out duration-150 shadow-sm">
+                        <button class="inline-flex items-center px-4 py-2 border border-[#FE914D] text-sm leading-4 font-semibold text-[#57372a]">
                             <div>{{ Auth::user()->name }}</div>
 
                             <div class="ms-1">
@@ -79,8 +79,8 @@
     </div>
 
     <!-- Responsive Navigation Menu -->
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1 #755641">
+        <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
+        <div class="pt-2 pb-3 space-y-1 bg-[#755641] text-[#FFF2CC]">
         @auth
             @if(Auth::user()->role === 'admin')
 
