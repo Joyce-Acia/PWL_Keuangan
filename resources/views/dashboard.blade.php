@@ -63,7 +63,7 @@
             background: #ffffff;
             border-radius: 20px;
             padding: 22px 24px;
-            border: 1px solid #f0f0f0;
+            border: 1px solid #FEAF52;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -84,7 +84,8 @@
             padding: 3px 9px; 
             border-radius: 20px; }        
             
-        .summary-amount { font-family: 'Montserrat', sans-serif; font-size: 1.75rem; font-weight: 300; color: #111827; margin-top: 12px; line-height: 1.1; }
+        .summary-amount-expense { font-family: 'Montserrat', sans-serif; font-size: 1.75rem; font-weight: 800; color: #FD593D; margin-top: 12px; line-height: 1.1; }
+        .summary-amount-income { font-family: 'Montserrat', sans-serif; font-size: 1.75rem; font-weight: 800; color: #FE914D; margin-top: 12px; line-height: 1.1; }
         .summary-sub { font-size: 0.75rem; color: #9ca3af; margin-top: 5px; }
 
         /* ── Bottom row ── */
@@ -95,7 +96,7 @@
             background: #fff;
             border-radius: 20px;
             padding: 22px 24px;
-            border: 1px solid #f0f0f0;
+            border: 1px solid #FEAF52;
             display: flex;
             align-items: center;
             gap: 18px;
@@ -231,7 +232,7 @@
                             <span class="pill pill-week">Minggu ini</span>
                         </div>
                         <div>
-                            <div class="summary-amount">
+                            <div class="summary-amount-income">
                                 Rp {{ number_format($todayIncomes, 2, ',', '.') }}
                             </div>
                             <div class="summary-sub">Income Minggu Ini</div>
@@ -244,7 +245,7 @@
                             <span class="pill pill-week">Minggu ini</span>
                         </div>
                         <div>
-                            <div class="summary-amount">
+                            <div class="summary-amount-expense">
                                 Rp {{ number_format($todayExpenses, 2, ',', '.') }}
                             </div>
                             <div class="summary-sub">Expense Minggu Ini</div>
