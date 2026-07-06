@@ -11,7 +11,7 @@
         .dash-root { font-family: 'Montserrat', sans-serif; background: #fffaed; min-height: 100vh; }
 
         /* ── Greeting ── */
-        .dash-greeting { font-size: 1.35rem; font-weight: 700; color: #1F1F1F; }
+        .dash-greeting { font-size: 1.35rem; font-weight: 700; color: #57372a; }
         .dash-greeting span { font-weight: 400; }
         .dash-sub { font-size: 0.82rem; color: #FFF1E6; margin-top: 2px; }
 
@@ -60,7 +60,7 @@
             flex: 1;
         }
         .summary-header { display: flex; align-items: center; justify-content: space-between; }
-        .summary-title { font-size: 0.9rem; font-weight: 600; color: #374151; }
+        .summary-title { font-size: 0.9rem; font-weight: 600; color: #704838; }
         .pill {
             font-size: 0.7rem; font-weight: 700; padding: 4px 10px;
             border-radius: 20px; letter-spacing: 0.02em;
@@ -178,7 +178,6 @@
                     <div class="dash-greeting">
                         Selamat Datang, <span>{{ Auth::user()->name ?? 'Tim' }}</span> 👋
                     </div>
-                    <div class="dash-sub">Ini update mengenai posisi finansial anda.</div>
                 </div>
                 <!-- <div class="header-actions">
                     <a href="{{ route('expenses.index') }}" class="icon-btn" title="Expenses">

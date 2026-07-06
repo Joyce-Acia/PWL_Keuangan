@@ -7,11 +7,11 @@
                 <a href="{{ route('dashboard') }}" class="flex items-center gap-3">
                     <img src="{{ asset('images/Logowoutline.png') }}" 
                         class="w-9 h-9 object-contain rounded-md bg-white shadow-sm">
-                    <span class="text-2xl font-bold text-[#374151]">TigaPilihan.ptk</span>
+                    <span class="text-2xl font-bold text-[#57372a]">TigaPilihan.ptk</span>
                 </a>
             </div>
 
-            <div class="flex-1 flex justify-center">
+            <div class="flex-1 flex justify-center ml-12 mr-12">
                 <!-- Center Navigation Links -->
                 @auth
                     @if(Auth::user()->role === 'admin')
@@ -80,7 +80,7 @@
 
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1 #374151">
+        <div class="pt-2 pb-3 space-y-1 #755641">
         @auth
             @if(Auth::user()->role === 'admin')
 
@@ -105,7 +105,7 @@
         <div class="pt-4 pb-1 border-t border-[#FFF2CC]">
             <div class="px-4">
                 <div class="font-medium text-base text-[#3a2a18]">{{ Auth::user()->name }}</div>
-                <div class="font-medium text-sm text-[#FE914D]">{{ Auth::user()->email }}</div>
+                <div class="font-medium text-sm text-[#704838]">{{ Auth::user()->email }}</div>
             </div>
 
             <div class="mt-3 space-y-1">

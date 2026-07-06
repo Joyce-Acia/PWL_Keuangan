@@ -11,7 +11,7 @@
             justify-content: space-between; flex-wrap: wrap;
             gap: 12px; margin-bottom: 24px;
         }
-        .page-title { font-size: 1.25rem; font-weight: 700; color: #1a1a1a; }
+        .page-title { font-size: 1.25rem; font-weight: 700; color: #57372a; }
         /* button */
         .page-sub   { font-size: 0.8rem; color: #b87a3a; margin-top: 3px; }
 
