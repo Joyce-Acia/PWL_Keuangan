@@ -16,12 +16,12 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased font-[Montserrat]">
-        <div class="min-h-screen bg-gray-100">
+        <div class="min-h-screen bg-[#FFFAED]">
 
             @include('layouts.navigation')
 
             <!-- Page Heading -->
-            @isset($header)
+@isset($header)
                 <header class="shadow bg-[#FFFAED]">
                     <div class="max-w-7xl mx-2 px-4">
                         {{ $header }}
