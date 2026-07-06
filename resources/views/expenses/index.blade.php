@@ -195,7 +195,7 @@
                                     <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED">Nama Admin</th>
                                     <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED">Kategori</th>
                                     <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED">Nominal</th>
-                                    <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED">Detail</th>
+                                    <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED">Keterangan</th>
                                     <th class="px-4 py-3 text-xs font-semibold uppercase tracking-wide #FFFAED">Aksi</th>
                                 </tr>
                             </thead>
