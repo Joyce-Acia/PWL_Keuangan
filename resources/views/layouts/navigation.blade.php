@@ -27,6 +27,10 @@
                             <x-nav-link :href="route('income.index')" :active="request()->routeIs('income.*')">
                                 {{ __('Incomes') }}
                             </x-nav-link>
+
+                            <!-- <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
+                                {{ __('Users') }}
+                            </x-nav-link> -->
                         </div>
                     @endif
                 @endauth
@@ -96,6 +100,10 @@
                 Incomes
             </x-responsive-nav-link>
             
+            <!-- <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
+                Users
+            </x-responsive-nav-link> -->
+
             @endif
         @endauth
         

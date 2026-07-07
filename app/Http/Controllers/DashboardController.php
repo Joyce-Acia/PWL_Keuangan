@@ -33,7 +33,7 @@ class DashboardController extends Controller
         $todayExpenses = (float) Expense::whereDate('tanggal', $today)->sum('nominal');
         $todayIncomes = (float) Income::whereDate('tanggal', $today)->sum('nominal');
 
-        $todayBalance = $todayIncomes - $todayExpenses;
+
         $overallBalance = $totalIncomes - $totalExpenses;
 
         return view('dashboard', [
@@ -42,7 +42,6 @@ class DashboardController extends Controller
             'totalIncomes' => $totalIncomes,
             'todayExpenses' => $todayExpenses,
             'todayIncomes' => $todayIncomes,
-            'todayBalance' => $todayBalance,
             'overallBalance' => $overallBalance,
             'today' => $today,
         ]);
