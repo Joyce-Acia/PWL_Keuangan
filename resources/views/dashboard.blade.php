@@ -221,13 +221,13 @@
                     <div class="summary-card">
                         <div class="summary-header">
                             <span class="summary-title">Income</span>
-                            <span class="pill pill-week">Minggu ini</span>
+                            <span class="pill pill-week">Hari ini</span>
                         </div>
                         <div>
                             <div class="summary-amount-income">
                                 Rp {{ number_format($todayIncomes, 2, ',', '.') }}
                             </div>
-                            <div class="summary-sub">Income Minggu Ini</div>
+                            <div class="summary-sub">Income Hari Ini</div>
                         </div>
                     </div>
 
