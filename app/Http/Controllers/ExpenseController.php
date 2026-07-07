@@ -22,7 +22,7 @@ class ExpenseController extends Controller
     public function index()
     {
         $this->ensureAdmin();
-        $expenses = Expense::latest()->paginate(15);
+        $expenses = Expense::latest()->paginate(10);
         return view('expenses.index', compact('expenses'));
     }
 
@@ -46,16 +46,10 @@ class ExpenseController extends Controller
         ]);
 
         $validated['id_user'] = auth()->id();
-        $validated['id_transaksi'] = 'TMP-' . str_replace('.', '', uniqid('', true));
 
         $expense = Expense::create($validated);
-        
-        // Generate id_transaksi based on the record ID
-        $expense->update([
-            'id_transaksi' => 'EXP-' . str_pad($expense->id, 6, '0', STR_PAD_LEFT)
-        ]);
 
-        return redirect()->route('expenses.index')->with('success', 'Expense saved.');
+        return redirect()->route('expenses.index')->with('success', 'Expense sudah disimpan.');
     }
 
     public function edit(Expense $expense)
@@ -78,13 +72,13 @@ class ExpenseController extends Controller
 
         $expense->update($validated);
 
-        return redirect()->route('expenses.index')->with('success', 'Expense updated.');
+        return redirect()->route('expenses.index')->with('success', 'Expense sudah diupdate.');
     }
 
     public function destroy(Expense $expense)
     {
         $this->ensureAdmin();
         $expense->delete();
-        return redirect()->route('expenses.index')->with('success', 'Expense deleted.');
+        return redirect()->route('expenses.index')->with('success', 'Expense sudah dihapus.');
     }
 }
