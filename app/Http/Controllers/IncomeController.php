@@ -22,7 +22,7 @@ class IncomeController extends Controller
     public function index()
     {
         $this->ensureAdmin();
-        $incomes = Income::orderBy('id', 'desc')->paginate(10);
+        $incomes = Income::orderBy('id', 'desc')->paginate(15);
         return view('income.index', compact('incomes'));
     }
 
@@ -37,19 +37,22 @@ class IncomeController extends Controller
         $this->ensureAdmin();
 
         $validated = $request->validate([
-            'tanggal'=>'required|date',
-            'nama_pihak'=>'required|string|max:255',
-            'sumber'=>'required|string|max:255',
-            'nominal'=>'required|numeric|min:0',
-            'keterangan'=>'nullable|string',
+            'tanggal' => 'required|date',
+            'nama_pelanggan' => 'required|string|max:255',
+            'produk' => 'required|string|max:255',
+            'kuantitas' => 'required|numeric|min:0',
+            'harga' => 'required|numeric|min:0',
+            'nominal' => 'required|numeric|min:0',
+            'keterangan' => 'nullable|string',
+        ]);
 
-            ]);
-
+        // Nominal = kuantitas * harga
+        $validated['nominal'] = (float) $validated['kuantitas'] * (float) $validated['harga'];
         $validated['id_user'] = auth()->id();
 
         $income = Income::create($validated);
 
-        return redirect()->route('income.index')->with('success', 'Income sudah disimpan.');
+        return redirect()->route('income.index')->with('success', 'Income saved.');
     }
 
     public function edit(Income $income)
@@ -64,21 +67,26 @@ class IncomeController extends Controller
 
         $validated = $request->validate([
             'tanggal' => 'required|date',
-            'nama_pihak' => 'required|string|max:255',
-            'sumber' => 'required|string|max:255',
+            'nama_pelanggan' => 'required|string|max:255',
+            'produk' => 'required|string|max:255',
+            'kuantitas' => 'required|numeric|min:0',
+            'harga' => 'required|numeric|min:0',
             'nominal' => 'required|numeric|min:0',
             'keterangan' => 'nullable|string',
         ]);
 
+        // Nominal = kuantitas * harga
+        $validated['nominal'] = (float) $validated['kuantitas'] * (float) $validated['harga'];
+
         $income->update($validated);
 
-        return redirect()->route('income.index')->with('success', 'Income sudah diupdate.');
+        return redirect()->route('income.index')->with('success', 'Income updated.');
     }
 
     public function destroy(Income $income)
     {
         $this->ensureAdmin();
         $income->delete();
-        return redirect()->route('income.index')->with('success', 'Income sudah dihapus.');
+        return redirect()->route('income.index')->with('success', 'Income deleted.');
     }
 }

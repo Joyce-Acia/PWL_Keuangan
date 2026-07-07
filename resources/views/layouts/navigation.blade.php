@@ -1,21 +1,25 @@
-<nav x-data="{ open: false }" class="bg-[#FE914D] border-b-2 border-[#FE914D] shadow-md">
+<nav x-data="{ open: false }" class="bg-[#fe914d] border-b border-[#fe914d]">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="flex items-center h-16">
-            <!-- Logo -->
-            <div class="flex-shrink-0">
-                <a href="{{ route('dashboard') }}" class="flex items-center gap-3">
-                    <img src="{{ asset('images/Logowoutline.png') }}" 
-                        class="w-9 h-9 object-contain rounded-md bg-white shadow-sm">
-                    <span class="text-2xl font-bold text-[#57372a]">TigaPilihan.ptk</span>
-                </a>
-            </div>
+        <div class="flex justify-between h-16">
+            <div class="flex items-center">
+                <!-- Logo -->
+                    <a href="{{ route('dashboard') }}" class="flex items-center gap-2 mr-10">
+                        <div class="flex items-center gap-2">
+                            <img src="{{ asset('images/Logowoutline.png') }}" 
+                                class="w-9 h-9 object-contain rounded-md bg-white shadow-sm">
 
-            <div class="flex-1 flex justify-center ml-12 mr-12">
-                <!-- Center Navigation Links -->
+
+
+                            <span class="text-2xl font-bold text-gray-800 mb-2">TigaPilihan.ptk</span>
+                        </div>
+                    </a>
+
+                <!-- Navigation Links -->
+
                 @auth
                     @if(Auth::user()->role === 'admin')
-                        <div class="hidden sm:flex justify-center gap-8">
+                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex text-center">
                             <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                                 {{ __('Dashboard') }}
                             </x-nav-link>
@@ -30,13 +34,14 @@
                         </div>
                     @endif
                 @endauth
+
             </div>
 
             <!-- Settings Dropdown -->
-            <div class="hidden sm:flex sm:items-center sm:justify-end flex-1">
+            <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
-                        <button class="inline-flex items-center px-4 py-2 text-sm leading-4 font-semibold text-[#57372a] hover:text-[#FFF2CC] transition ease-in-out duration-150">
+                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-800 font-medium bg-[#fe914d] hover:text-[#fff2cc] focus:outline-none transition ease-in-out duration-150">
                             <div>{{ Auth::user()->name }}</div>
 
                             <div class="ms-1">
@@ -68,7 +73,7 @@
 
             <!-- Hamburger -->
             <div class="-me-2 flex items-center sm:hidden">
-                <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-[#3a2a18] hover:text-[#FE914D] focus:outline-none transition duration-150 ease-in-out">
+                <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-[#ff941d] focus:outline-none focus:bg-gray-100 focus:text-gray-500 dark:focus:text-gray-400 transition duration-150 ease-in-out">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -79,15 +84,15 @@
     </div>
 
     <!-- Responsive Navigation Menu -->
-        <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1 #755641">
-        @auth
-            @if(Auth::user()->role === 'admin')
-
+    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
+        <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 Dashboard
             </x-responsive-nav-link>
 
+
+        @auth
+            @if(Auth::user()->role === 'admin')
             <x-responsive-nav-link :href="route('expenses.index')" :active="request()->routeIs('expenses.index')">
                 Expenses 
             </x-responsive-nav-link>
@@ -95,17 +100,17 @@
             <x-responsive-nav-link :href="route('income.index')" :active="request()->routeIs('income.*')">
                 Incomes
             </x-responsive-nav-link>
-            
+
             @endif
         @endauth
         
         </div>
 
         <!-- Responsive Settings Options -->
-        <div class="pt-4 pb-1 border-t border-[#FFF2CC]">
+        <div class="pt-4 pb-1 border-t border-[#FFF5F2] dark:border-[#FFF5F2]">
             <div class="px-4">
-                <div class="font-medium text-base text-[#3a2a18]">{{ Auth::user()->name }}</div>
-                <div class="font-medium text-sm text-[#704838]">{{ Auth::user()->email }}</div>
+                <div class="font-medium text-base text-gray-200">{{ Auth::user()->name }}</div>
+                <div class="font-medium text-sm text-[#FFF5F2]">{{ Auth::user()->email }}</div>
             </div>
 
             <div class="mt-3 space-y-1">

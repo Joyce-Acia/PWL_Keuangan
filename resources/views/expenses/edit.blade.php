@@ -1,66 +1,60 @@
 <x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ __('Edit Expense') }}</h2>
+    </x-slot>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    @include('expenses.partials.style')
-
-    <div class="form-root py-8 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-2xl mx-auto">
-
-            <div class="breadcrumb">
-                <a href="{{ route('expenses.index') }}">Transaksi Expenses</a>
-                <span class="breadcrumb-sep">›</span>
-                <span>Edit</span>
-            </div>
-
-            <div class="form-card">
-
-                <div class="form-card-header">
-                    <div class="form-card-header-icon">
-                        <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
-                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                        </svg>
-                    </div>
-                    <div>
-                        <div class="form-card-title">Edit Expense</div>
-                        <div class="form-card-sub">Perbarui data transaksi pengeluaran</div>
-                    </div>
-                </div>
-
-                <div class="form-card-body">
-
-                    <div class="id-badge">
-                        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
-                        {{ 'EXP-' . str_pad((string) $expense->id, 6, '0', STR_PAD_LEFT) }}
-                    </div>
-
+    <div class="py-12">
+        <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 bg-white border-b border-gray-200">
                     <form method="POST" action="{{ route('expenses.update', $expense) }}">
                         @csrf
                         @method('PUT')
 
-                        @include('expenses.partials.form', ['expense' => $expense])
-
-                        <div class="form-card-footer" style="margin: 24px -24px -28px; border-radius: 0 0 16px 16px;">
-                            <span class="footer-hint">Pastikan semua data sudah benar sebelum disimpan.</span>
-                            <div class="footer-actions">
-                                <a href="{{ route('expenses.index') }}" class="btn-cancel">
-                                    <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-                                    Batal
-                                </a>
-                                <button type="submit" class="btn-save">
-                                    <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-                                    Simpan Perubahan
-                                </button>
-                            </div>
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700">Tanggal</label>
+                            <input type="date" name="tanggal" value="{{ old('tanggal', $expense->tanggal) }}" class="mt-1 block w-full" required>
                         </div>
 
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700">Nama Admin</label>
+                            <select name="nama_admin" class="mt-1 block w-full rounded border-gray-300" required>
+                                <option value="" disabled {{ old('nama_admin', $expense->nama_admin) ? '' : 'selected' }}>Pilih nama admin</option>
+                                <option value="Ratna" {{ old('nama_admin', $expense->nama_admin) === 'Ratna' ? 'selected' : '' }}>Ratna</option>
+                                <option value="Dera" {{ old('nama_admin', $expense->nama_admin) === 'Dera' ? 'selected' : '' }}>Dera</option>
+                                <option value="Joyce" {{ old('nama_admin', $expense->nama_admin) === 'Joyce' ? 'selected' : '' }}>Joyce</option>
+                                <option value="David" {{ old('nama_admin', $expense->nama_admin) === 'David' ? 'selected' : '' }}>David</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700">Kategori Pengeluaran</label>
+                            <select name="kategori_pengeluaran" class="mt-1 block w-full rounded border-gray-300" required>
+                                <option value="" disabled {{ old('kategori_pengeluaran', $expense->kategori_pengeluaran) ? '' : 'selected' }}>Pilih kategori pengeluaran</option>
+                                <option value="Pembelian Stok" {{ old('kategori_pengeluaran', $expense->kategori_pengeluaran) === 'Pembelian Stok' ? 'selected' : '' }}>Pembelian Stok</option>
+                                <option value="Transportasi" {{ old('kategori_pengeluaran', $expense->kategori_pengeluaran) === 'Transportasi' ? 'selected' : '' }}>Transportasi</option>
+                                <option value="Gaji/Upah" {{ old('kategori_pengeluaran', $expense->kategori_pengeluaran) === 'Gaji/Upah' ? 'selected' : '' }}>Gaji/Upah</option>
+                                <option value="Perlengkapan & Marketing" {{ old('kategori_pengeluaran', $expense->kategori_pengeluaran) === 'Perlengkapan & Marketing' ? 'selected' : '' }}>Perlengkapan & Marketing</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700">Nominal</label>
+                            <input type="number" step="0.01" name="nominal" value="{{ old('nominal', $expense->nominal) }}" class="mt-1 block w-full" required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700">Keterangan</label>
+                            <textarea name="keterangan" class="mt-1 block w-full">{{ old('keterangan', $expense->keterangan) }}</textarea>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <button class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white rounded-md">Update</button>
+                            <a href="{{ route('expenses.index') }}" class="inline-flex items-center px-4 py-2 bg-gray-200 text-gray-700 rounded-md">Cancel</a>
+                        </div>
                     </form>
                 </div>
             </div>
-
         </div>
     </div>
-
 </x-app-layout>

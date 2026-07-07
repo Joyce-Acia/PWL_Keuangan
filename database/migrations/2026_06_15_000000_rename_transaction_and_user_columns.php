@@ -6,17 +6,6 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 
 return new class extends Migration {
-    private function foreignKeyExists(string $table, string $constraint): bool
-    {
-        $database = DB::getDatabaseName();
-        $result = DB::select(
-            'SELECT CONSTRAINT_NAME FROM information_schema.TABLE_CONSTRAINTS WHERE TABLE_SCHEMA = ? AND TABLE_NAME = ? AND CONSTRAINT_NAME = ? AND CONSTRAINT_TYPE = ?',
-            [$database, $table, $constraint, 'FOREIGN KEY']
-        );
-
-        return count($result) > 0;
-    }
-
     public function up(): void
     {
         // Incomes table
@@ -44,8 +33,12 @@ return new class extends Migration {
 
             // re-add foreign key if id_user exists and no FK defined
             Schema::table('incomes', function (Blueprint $table) {
-                if (Schema::hasColumn('incomes', 'id_user') && ! $this->foreignKeyExists('incomes', 'incomes_id_user_foreign')) {
-                    $table->foreign('id_user')->references('id')->on('users')->nullOnDelete();
+                if (Schema::hasColumn('incomes', 'id_user')) {
+                    try {
+                        $table->foreign('id_user')->references('id')->on('users')->nullOnDelete();
+                    } catch (\Throwable $e) {
+                        // ignore if FK already exists
+                    }
                 }
             });
         }
@@ -75,8 +68,12 @@ return new class extends Migration {
 
             // re-add foreign key if id_user exists and no FK defined
             Schema::table('expenses', function (Blueprint $table) {
-                if (Schema::hasColumn('expenses', 'id_user') && ! $this->foreignKeyExists('expenses', 'expenses_id_user_foreign')) {
-                    $table->foreign('id_user')->references('id')->on('users')->nullOnDelete();
+                if (Schema::hasColumn('expenses', 'id_user')) {
+                    try {
+                        $table->foreign('id_user')->references('id')->on('users')->nullOnDelete();
+                    } catch (\Throwable $e) {
+                        // ignore if FK already exists
+                    }
                 }
             });
         }

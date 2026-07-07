@@ -1,72 +1,67 @@
 <x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold mx-2 text-xl text-gray-800 leading-tight">{{ __('Edit Income') }}</h2>
+    </x-slot>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    @include('income.partials.style')
-
-    <div class="form-root py-8 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-2xl mx-auto">
-
-            {{-- BREADCRUMB --}}
-            <div class="breadcrumb">
-                <a href="{{ route('income.index') }}">Transaksi Incomes</a>
-                <span class="breadcrumb-sep">›</span>
-                <span>Edit</span>
-            </div>
-
-            <div class="form-card">
-
-                {{-- HEADER --}}
-                <div class="form-card-header">
-                    <div class="form-card-header-icon">
-                        <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
-                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                        </svg>
-                    </div>
-                    <div>
-                        <div class="form-card-title">Edit Income</div>
-                        <div class="form-card-sub">Perbarui data transaksi pendapatan</div>
-                    </div>
-                </div>
-
-                {{-- BODY --}}
-                <div class="form-card-body">
-
-                    {{-- ID badge (read-only info) --}}
-                    <div class="id-badge">
-                        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
-                        {{ $income->id_transaksi }}
-                    </div>
-
+    <div class="py-2 bg-[#FFF2CC]">
+        <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white shadow-sm sm:rounded-lg p-6">
                     <form method="POST" action="{{ route('income.update', $income) }}">
                         @csrf
                         @method('PUT')
 
-                        @include('income.partials.form', ['income' => $income])
-
-                        {{-- FOOTER --}}
-                        <div class="form-card-footer" style="margin: 24px -24px -28px; border-radius: 0 0 16px 16px;">
-                            <span class="footer-hint">Pastikan semua data sudah benar sebelum disimpan.</span>
-                            <div class="footer-actions">
-                                <a href="{{ route('income.index') }}" class="btn-cancel">
-                                    <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-                                    Batal
-                                </a>
-                                <button type="submit" class="btn-save">
-                                    <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-                                    Simpan Perubahan
-                                </button>
-                            </div>
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700">Tanggal</label>
+                            <input type="date" name="tanggal" value="{{ old('tanggal', $income->tanggal) }}" class="mt-1 block w-full" required>
                         </div>
 
-                    </form>
-                </div>
-            </div>
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700">Nama Pelanggan</label>
+                            <input type="text" name="nama_pelanggan" value="{{ old('nama_pelanggan', $income->nama_pelanggan) }}" class="mt-1 block w-full" required>
+                        </div>
 
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700">Nominal</label>
+                            <input type="number" step="0.01" name="nominal" value="{{ old('nominal', $income->nominal) }}" class="mt-1 block w-full" required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700">Produk</label>
+                            <select name="produk" class="mt-1 block w-full" required>
+                                <option value="">-- Pilih Produk --</option>
+                                <option value="Minyak Goreng 2L" {{ old('produk', $income->produk ?? '') === 'Minyak Goreng 2L' ? 'selected' : '' }}>Minyak Goreng 2L</option>
+                                <option value="Minyak Goreng 1L" {{ old('produk', $income->produk ?? '') === 'Minyak Goreng 1L' ? 'selected' : '' }}>Minyak Goreng 1L</option>
+                                <option value="Gula Pasir 1Kg" {{ old('produk', $income->produk ?? '') === 'Gula Pasir 1Kg' ? 'selected' : '' }}>Gula Pasir 1Kg</option>
+                                <option value="Daging Ayam Dada Fillet" {{ old('produk', $income->produk ?? '') === 'Daging Ayam Dada Fillet' ? 'selected' : '' }}>Daging Ayam Dada Fillet</option>
+                                <option value="Daging Ayam Paha Fillet" {{ old('produk', $income->produk ?? '') === 'Daging Ayam Paha Fillet' ? 'selected' : '' }}>Daging Ayam Paha Fillet</option>
+                                <option value="Daging Sapi Rendang" {{ old('produk', $income->produk ?? '') === 'Daging Sapi Rendang' ? 'selected' : '' }}>Daging Sapi Rendang</option>
+                                <option value="Lain-lain" {{ old('produk', $income->produk ?? '') === 'Lain-lain' ? 'selected' : '' }}>Lain-lain</option>
+
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700">Harga</label>
+                            <input type="number" step="0.01" name="harga" value="{{ old('harga', $income->harga) }}" class="mt-1 block w-full" required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700">Kuantitas</label>
+                            <input type="number" step="1" min="1" name="kuantitas" value="{{ old('kuantitas', $income->kuantitas) }}" class="mt-1 block w-full" required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700">Keterangan</label>
+                            <textarea name="keterangan" class="mt-1 block w-full">{{ old('keterangan', $income->keterangan) }}</textarea>
+                        </div>
+
+
+                        <div class="flex items-center gap-3">
+                            <button class="inline-flex items-center px-4 py-2 bg-[#fd593d] text-white rounded-md hover:bg-[#feaf52]">Update</button>
+                            <a href="{{ route('income.index') }}" class="inline-flex items-center px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400">Cancel</a>
+                        </div>
+                    </form>
+            </div>
         </div>
     </div>
-
-    
 </x-app-layout>

@@ -10,10 +10,6 @@ return new class extends Migration {
         Schema::create('expenses', function (Blueprint $table) {
             $table->id();
             $table->string('id_transaksi')->unique();
-            $table->foreignId('id_user')
-                ->nullable()
-                ->constrained('users')
-                ->nullOnDelete();
             $table->date('tanggal');
             $table->string('nama_admin');
             $table->string('kategori_pengeluaran');
